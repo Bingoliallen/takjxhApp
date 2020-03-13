@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <takjxh.android.com.taapp.view.NormalTitleBar
+        android:id="@+id/ntb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="手机号：+86"
+                        android:textColor="@color/common_app_text_theme4" />
+
+                    <EditText
+                        android:id="@+id/edAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint=""
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:paddingLeft="12dp"
+                        android:singleLine="true"
+                        android:textColor="@color/common_app_text_theme4"
+                        android:textColorHint="@color/common_app_text_theme5" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="企业组织机构代码："
+                        android:textColor="@color/common_app_text_theme4" />
+
+                    <EditText
+                        android:id="@+id/edDM"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint=""
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingLeft="12dp"
+                        android:singleLine="true"
+                        android:textColor="@color/common_app_text_theme4"
+                        android:textColorHint="@color/common_app_text_theme5" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="企业规模："
+                        android:textColor="@color/common_app_text_theme4" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+
+                        <takjxh.android.com.taapp.view.CustomSpinner
+                            android:id="@+id/sp_register1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:spinnerMode="dialog" />
+
+                        <!--<View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bt_danxuankaung" />-->
+
+                        <TextView
+                            android:id="@+id/tv_qygm"
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="33dp"
+                            android:layout_height="40dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="0dp"
+                            android:background="@color/white"
+                            android:hint="选择企业规模"
+                            android:gravity="center_vertical"
+                            android:maxLength="50"
+                            android:paddingLeft="12dp"
+                            android:singleLine="true"
+                            android:spinnerMode="dialog"
+                            android:textColor="@color/common_app_text_theme4"
+                            android:textColorHint="@color/common_app_text_theme5"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="企业收入："
+                        android:textColor="@color/common_app_text_theme4" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+
+                        <takjxh.android.com.taapp.view.CustomSpinner
+                            android:id="@+id/sp_register2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:spinnerMode="dialog" />
+
+                        <!--<View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bt_danxuankaung" />-->
+
+                        <TextView
+                            android:id="@+id/tv_qysr"
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="33dp"
+                            android:layout_height="40dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="0dp"
+                            android:background="@color/white"
+                            android:hint="选择企业收入"
+                            android:gravity="center_vertical"
+                            android:maxLength="50"
+                            android:paddingLeft="12dp"
+                            android:singleLine="true"
+                            android:spinnerMode="dialog"
+                            android:textColor="@color/common_app_text_theme4"
+                            android:textColorHint="@color/common_app_text_theme5"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="所属行业："
+                        android:textColor="@color/common_app_text_theme4" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+
+                        <takjxh.android.com.taapp.view.CustomSpinner
+                            android:id="@+id/sp_register3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:spinnerMode="dialog" />
+
+                        <!--<View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bt_danxuankaung" />-->
+
+                        <TextView
+                            android:id="@+id/tv_sshy"
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="33dp"
+                            android:layout_height="40dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="0dp"
+                            android:background="@color/white"
+                            android:hint="选择所属行业"
+                            android:gravity="center_vertical"
+                            android:maxLength="50"
+                            android:paddingLeft="12dp"
+                            android:singleLine="true"
+                            android:spinnerMode="dialog"
+                            android:textColor="@color/common_app_text_theme4"
+                            android:textColorHint="@color/common_app_text_theme5"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="图片验证："
+                        android:textColor="@color/common_app_text_theme4" />
+
+                    <EditText
+                        android:id="@+id/edTP"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint=""
+                        android:inputType="text"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@color/common_app_text_theme4"
+                        android:textColorHint="@color/common_app_text_theme5" />
+
+                    <ImageView
+                        android:id="@+id/imgsx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/sx" />
+
+                    <ImageView
+                        android:id="@+id/img"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="手机验证码："
+                        android:textColor="@color/common_app_text_theme4" />
+
+                    <EditText
+                        android:id="@+id/edSJ"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint=""
+                        android:inputType="text"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@color/common_app_text_theme4"
+                        android:textColorHint="@color/common_app_text_theme5" />
+
+
+                    <TextView
+                        android:id="@+id/tvcode"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:text="发送验证码"
+                        android:textColor="@color/main_color" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="设置密码："
+                        android:textColor="@color/common_app_text_theme4" />
+
+                    <EditText
+                        android:id="@+id/edPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint="设置6-16位密码"
+                        android:maxLength="16"
+                        android:inputType="textPassword"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@color/common_app_text_theme4"
+                        android:textColorHint="@color/common_app_text_theme5" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/mCenter"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/selector_login_btn"
+                android:text="注册"
+                android:textColor="@color/common_app_theme_bg2"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

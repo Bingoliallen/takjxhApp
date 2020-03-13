@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="0dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginTop="0dp"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/mL4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvtitle"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|right"
+                android:text="统计区统计区统计区统计区统计区统计区统计区统计区统计区统计区统计区统计区"
+                android:textSize="14sp"
+                android:paddingBottom="10dp"
+                android:paddingTop="5dp"
+                android:textColor="@color/common_app_text_theme1" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="："
+                android:textSize="14sp"
+                android:textColor="@color/common_app_text_theme1" />
+            <EditText
+                android:id="@+id/edFR"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:hint="请输入"
+                android:textSize="14sp"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:paddingLeft="12dp"
+                android:singleLine="true"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/common_app_text_theme2" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="0dp"
+            android:background="@color/line" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

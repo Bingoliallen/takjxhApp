@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <takjxh.android.com.taapp.view.NormalTitleBar
+        android:id="@+id/ntb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:ellipsize="end"
+                        android:maxLength="30"
+                        android:maxLines="1"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="1.基本信息"
+                        android:textColor="@color/text_color"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+
+                    <LinearLayout
+                        android:id="@+id/mL4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:gravity="center_vertical"
+                                android:text="科室或中心："
+                                android:textColor="@color/text_color"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/edFR"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@color/white"
+                                android:gravity="center_vertical"
+                                android:hint=""
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:paddingLeft="12dp"
+                                android:singleLine="true"
+                                android:textColor="@color/common_app_text_theme4"
+                                android:textColorHint="@color/common_app_text_theme5" />
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginTop="0dp"
+                            android:background="@color/line" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/mL5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:gravity="center_vertical"
+                                android:text="姓名："
+                                android:textColor="@color/text_color"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/edLXRXM"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@color/white"
+                                android:gravity="center_vertical"
+                                android:hint=""
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:paddingLeft="12dp"
+                                android:singleLine="true"
+                                android:textColor="@color/common_app_text_theme4"
+                                android:textColorHint="@color/common_app_text_theme5" />
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginTop="0dp"
+                            android:background="@color/line" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/mL6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:gravity="center_vertical"
+                                android:text="联系电话："
+                                android:textColor="@color/text_color"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/edLXDH"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@color/white"
+                                android:gravity="center_vertical"
+                                android:hint=""
+                                android:imeOptions="actionNext"
+                                android:inputType="phone"
+                                android:maxLength="11"
+                                android:paddingLeft="12dp"
+                                android:singleLine="true"
+                                android:textColor="@color/common_app_text_theme4"
+                                android:textColorHint="@color/common_app_text_theme5" />
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginTop="0dp"
+                            android:background="@color/line" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tvtitle2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:ellipsize="end"
+                        android:maxLength="30"
+                        android:maxLines="1"
+                        android:text="2.填报数据"
+                        android:textColor="@color/text_color"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/mLdx1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvmc"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:gravity="center_vertical"
+                            android:text="当前是否有发烧咳嗽："
+                            android:textColor="@color/text_color"
+                            android:textStyle="bold" />
+
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/radioButton1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="0dp"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp"
+                                android:text="有"
+                                android:textColor="@color/text_color"
+                                android:textSize="14sp" />
+
+                            <RadioButton
+                                android:id="@+id/radioButton2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="0dp"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp"
+                                android:text="没有"
+                                android:textColor="@color/text_color"
+                                android:textSize="14sp" />
+
+
+                        </RadioGroup>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/line" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/mLdx2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvmc2"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:gravity="center_vertical"
+                            android:text="是否接触过确诊或疑似病例："
+                            android:textColor="@color/text_color"
+                            android:textStyle="bold" />
+
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/radioButton21"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="0dp"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp"
+                                android:text="有"
+                                android:textColor="@color/text_color"
+                                android:textSize="14sp" />
+
+                            <RadioButton
+                                android:id="@+id/radioButton22"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="0dp"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp"
+                                android:text="没有"
+                                android:textColor="@color/text_color"
+                                android:textSize="14sp" />
+
+
+                        </RadioGroup>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/line" />
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/mL8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:gravity="center_vertical"
+                                android:text="今日体温："
+                                android:textColor="@color/text_color"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/edQYSDS"
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:background="@color/white"
+                                android:gravity="center_vertical"
+                                android:hint="请输入"
+                                android:maxLength="5"
+                                android:imeOptions="actionNext"
+                                android:inputType="numberDecimal"
+                                android:paddingLeft="12dp"
+                                android:singleLine="true"
+                                android:textColor="@color/common_app_text_theme4"
+                                android:textColorHint="@color/common_app_text_theme5" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:paddingLeft="5dp"
+                                android:gravity="center_vertical"
+                                android:text="℃"
+                                android:textColor="@color/text_color"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginTop="0dp"
+                            android:background="@color/line" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="45dp"
+                android:background="@drawable/selector_login_btn"
+                android:text="提交"
+                android:textColor="@color/common_app_theme_bg2"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

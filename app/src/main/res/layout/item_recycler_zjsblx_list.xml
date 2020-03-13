@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mLM"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <RadioButton
+        android:id="@+id/radioButton1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="民营企业股权转让收益税收奖励"
+        android:textColor="@color/text_color"
+        android:textSize="14sp" />
+
+
+    <CheckBox
+        android:id="@+id/cb_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:checked="false"
+        android:text="民营企业股权转让收益税收奖励"
+        android:textColor="@color/text_color"
+        android:textSize="14sp" />
+</LinearLayout>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_bg"
+    android:orientation="vertical">
+
+    <takjxh.android.com.taapp.view.NormalTitleBar
+        android:id="@+id/ntb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlFooterTranslationViewId="@+id/vp">
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlClassicsSpinnerStyle="FixedBehind"
+            app:srlPrimaryColor="#444"
+            app:srlAccentColor="@android:color/white"/>
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:overScrollMode="never"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:listitem="@android:layout/simple_list_item_2"/>
+
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f2f2f2"
+                app:elevation="0dp">
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/toolbarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="0dp"
+                    android:fitsSystemWindows="true"
+                    app:layout_scrollFlags="scroll">
+                    <LinearLayout
+                        android:id="@+id/mlTop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/text_color"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="15dp">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/iv_avatar"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@mipmap/head_man_offline"
+                                app:civ_border_color="@color/white"
+                                app:civ_border_width="1px" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:singleLine="true"
+                                    tools:text="XXXXX"
+                                    android:textColor="@color/white"
+                                    android:textSize="17sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvcompany"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:singleLine="true"
+                                    tools:text="北京日报报业集团"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvtitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginTop="15dp"
+                            android:ellipsize="end"
+                            android:maxLines="4"
+                            android:padding="15dp"
+                            tools:text="中新网10月18日电 据中央气象台网站消息，中央气象台10月18日6时发布大雾黄色预警：预计，10月18日早晨至上午，北京南部、河北中南部、山东西北部、河南大部、陕西北部、甘肃东部、四川盆地南部、重庆西部等地有大雾，其中北京南部、河北中南部、河南中部、山东西北部等地的部分地区有能见度不足500米的浓雾，局地有能见度不足200米的强浓雾。"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/tv_gz"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:layout_gravity="right"
+                            android:layout_marginBottom="25dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/gz_shape_white"
+                            android:gravity="right"
+                            android:paddingBottom="6dp"
+                            android:paddingLeft="18dp"
+                            android:paddingRight="18dp"
+                            android:paddingTop="6dp"
+                            android:text="关注"
+                            android:textColor="@color/white"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                </android.support.design.widget.CollapsingToolbarLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:orientation="vertical"
+                    android:divider="@android:drawable/divider_horizontal_dark"
+                    android:showDividers="beginning|end"
+                    app:layout_scrollFlags="scroll">
+                    <TextView
+                        android:id="@+id/tvContent"
+                        android:background="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:padding="15dp"
+                        tools:text="中新网10月18日电 据中央气象台网站消息，中央气象台10月18日6时发布大雾黄色预警：预计，10月18日早晨至上午，北京南部、河北中南部、山东西北部、河南大部、陕西北部、甘肃东部、四川盆地南部、重庆西部等地有大雾，其中北京南部、河北中南部、河南中部、山东西北部等地的部分地区有能见度不足500米的浓雾，局地有能见度不足200米的强浓雾。"
+                        android:textColor="@color/text_color"
+                        android:textSize="20sp" />
+<!--
+                    <TextView
+                        android:background="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp"
+                        tools:text="中新网10月18日电 据中央气象台网站消息，中央气象台10月18日6时发布大雾黄色预警：预计，10月18日早晨至上午，北京南部、河北中南部、山东西北部、河南大部、陕西北部、甘肃东部、四川盆地南部、重庆西部等地有大雾，其中北京南部、河北中南部、河南中部、山东西北部等地的部分地区有能见度不足500米的浓雾，局地有能见度不足200米的强浓雾。"
+                        android:textColor="@color/text_color"
+                        android:textSize="20sp" />
+-->
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="exitUntilCollapsed|enterAlways|enterAlwaysCollapsed">
+                    <com.flyco.tablayout.SlidingTabLayout
+                        android:id="@+id/tl_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@color/white"
+                        tl:tl_indicator_color="@color/main_color"
+                        tl:tl_indicator_margin_bottom="3dp"
+                        tl:tl_indicator_height="3px"
+                        tl:tl_indicator_width="60dp"
+                        tl:tl_textSelectColor="@color/main_color"
+                        tl:tl_textUnselectColor="@color/common_app_text_theme2"
+                        tl:tl_textAllCaps="false"
+                        tl:tl_textBold="NONE"
+                        tl:tl_tab_padding="0dp"
+                        tl:tl_tab_width="54dp"
+                        tl:tl_textsize="13sp" />
+                </LinearLayout>
+            </android.support.design.widget.AppBarLayout>
+
+        </android.support.design.widget.CoordinatorLayout>
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</LinearLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:id="@+id/loading_animation" android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="@integer/loading_frame_interval" android:drawable="@drawable/loadingd_1" />
+    <item android:duration="@integer/loading_frame_interval" android:drawable="@drawable/loadingd_2" />
+    <item android:duration="@integer/loading_frame_interval" android:drawable="@drawable/loadingd_3" />
+    <item android:duration="@integer/loading_frame_interval" android:drawable="@drawable/loadingd_4" />
+    <item android:duration="@integer/loading_frame_interval" android:drawable="@drawable/loadingd_5" />
+    <item android:duration="@integer/loading_frame_interval" android:drawable="@drawable/loadingd_6" />
+    <item android:duration="@integer/loading_frame_interval" android:drawable="@drawable/loadingd_7" />
+    <item android:duration="@integer/loading_frame_interval" android:drawable="@drawable/loadingd_8" />
+    <item android:duration="@integer/loading_frame_interval" android:drawable="@drawable/loadingd_9" />
+    <item android:duration="@integer/loading_frame_interval" android:drawable="@drawable/loadingd_10" />
+    <item android:duration="@integer/loading_frame_interval" android:drawable="@drawable/loadingd_11" />
+    <item android:duration="@integer/loading_frame_interval" android:drawable="@drawable/loadingd_12" />
+</animation-list>

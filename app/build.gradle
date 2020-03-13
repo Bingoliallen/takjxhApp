@@ -1,0 +1,270 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.mob.sdk'
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+def commonPropertiesFile = rootProject.file("common.properties")
+def commonProperties = new Properties()
+commonProperties.load(new FileInputStream(commonPropertiesFile))
+
+
+android {
+    compileSdkVersion 27
+
+    lintOptions {
+        abortOnError false
+    }
+
+    publishNonDefault true  // library 默认不支持 debug 模式
+    buildToolsVersion "27.0.3"
+    defaultConfig {
+        applicationId commonProperties["application_id"]
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 2
+        versionName "1.0.1"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [eventBusIndex: 'takjxh.android.com.taapp.MyEventBusIndex']
+            }
+        }
+
+        ndk {
+            // 设置支持的SO库架构
+           // abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            abiFilters 'armeabi', 'armeabi-v7a'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "bc883423d1383cbadadcc369", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                app_name: commonProperties['app_name']
+        ]
+        resValue "string", "login_title", commonProperties["login_title"]
+
+          multiDexEnabled true
+
+        packagingOptions {
+            doNotStrip '*/mips/*.so'
+            doNotStrip '*/mips64/*.so'
+        }
+    }
+
+    sourceSets {
+        main {
+            // 设置Jni so文件路径 如果有jniLibs目录就不需要设置，好像手动创建的 jniLibs目录无效
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+        }
+        debug {
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+        }
+    }
+
+
+    dexOptions {
+        maxProcessCount 8
+        javaMaxHeapSize "2g"
+        preDexLibraries true
+    }
+
+    lintOptions {
+        abortOnError false //lint 遇到 error 时继续 构建
+        checkReleaseBuilds false   //build release 版本 时 是否开启lint 检测
+        disable 'GoogleAppIndexingWarning'
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false     // 混淆
+            proguardFiles 'proguard-rules.pro'
+        }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false      // 混淆
+            zipAlignEnabled false    // Zipalign优化
+            shrinkResources false    // 移除无用的resource文件
+            proguardFiles 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName ="同安会学APP-${defaultConfig.versionName}-BETA-${releaseTime()}.apk"
+          //  outputFileName = defaultConfig.applicationId + "_v" + defaultConfig.versionName + "_" + variant.buildType.name + ".apk"
+        }
+    }
+    //指定jdk版本
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+}
+
+def releaseTime() {
+    return new Date().format("yyMMdd", TimeZone.getTimeZone("UTC"))
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.+'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(':commlibrary')
+   // implementation project(':cklklibrary')
+    compile 'com.android.support:design:27.+'
+    implementation 'com.android.support:cardview-v7:27.+'
+
+    api 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    api 'org.greenrobot:eventbus:3.1.1'
+    annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.1.1'
+
+    //异常处理
+    compile 'com.wanjian:cockroach:0.0.5'
+    implementation files('libs/jsoup-1.11.3.jar')
+    implementation files('libs/BaiduLBS_Android.jar')
+
+    compile 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
+    compile 'com.zhihu.android:matisse:0.5.2-beta3' //0.5.2-beta3
+
+    implementation 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
+    implementation 'com.github.donkingliang:LabelsView:1.6.0'
+    compile 'com.github.linger1216:labelview:v1.1.2'
+    implementation 'org.yczbj:YCRefreshViewLib:2.4'                        //RecyclerView封装
+
+    /* RecyclerView Adapter */
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
+    //下载文件
+    implementation 'com.arialyy.aria:aria-core:3.4.6'
+    annotationProcessor 'com.arialyy.aria:aria-compiler:3.4.6'
+    implementation 'com.arialyy.frame:MVVM2:2.2.0'
+
+    compile 'com.android.support:multidex:1.0.2'
+
+    implementation 'com.bm.photoview:library:1.4.1'
+
+
+    // 封装的库
+    implementation 'cn.yc:YCUtilsLib:1.6.2'                                //公共类
+    implementation 'cn.yc:YCStateLib:1.1.5'                                  //状态管理
+    implementation 'cn.yc:YCBannerLib:1.4.0'                                 //轮播图
+    implementation 'org.yczbj:YCRefreshViewLib:2.5.6'                        //RecyclerView封装
+    implementation 'cn.yc:YCBaseAdapterLib:1.3.4'                            //adapter封装
+    implementation 'cn.yc:YCDialogLib:3.6.5'                                 //弹窗
+    implementation 'cn.yc:YCProgressLib:1.2.7'                               //进度条
+  //  implementation 'cn.yc:YCVideoPlayerLib:2.6.6'                            //播放器
+
+    compile('cn.yc:YCVideoPlayerLib:2.6.6', {
+        exclude group: 'com.android.support'
+    })
+
+    implementation 'cn.yc:YCStatusBarLib:1.4.0'                              //状态栏
+
+  /*  "YCCountDownViewLib"          : "cn.yc:YCCountDownViewLib:1.0",
+    "YCMultiInputViewLib"         : "cn.yc:YCMultiInputViewLib:1.0",
+    "YCCardViewLib"               : "cn.yc:YCCardViewLib:1.2",
+    "YCCustomTextLib"             : "cn.yc:YCCustomTextLib:2.1",
+    "YCRecycleViewLib"            : "cn.yc:YCRecycleViewLib:1.1",
+    "YCGalleryLib"                : "cn.yc:YCGalleryLib:1.1.5",
+    "YCThreadPoolLib"             : "cn.yc:YCThreadPoolLib:1.3.2",*/
+
+    implementation 'com.blankj:utilcode:1.12.5'
+    compile 'com.github.iwgang:countdownview:2.1.6'
+
+
+    compile('com.github.dongjunkun:DropDownMenu:1.0.4', {
+        exclude group: 'com.android.support'
+    })
+    compile('cn.yc:YCCountDownViewLib:1.0', {
+        exclude group: 'com.android.support'
+    })
+
+   /* compile ('com.google.android.material:material:1.1.0-alpha10', {
+        exclude group: 'com.android.support'
+    })*/
+
+ /*   implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core:1.1.0'*/
+
+    compile 'com.tsy:pay:1.0.0'
+
+
+    compile 'cn.jiguang.sdk:jpush:3.5.6'  // 此处以JPush 3.5.6 版本为例。
+    compile 'cn.jiguang.sdk:jcore:2.2.8'  // 此处以JCore 2.2.8 版本为例。
+
+    compile 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
+    /*compile 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。*/
+
+    implementation 'com.github.mtotschnig:StickyListHeaders:2.7.1'
+    implementation 'cn.bingoogolapple:bga-banner:2.2.7@aar'
+
+    compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0' // 侧滑删除
+
+}
+configurations.all {
+    resolutionStrategy {
+        force "com.android.support:appcompat-v7:27.1.1"
+        force "com.android.support:support-v4:27.1.1"
+
+        force 'com.android.support:design:27.1.1'
+        force 'com.android.support:cardview-v7:27.1.1'
+
+
+
+    }
+}
+MobSDK {
+    appKey "2d46796450518"
+    appSecret "5427a40ab2d268449e3b9ca160e0f823"
+
+    MobPush {
+        devInfo {
+            HUAWEI {
+                appId "华为的appid"
+            }
+            MEIZU {
+                appId "魅族的appid"
+                appKey "魅族的appkey"
+            }
+            XIAOMI {
+                appId "小米的appId"
+                appKey "小米的appKey"
+            }
+            OPPO {
+                appKey "OPPO的appKey"
+                appSecret "OPPO的appSecret"
+            }
+            VIVO {
+                appId "VIVO的appId"
+                appKey  "VIVO的appSecret"
+            }
+        }
+    }
+}

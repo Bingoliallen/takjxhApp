@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="0px">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <takjxh.android.com.taapp.view.SmartTextView
+            android:id="@+id/tv_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:text="请选择时间"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/ll_time_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="15dp"
+            android:paddingBottom="5dp">
+
+            <takjxh.android.com.taapp.view.LoopView
+                android:id="@+id/lv_time_hour"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:lv_textSize="18sp" />
+
+            <takjxh.android.com.taapp.view.LoopView
+                android:id="@+id/lv_time_minute"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:lv_textSize="18sp" />
+
+            <takjxh.android.com.taapp.view.LoopView
+                android:id="@+id/lv_time_second"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:lv_textSize="18sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="10dp"
+            android:background="#ECECEC" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <takjxh.android.com.taapp.view.SmartTextView
+                android:id="@+id/tv_time_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_transparent"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/cancle"
+                android:textColor="#F44336"
+                android:textSize="14sp" />
+
+            <View
+                android:id="@+id/v_time_line"
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#ECECEC" />
+
+            <TextView
+                android:id="@+id/tv_time_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_transparent"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/ok"
+                android:textColor="#007AFF"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

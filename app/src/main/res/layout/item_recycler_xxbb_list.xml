@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mLM"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tvtime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:text="08-24  线上辅导培训：参与阅读，有效阅读2分钟以上"
+            android:textColor="#a6a6a6"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/tv_extra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:singleLine="true"
+            android:text="+1积分"
+            android:textColor="#383838"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+   <View
+         android:layout_width="match_parent"
+         android:layout_height="1px"
+         android:layout_marginLeft="15dp"
+         android:layout_marginRight="15dp"
+         android:background="@color/line" />
+
+</LinearLayout>

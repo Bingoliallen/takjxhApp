@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="HorizontalProgressBarWithNumber">
+    <attr name="progress_unreached_color" format="color"/>
+    <attr name="progress_reached_color" format="color"/>
+    <attr name="progress_reached_bar_height" format="dimension"/>
+    <attr name="progress_unreached_bar_height" format="dimension"/>
+    <attr name="progress_text_size" format="dimension"/>
+    <attr name="progress_text_color" format="color"/>
+    <attr name="progress_text_offset" format="dimension"/>
+    <attr name="progress_text_visibility" format="enum">
+      <enum name="visible" value="0"/>
+      <enum name="invisible" value="1"/>
+    </attr>
+  </declare-styleable>
+
+  <declare-styleable name="SwipeBackLayout">
+    <attr name="edge_size" format="dimension"/>
+    <attr name="edge_flag">
+      <enum name="left" value="0" />
+      <enum name="right" value="1" />
+      <enum name="bottom" value="2" />
+      <enum name="all" value="3" />
+    </attr>
+    <attr name="shadow_left" format="reference"/>
+    <attr name="shadow_right" format="reference"/>
+    <attr name="shadow_bottom" format="reference"/>
+  </declare-styleable>
+
+  <attr name="SwipeBackLayoutStyle" format="reference"/>
+
+  <declare-styleable name="EmoticonsIndicatorView">
+
+    <attr name="bmpNomal" format="reference" />
+
+    <attr name="bmpSelect" format="reference" />
+  </declare-styleable>
+
+  <declare-styleable name="drop_down_list_attr">
+    <attr name="isAutoLoadOnBottom" format="boolean" />
+    <attr name="isDropDownStyle" format="boolean" />
+    <attr name="isOnBottomStyle" format="boolean" />
+  </declare-styleable>
+
+  <declare-styleable name="CameraProgressBar">
+    <attr name="scale" format="float"/>
+    <attr name="isLongScale" format="boolean"/>
+    <attr name="progressWidth" format="dimension"/>
+    <attr name="innerRadio" format="dimension"/>
+    <attr name="innerColor" format="color"/>
+    <attr name="backgroundColor" format="color"/>
+    <attr name="outerColor" format="color"/>
+    <attr name="progressColor" format="color"/>
+    <attr name="maxProgress" format="integer"/>
+    <attr name="progres" format="integer"/>
+  </declare-styleable>
+
+  <declare-styleable name="MaxHeightRecyclerView">
+    <attr name="maxHeight" format="dimension" />
+  </declare-styleable>
+
+  <!-- 滚动列表 -->
+  <declare-styleable name="LoopView">
+    <attr name="lv_lineColor" format="color"/>
+    <attr name="lv_topBottomTextColor" format="color"/>
+    <attr name="lv_centerTextColor" format="color"/>
+    <attr name="lv_textSize" format="dimension"/>
+    <attr name="lv_canLoop" format="boolean"/>
+    <attr name="lv_initPosition" format="integer"/>
+    <attr name="lv_drawItemCount" format="integer"/>
+  </declare-styleable>
+
+</resources>

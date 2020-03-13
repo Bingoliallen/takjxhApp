@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <takjxh.android.com.taapp.view.NormalTitleBar
+        android:id="@+id/ntb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_item_cate_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="我的频道"
+            android:textColor="@color/common_app_text_theme15"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_drag_tip"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="16dp"
+            android:gravity="left|center"
+            android:text=""
+            android:textColor="@color/textColorPrimary"
+            android:textSize="12sp"
+            android:visibility="visible" />
+        <TextView
+            android:id="@+id/tv_btn_edit"
+            android:layout_width="56dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/selector_login_btn"
+            android:gravity="center"
+            android:text="确定"
+            android:visibility="invisible"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+    <GridView
+        android:id="@+id/constellation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="5dp"
+        android:numColumns="4"/>
+</LinearLayout>

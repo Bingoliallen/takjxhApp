@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CommLibrary</string>
+
+
+    <string name="common_count_down_btn_normal">获取验证码</string>
+    <string name="common_count_down_btn_pressed">还剩%1d秒</string>
+    <string name="common_base_advert_count_down_btn">跳过 %1ds</string>
+</resources>

@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="takjxh.android.com.taapp">
+
+    <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 允许使用网络 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 允许程序设置内置sd卡的读写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- <uses-permission android:name="android.permission.CALL_PHONE" /> -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+
+    <!-- Required -->
+    <permission
+        android:name="takjxh.android.com.taapp.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <!-- Required -->
+    <uses-permission android:name="takjxh.android.com.taapp.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在 6.0 系统上的层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+
+
+    <uses-sdk tools:overrideLibrary="com.scwang.smartrefresh.horizontal,com.ns.yc.yccountdownviewlib,com.ns.yc.ycutilslib
+    ,com.yc.cn.ycbaseadapterlib,com.ns.yc.ycprogresslib,org.yczbj.ycrefreshviewlib
+    ,com.ns.yc.ycstatelib,com.mob.pushsdk.push_hw,com.mob.push.mz,com.xiaomi.push,
+    com.mob.push.oppo,com.mob.push.vivo,com.mob.pushsdk,com.scwang.smartrefresh.horizontal"/>
+
+    <application
+        android:name="takjxh.android.com.taapp.QbApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/qbapp_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:targetApi="n"
+        tools:replace="android:icon,android:theme,android:allowBackup,android:label">
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.SplashGuideActivity"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme1">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+
+        </activity>
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ToRegisterActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.RegisterGLActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.RegisterZFActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ForgetPwdActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.RegisterQYActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.NewsDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.PlActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZxwjActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZxwjDetailActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ToBbActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.DzrwtxActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.DzrwtxActivity1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.KtrwtxActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.KtrwListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZczxActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ToZczxActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZjsbtxActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.PjActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.WdZjsbActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZjsbQzActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZjsbQzDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ChatActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.XsggActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.DtzsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.KjllxxActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.XxspActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.LlksActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.KsnrActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.KscjActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.XsfdpxActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.XsywdyActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZxtwActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.TwDetailActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.JlztActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.JlztDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.JlztFbActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.WdZxbbActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZxbbActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZfActivity"
+            android:screenOrientation="portrait" />
+
+
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.XxjfActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.JfgzActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.JyfkActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.XxbbActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.JfpmActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.SetingActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.XxzzActivity"
+            android:screenOrientation="portrait" >
+            //配置点击通知默认跳转XxzzActivity界面
+            <intent-filter>
+                <action android:name="${applicationId}.default.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.XxshActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.WebViewActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.RegisterGRActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.KtrwfkActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZczxDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.QzjgActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZxjgActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.GrDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.JlztHdListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.TabManageActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZjsbtxDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.BannersDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.XsggDetialActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.OrderDetailActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.lfilepickerlibrary.LFilePickerActivityT"
+            android:theme="@style/LFAppTheme"/>
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZxywActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.TwDyActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.KsctckActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.GrDetailInputActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.UserExtsListActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.UserExtsEditAcitivty"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.UserExtsAddAcitivty"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.HealthDailyActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.HealthDailyListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZjsbtxUpdateActivity"
+            android:screenOrientation="portrait" />
+
+
+
+
+
+
+
+
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.chat.activity.BrowserViewPagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.chat.activity.ChatActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.chat.activity.DownLoadActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BaseThemes"/>
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.chat.activity.PlayVideoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.chat.activity.SendFileActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.chat.pickerimage.PickerAlbumActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BaseThemes"/>
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.chat.pickerimage.PickerAlbumPreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.chat.pickerimage.PickImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.chat.activity.historyfile.activity.BrowserFileImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.chat.activity.historyfile.activity.HistoryFileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppBaseTheme"/>
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.chat.takevideo.CameraActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppBaseFullTheme" />
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.chat.location.activity.MapPickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+
+
+
+
+
+
+
+
+
+
+
+        <!-- 微信支付 -->
+        <activity
+            android:name="com.tsy.sdk.pay.weixin.WXPayCallbackActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity-alias
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:targetActivity="com.tsy.sdk.pay.weixin.WXPayCallbackActivity" />
+
+        <!-- 支付宝支付 -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"></activity>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"></activity>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="takjxh.android.com.taapp.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activity.ImageBrowseActivity"
+            android:screenOrientation="portrait"></activity>
+
+
+
+
+        <receiver android:name="takjxh.android.com.taapp.receiver.DownloadReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+                <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED" />
+            </intent-filter>
+        </receiver>
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="NarSK14tfkuX7SWDprZvczuTnOmHAZO5" />
+
+        <meta-data android:name="android.max_aspect"
+            android:value="2.1"/>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+        </service>
+
+        <meta-data
+            android:name="com.mob.mobpush.debugLevel"
+            android:value="4" />
+
+
+
+        <!-- Since JCore2.0.0 Required SDK核心功能-->
+        <!-- 这个Service要继承JCommonService -->
+        <service android:name="takjxh.android.com.taapp.activityui.chat.XService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":pushcore">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action"/>
+            </intent-filter>
+        </service>
+
+        <!-- Required since 3.0.7 -->
+        <!-- 新的 tag/alias 接口结果返回需要开发者配置一个自定的广播 -->
+        <!-- 3.3.0开始所有事件将通过该类回调 -->
+        <!-- 该广播需要继承 JPush 提供的 JPushMessageReceiver 类, 并如下新增一个 Intent-Filter -->
+        <!-- User defined.  For test only  用户自定义的广播接收器-->
+        <receiver
+            android:name="takjxh.android.com.taapp.activityui.chat.MyReceiver"
+            android:exported="false"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="takjxh.android.com.taapp" />
+            </intent-filter>
+        </receiver>
+
+        <!-- User defined.  For test only  用户自定义接收消息器,3.0.7开始支持,目前新tag/alias接口设置结果会在该广播接收器对应的方法中回调-->
+        <receiver android:name="takjxh.android.com.taapp.activityui.chat.MyJPushMessageReceiver">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+                <category android:name="takjxh.android.com.taapp"></category>
+            </intent-filter>
+        </receiver>
+
+
+      <!--  &lt;!&ndash; Rich push 核心功能 since 2.0.6&ndash;&gt;
+        <activity
+            android:name="cn.jpush.android.ui.PopWinActivity"
+            android:theme="@style/MyDialogStyle"
+            android:exported="false">
+        </activity>
+
+        &lt;!&ndash; Required SDK核心功能&ndash;&gt;
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="takjxh.android.com.taapp" />
+            </intent-filter>
+        </activity>
+
+        &lt;!&ndash; Required SDK 核心功能&ndash;&gt;
+        &lt;!&ndash; 可配置android:process参数将PushService放在其他进程中 &ndash;&gt;
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:process=":pushcore"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+        &lt;!&ndash; since 3.0.9 Required SDK 核心功能&ndash;&gt;
+        <provider
+            android:authorities="takjxh.android.com.taapp.DataProvider"
+            android:name="cn.jpush.android.service.DataProvider"
+            android:process=":pushcore"
+            android:exported="false"
+            />
+
+        &lt;!&ndash; since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 &ndash;&gt;
+        &lt;!&ndash; 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 &ndash;&gt;
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+                <category android:name="takjxh.android.com.taapp" />
+            </intent-filter>
+
+        </service>
+        &lt;!&ndash; since 3.1.0 Required SDK 核心功能&ndash;&gt;
+        <provider
+            android:authorities="takjxh.android.com.taapp.DownloadProvider"
+            android:name="cn.jpush.android.service.DownloadProvider"
+            android:exported="true"
+            />
+        &lt;!&ndash; Required SDK核心功能&ndash;&gt;
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   &lt;!&ndash;Required  显示通知栏 &ndash;&gt;
+                <category android:name="takjxh.android.com.taapp" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            &lt;!&ndash; Optional &ndash;&gt;
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        &lt;!&ndash; Required SDK核心功能&ndash;&gt;
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" android:exported="false"/>
+
+        &lt;!&ndash;since 3.3.0 Required SDK核心功能&ndash;&gt;
+        <activity
+            android:name="cn.jpush.android.service.JNotifyActivity"
+            android:exported="true"
+            android:taskAffinity="jpush.custom"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.JNotifyActivity" />
+                <category android:name="takjxh.android.com.taapp" />
+            </intent-filter>
+        </activity>
+-->
+
+
+    </application>
+
+</manifest>
