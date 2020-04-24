@@ -117,6 +117,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginLeft="45dp"
                 android:layout_marginRight="45dp"
                 android:layout_marginTop="10dp"
@@ -491,7 +492,8 @@
                             android:layout_height="40dp"
                             android:background="@color/white"
                             android:gravity="center_vertical"
-                            android:hint=""
+                            android:hint="格式为：xxxxxxxx—X"
+                            android:maxLength="10"
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:paddingLeft="12dp"
@@ -631,7 +633,7 @@
                                 android:layout_height="match_parent"
                                 android:background="@drawable/bt_danxuankaung" />-->
 
-                            <TextView
+                            <AutoCompleteTextView
                                 android:id="@+id/tv_sshy"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
@@ -913,6 +915,52 @@
                         android:layout_marginTop="2dp"
                         android:background="@color/line" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginRight="45dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:gravity="center_vertical"
+                            android:text="注册详细地址："
+                            android:visibility="invisible"
+                            android:textColor="@color/common_app_text_theme4" />
+
+                        <TextView
+                            android:id="@+id/edZCXXDZ"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            android:hint="注册详细地址"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:paddingLeft="12dp"
+                            android:singleLine="true"
+                            android:textColor="@color/common_app_text_theme4"
+                            android:textColorHint="@color/common_app_text_theme5" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/line" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout

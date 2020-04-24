@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -65,6 +66,7 @@ import takjxh.android.com.taapp.activityui.presenter.RegisterGLPresenter;
 import takjxh.android.com.taapp.activityui.presenter.impl.IRegisterGLPresenter;
 import takjxh.android.com.taapp.utils.CodeUtils;
 import takjxh.android.com.taapp.utils.DeviceUtils;
+import takjxh.android.com.taapp.utils.Regex_OrganizationCertificate;
 import takjxh.android.com.taapp.utils.RxRegTool;
 import takjxh.android.com.taapp.view.CustomSpinner;
 import takjxh.android.com.taapp.view.NormalTitleBar;
@@ -117,6 +119,9 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     @BindView(R.id.edDWLXDH)
     EditText edDWLXDH;
 
+    @BindView(R.id.edZCXXDZ)
+    EditText edZCXXDZ;
+
 
     @BindView(R.id.mlQYandDSF1)
     LinearLayout mlQYandDSF1;
@@ -127,7 +132,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     @BindView(R.id.sp_register3)
     CustomSpinner sp_register3;
     @BindView(R.id.tv_sshy)
-    TextView tv_sshy;
+    AutoCompleteTextView tv_sshy;
     private String sshyID = "";
 
 
@@ -221,6 +226,8 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     protected void initView() {
         super.initView();
 
+
+
         ntb = findViewById(R.id.ntb);
         ntb.setTitleText("会员注册");
         ntb.setTvLeftVisiable(true);
@@ -299,7 +306,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
                 tv_sshy.setText(mBean);
                 sshyID = usertrade.get(arg2).getCode();
 
-
+                tv_sshy.setSelection(tv_sshy.getText().length());
             }
 
             @Override
@@ -322,6 +329,23 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     @Override
     protected void initEvent() {
         super.initEvent();
+
+        tv_sshy.setThreshold(1);
+        tv_sshy.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){//获取焦点时
+                    tv_sshy.showDropDown();
+                }
+            }
+        });
+        tv_sshy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                sshyID = usertrade.get(position).getCode();
+            }
+        });
 
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -380,6 +404,15 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             usertrade.clear();
             usertrade.addAll(QbApplication.mBaseApplication.usertrade);
             adapterResult3.notifyDataSetChanged();
+
+            String[] dictionary = new String[usertrade.size()];
+            for(int i=0;i<usertrade.size();i++){
+               dictionary[i]=usertrade.get(i).getValue();
+            }
+            //利用适配器
+            ArrayAdapter<String> adapter_actv = new ArrayAdapter<String>(
+                    this,android.R.layout.simple_dropdown_item_1line,dictionary);
+            tv_sshy.setAdapter(adapter_actv);
         } else {
             mPresenter.paramlist();
         }
@@ -525,7 +558,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
 
 
                 // 日期选择对话框
-                new DateAndTimeDialog.Builder(RegisterActivity.this)
+                new DateDialog.Builder(RegisterActivity.this)
                         .setTitle("请选择日期")
                         // 确定按钮文本
                         .setConfirm("确定")
@@ -543,9 +576,9 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
                         //.setDay(20)
                         // 不选择天数
                         //.setIgnoreDay()
-                        .setListener(new DateAndTimeDialog.OnListener() {
+                        .setListener(new DateDialog.OnListener() {
                             @Override
-                            public void onSelected(BaseDialog dialog, int year, int month, int day, int hour, int minute, int second) {
+                            public void onSelected(BaseDialog dialog, int year, int month, int day) {
 
                                 String mmonth = "";
                                 if (month < 10) {
@@ -560,7 +593,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
                                     mday = "" + day;
                                 }
 
-                                String mhour = "";
+                               /* String mhour = "";
                                 if (hour < 10) {
                                     mhour = "0" + hour;
                                 } else {
@@ -579,10 +612,9 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
                                     msecond = "0" + second;
                                 } else {
                                     msecond = "" + second;
-                                }
-                                tvZCSJ.setText(year + getString(R.string.common_year) + mmonth + getString(R.string.common_month) + mday + getString(R.string.common_day)
-                                        + " " + mhour + ":" + mminute + ":" + msecond);
-                                mZCSJ = year + "" + mmonth + "" + mday + "" + "" + mhour + "" + mminute + "" + msecond;
+                                }*/
+                                tvZCSJ.setText(year + getString(R.string.common_year) + mmonth + getString(R.string.common_month) + mday + getString(R.string.common_day));// + " " + mhour + ":" + mminute + ":" + msecond
+                                mZCSJ = year + "" + mmonth + "" + mday ;//+ "" + "" + mhour + "" + mminute + "" + msecond
                                 // 如果不指定时分秒则默认为现在的时间
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(Calendar.YEAR, year);
@@ -706,6 +738,15 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             usertrade.clear();
             usertrade.addAll(QbApplication.mBaseApplication.usertrade);
             adapterResult3.notifyDataSetChanged();
+
+            String[] dictionary = new String[usertrade.size()];
+            for(int i=0;i<usertrade.size();i++){
+                dictionary[i]=usertrade.get(i).getValue();
+            }
+            //利用适配器
+            ArrayAdapter<String> adapter_actv = new ArrayAdapter<String>(
+                    this,android.R.layout.simple_dropdown_item_1line,dictionary);
+            tv_sshy.setAdapter(adapter_actv);
         }
         if (bean.getParams().getUsertype() != null) {
             QbApplication.mBaseApplication.usertype = bean.getParams().getUsertype();
@@ -959,10 +1000,10 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             return;
         }
         String medGSMC = edGSMC.getText().toString().trim();
-        if (TextUtils.isEmpty(medGSMC)) {
+       /* if (TextUtils.isEmpty(medGSMC)) {
             ToastUtil.showToast(this, "请输入公司名称");
             return;
-        }
+        }*/
 
         if (TextUtils.isEmpty(zclxID)) {
             ToastUtil.showToast(this, "请选择用户类型");
@@ -1004,6 +1045,10 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             String medDM = edDM.getText().toString().trim();
             if (TextUtils.isEmpty(medDM)) {
                 ToastUtil.showToast(this, "请输入企业组织机构代码");
+                return;
+            }
+            if(!Regex_OrganizationCertificate.isOrganizationCertificate(medDM)){
+                ToastUtil.showToast(this, "输入的机构代码错误，请核对后再输！");
                 return;
             }
             if (TextUtils.isEmpty(sshyID)) {
@@ -1143,7 +1188,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
         queryMap.put("password", medPassword);
         queryMap.put("name", medXM);
         queryMap.put("mobilePhone", mAccount);
-        queryMap.put("company", medGSMC);
+        queryMap.put("company", medGSMC+mAccount);
         queryMap.put("type", zclxID);
         queryMap.put("mac", DeviceUtils.getMacAddress());
         if ("01".equals(zclxID)) {
@@ -1168,6 +1213,8 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             }*/
 
             String medZCDZ = edZCDZ.getText().toString().trim();
+            String medZCXXDZ = edZCXXDZ.getText().toString().trim();
+
             String medFR = edFR.getText().toString().trim();
             String medLXR = edLXR.getText().toString().trim();
             String medLXDH = edLXDH.getText().toString().trim();
@@ -1176,7 +1223,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             queryMap.put("orgCode", medDM);
             queryMap.put("trade", sshyID);
             queryMap.put("regTime", mZCSJ);
-            queryMap.put("regAddr", medZCDZ);
+            queryMap.put("regAddr", medZCDZ+" "+medZCXXDZ);
             queryMap.put("lagalPerson", medFR);
             queryMap.put("unitLinkman", medLXR);
             queryMap.put("linkmanPhone", medLXDH);

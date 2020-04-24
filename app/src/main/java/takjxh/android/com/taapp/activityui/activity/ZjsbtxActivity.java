@@ -751,6 +751,11 @@ public class ZjsbtxActivity extends BaseActivity<ZjsbtxPresenter> implements IZj
             return;
         }
 
+        if (TextUtils.isEmpty(medXYDM)) {
+            ToastUtil.showToast(this, "请输入统一社会信用代码");
+            return;
+        }
+
         String medDWMC = edZCSJ.getText().toString().trim();
         if (TextUtils.isEmpty(medDWMC)) {
             ToastUtil.showToast(this, "请选择注册时间");
