@@ -246,6 +246,10 @@ public class GrDetailActivity extends BaseActivity<GrDetailPresenter> implements
         } else if ("05".equals(type)||"00".equals(type)||"普通会员".equals(type)) {
             tvtype.setText("普通会员");
         } else {
+            if(!TextUtils.isEmpty(type)&& (type.contains("政府")
+            ||type.contains("企业")||type.contains("第三方"))){
+                mlqt.setVisibility(View.VISIBLE);
+            }
             tvtype.setText(type);
         }
 

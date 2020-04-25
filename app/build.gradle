@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.mob.sdk'
+//apply plugin: 'com.mob.sdk'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -240,6 +240,7 @@ configurations.all {
 
     }
 }
+/*
 MobSDK {
     appKey "2d46796450518"
     appSecret "5427a40ab2d268449e3b9ca160e0f823"
@@ -267,4 +268,4 @@ MobSDK {
             }
         }
     }
-}
+}*/

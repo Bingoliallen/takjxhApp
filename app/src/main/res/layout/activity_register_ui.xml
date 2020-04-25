@@ -493,6 +493,7 @@
                             android:background="@color/white"
                             android:gravity="center_vertical"
                             android:hint="格式为：xxxxxxxx—X"
+                            android:textSize="14sp"
                             android:maxLength="10"
                             android:imeOptions="actionNext"
                             android:inputType="text"
@@ -933,24 +934,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:gravity="center_vertical"
-                            android:text="注册详细地址："
+                            android:text="注册详址："
                             android:visibility="invisible"
                             android:textColor="@color/common_app_text_theme4" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/edZCXXDZ"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@color/white"
                             android:gravity="center_vertical"
-                            android:hint="注册详细地址"
+                            android:hint="请输入注册地详址"
+                            android:textSize="14sp"
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:paddingLeft="12dp"
                             android:singleLine="true"
                             android:textColor="@color/common_app_text_theme4"
                             android:textColorHint="@color/common_app_text_theme5" />
-
 
                     </LinearLayout>
 

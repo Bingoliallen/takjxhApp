@@ -62,6 +62,7 @@ import takjxh.android.com.taapp.activityui.presenter.impl.IZjsbtxPresenter;
 import takjxh.android.com.taapp.adapter.AddAttachmentAdapter;
 import takjxh.android.com.taapp.dialog.CustomDialog;
 import takjxh.android.com.taapp.utils.DisplayUtil;
+import takjxh.android.com.taapp.utils.Regex_Tyshyxdm;
 import takjxh.android.com.taapp.utils.RxRegTool;
 import takjxh.android.com.taapp.view.CustomGridView;
 import takjxh.android.com.taapp.view.CustomSpinner;
@@ -309,7 +310,7 @@ public class ZjsbtxActivity extends BaseActivity<ZjsbtxPresenter> implements IZj
                 break;
             case R.id.edZCSJ:
                 // 日期选择对话框
-                new DateAndTimeDialog.Builder(this)
+                new DateDialog.Builder(this)
                         .setTitle("请选择日期")
                         // 确定按钮文本
                         .setConfirm("确定")
@@ -327,9 +328,9 @@ public class ZjsbtxActivity extends BaseActivity<ZjsbtxPresenter> implements IZj
                         //.setDay(20)
                         // 不选择天数
                         //.setIgnoreDay()
-                        .setListener(new DateAndTimeDialog.OnListener() {
+                        .setListener(new DateDialog.OnListener() {
                             @Override
-                            public void onSelected(BaseDialog dialog, int year, int month, int day , int hour, int minute, int second) {
+                            public void onSelected(BaseDialog dialog, int year, int month, int day) {
 
                                 String mmonth="";
                                 if(month<10){
@@ -344,7 +345,7 @@ public class ZjsbtxActivity extends BaseActivity<ZjsbtxPresenter> implements IZj
                                     mday=""+day;
                                 }
 
-                                String mhour="";
+                                /*String mhour="";
                                 if(hour<10){
                                     mhour="0"+hour;
                                 }else{
@@ -363,10 +364,10 @@ public class ZjsbtxActivity extends BaseActivity<ZjsbtxPresenter> implements IZj
                                     msecond="0"+second;
                                 }else{
                                     msecond=""+second;
-                                }
+                                }*/
                                 edZCSJ.setText(year + getString(R.string.common_year) + mmonth + getString(R.string.common_month) + mday + getString(R.string.common_day)
-                                        +" "+mhour+":"+mminute+":"+msecond);
-                                mZCSJ=year +"" + mmonth + "" + mday + "" +""+mhour+""+mminute+""+msecond;
+                                        );//+" "+mhour+":"+mminute+":"+msecond
+                                mZCSJ=year +"" + mmonth + "" + mday ;//+ "" +""+mhour+""+mminute+""+msecond
 
 
                                 // 如果不指定时分秒则默认为现在的时间
@@ -751,8 +752,8 @@ public class ZjsbtxActivity extends BaseActivity<ZjsbtxPresenter> implements IZj
             return;
         }
 
-        if (TextUtils.isEmpty(medXYDM)) {
-            ToastUtil.showToast(this, "请输入统一社会信用代码");
+        if (!Regex_Tyshyxdm.isLicense18(medXYDM)) {
+            ToastUtil.showToast(this, "统一社会信用代码格式不正确");
             return;
         }
 

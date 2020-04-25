@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/XMTAApp.iml" filepath="$PROJECT_DIR$/XMTAApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Administrator\Desktop\takjxhapp\takjxhApp\XMTAApp.iml" filepath="C:\Users\Administrator\Desktop\takjxhapp\takjxhApp\XMTAApp.iml" />
+      <module fileurl="file://C:\Users\Administrator\Desktop\takjxhapp\takjxhApp\app\app.iml" filepath="C:\Users\Administrator\Desktop\takjxhapp\takjxhApp\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/commlibrary/commlibrary.iml" filepath="$PROJECT_DIR$/commlibrary/commlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/takjxhApp.iml" filepath="$PROJECT_DIR$/takjxhApp.iml" />
     </modules>
   </component>
 </project>

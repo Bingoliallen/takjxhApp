@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.stetho.common.LogUtil;
-import com.mob.pushsdk.MobPush;
+//import com.mob.pushsdk.MobPush;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -145,8 +145,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainPr
 
         String  mRegistrationID=JPushInterface.getRegistrationID(this);
 
-        MobPush.setNotifyIcon(R.mipmap.ic_launcher);
-        MobPush.setShowBadge(true); //默认是关闭的，设置true为打开显示角标，反之则为关闭显示角标
+       // MobPush.setNotifyIcon(R.mipmap.ic_launcher);
+       // MobPush.setShowBadge(true); //默认是关闭的，设置true为打开显示角标，反之则为关闭显示角标
 
         all_one = (LinearLayout) findViewById(R.id.all_one);
         all_one.setOnClickListener(this);
@@ -561,7 +561,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainPr
                 Toast.makeText(this, getString(R.string.out_account), Toast.LENGTH_SHORT).show();
                 lastClickTime = System.currentTimeMillis();
             } else {
-                QbApplication.mBaseApplication.removePushReceiver();
+               // QbApplication.mBaseApplication.removePushReceiver();
                 finish();
             }
             return false;

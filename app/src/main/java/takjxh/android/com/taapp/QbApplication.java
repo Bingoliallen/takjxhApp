@@ -11,11 +11,11 @@ import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.mob.MobSDK;
+/*import com.mob.MobSDK;
 import com.mob.pushsdk.MobPush;
 import com.mob.pushsdk.MobPushCustomMessage;
 import com.mob.pushsdk.MobPushNotifyMessage;
-import com.mob.pushsdk.MobPushReceiver;
+import com.mob.pushsdk.MobPushReceiver;*/
 import com.wanjian.cockroach.Cockroach;
 
 import org.greenrobot.eventbus.EventBus;
@@ -151,7 +151,7 @@ public class QbApplication extends CommonApplication {
             }
         });
 
-        MobSDK.init(this);
+        /*MobSDK.init(this);
 
         receiver=new MobPushReceiver() {
             @Override
@@ -181,7 +181,7 @@ public class QbApplication extends CommonApplication {
                 System.out.println("libbMobPush onAliasCallback:" + alias + "  " + operation + "  " + errorCode);
             }
         };
-        MobPush.addPushReceiver(receiver);
+        MobPush.addPushReceiver(receiver);*/
 
 
         JMessageClient.setDebugMode(true);
@@ -223,14 +223,14 @@ public class QbApplication extends CommonApplication {
     }*/
 
 
-    private MobPushReceiver receiver;
+    /*private MobPushReceiver receiver;
 
     public void removePushReceiver() {
         if (receiver != null) {
             MobPush.removePushReceiver(receiver);
         }
 
-    }
+    }*/
 
 
 

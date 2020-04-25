@@ -61,10 +61,10 @@ public final class DateDialog {
             for (int i = mStartYear; i <= mEndYear; i++) {
                 yearData.add(i + " " + getString(R.string.common_year));
             }
-
+            int monthCurNum=calendar.get(Calendar.MONTH) + 1;
             // 生产月份
-            ArrayList<String> monthData = new ArrayList<>(12);
-            for (int i = 1; i <= 12; i++) {
+            ArrayList<String> monthData = new ArrayList<>(monthCurNum);
+            for (int i = 1; i <= monthCurNum; i++) {
                 monthData.add(i + " " + getString(R.string.common_month));
             }
 
@@ -81,6 +81,23 @@ public final class DateDialog {
             setYear(calendar.get(Calendar.YEAR));
             setMonth(calendar.get(Calendar.MONTH) + 1);
             setDay(calendar.get(Calendar.DAY_OF_MONTH));
+
+            // 生产月份
+            monthData = new ArrayList<>(monthCurNum);
+            for (int i = 1; i <= monthCurNum; i++) {
+                monthData.add(i + " " + getString(R.string.common_month));
+            }
+            mMonthView.setData(monthData);
+
+
+            int day =calendar.get(Calendar.DAY_OF_MONTH);
+            ArrayList<String> dayData = new ArrayList<>(day);
+            for (int i = 1; i <= day; i++) {
+              dayData.add(i + " " + getString(R.string.common_day));
+            }
+
+            mDayView.setData(dayData);
+
         }
 
         public Builder setTitle(@StringRes int id) {
@@ -196,14 +213,42 @@ public final class DateDialog {
         public void onItemSelect(LoopView loopView, int position) {
             // 获取这个月最多有多少天
             Calendar calendar = Calendar.getInstance(Locale.CHINA);
+
+            Calendar calendar1 = Calendar.getInstance();
+            int year=calendar1.get(Calendar.YEAR);
+            int monthCurNum=calendar1.get(Calendar.MONTH) ;
             if (loopView == mYearView) {
+                /*if(year==mStartYear + mYearView.getSelectedItem()){
+                    calendar.set(mStartYear + mYearView.getSelectedItem(), monthCurNum, 1);
+                }else{
+                }*/
                 calendar.set(mStartYear + mYearView.getSelectedItem(), mMonthView.getSelectedItem(), 1);
+
+
+
             } else if (loopView == mMonthView) {
                 calendar.set(mStartYear + mYearView.getSelectedItem(), mMonthView.getSelectedItem(), 1);
             }
 
-            int day = calendar.getActualMaximum(Calendar.DATE);
 
+            if(year==mStartYear + mYearView.getSelectedItem()){
+                monthCurNum=calendar1.get(Calendar.MONTH) + 1;
+            }else{
+                monthCurNum=12;
+            }
+            // 生产月份
+            ArrayList<String> monthData = new ArrayList<>(monthCurNum);
+            for (int i = 1; i <= monthCurNum; i++) {
+                monthData.add(i + " " + getString(R.string.common_month));
+            }
+            mMonthView.setData(monthData);
+
+
+
+            int day = calendar.getActualMaximum(Calendar.DATE);
+            if(year==mStartYear + mYearView.getSelectedItem()&&mMonthView.getSelectedItem()==calendar1.get(Calendar.MONTH) ){
+                day =calendar1.get(Calendar.DAY_OF_MONTH);
+            }
             ArrayList<String> dayData = new ArrayList<>(day);
             for (int i = 1; i <= day; i++) {
                 dayData.add(i + " " + getString(R.string.common_day));

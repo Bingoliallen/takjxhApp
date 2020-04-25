@@ -9,7 +9,7 @@ import android.text.TextUtils;
  * @Date: 2020-04-24 15:21
  * @Description:
  **/
-public class Regex_Tyshyxdm {
+public class Regex_Tyshyxdm{
 
     /**
      * 营业执照 统一社会信用代码（18位）
