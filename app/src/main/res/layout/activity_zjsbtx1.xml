@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <takjxh.android.com.taapp.view.NormalTitleBar
+        android:id="@+id/ntb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tvmsg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#d9d9d9"
+                android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="15dp"
+                android:text="申请填写过程中，如有不清楚可以点击右上角进行求助！"
+                android:textColor="@color/text_color"
+                android:textSize="14sp" />
+
+
+            <takjxh.android.com.taapp.view.BootStepView
+                android:id="@+id/stepView"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp"
+                app:circular_color="@color/colorAccent"
+                app:circular_size="15dp"
+                app:default_color="@color/actionsheet_gray"
+                app:text_color="@color/colorAccent"
+                app:three_color="false"
+                app:two_color="false"
+                app:circular_text_size="12sp"
+                app:text_size="12sp"
+                app:circular_num="3"
+                app:one_text="申请类型选择"
+                app:two_text="申请填写"
+                app:three_text="申请完成"/>
+
+
+            <LinearLayout
+                android:id="@+id/mlStep1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:id="@+id/ml4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical|right"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginLeft="0dp"
+                            android:src="@drawable/icon_bitian" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="申报类型："
+                            android:textColor="@color/common_app_text_theme1"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1">
+
+                        <takjxh.android.com.taapp.view.CustomSpinner
+                            android:id="@+id/sp_register1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:spinnerMode="dialog" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bt_danxuankaung" />
+
+                        <TextView
+                            android:id="@+id/tv_czjg"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="30dp"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            android:hint="请选择申报类型"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:spinnerMode="dialog"
+                            android:textColor="@color/text_color"
+                            android:textColorHint="@color/common_app_text_theme2"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_ms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="23dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="0dp"
+                    android:spinnerMode="dialog"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/common_app_text_theme2"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btn_login1"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginRight="45dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/selector_login_btn"
+                    android:text="马上填写"
+                    android:textColor="@color/common_app_theme_bg2"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/mlStep2"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:ellipsize="end"
+                        android:maxLength="30"
+                        android:text="1.行业信息"
+                        android:textColor="@color/text_color"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/ml001"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|right"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/imgbt"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginLeft="0dp"
+                                android:src="@drawable/icon_bitian" />
+
+                            <TextView
+                                android:id="@+id/tvName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:text="企业所属行业："
+                                android:textColor="@color/text_color"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_weight="1">
+
+                            <takjxh.android.com.taapp.view.CustomSpinner
+                                android:id="@+id/sp_register2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:visibility="gone"
+                                android:spinnerMode="dialog" />
+
+                            <View
+                                android:id="@+id/mView3"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bt_danxuankaung" />
+
+                            <AutoCompleteTextView
+                                android:id="@+id/tv_sshy"
+                                android:layout_width="match_parent"
+                                android:layout_height="36dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginRight="30dp"
+                                android:background="@color/white"
+                                android:gravity="center_vertical"
+                                android:hint="请选择"
+                                android:paddingLeft="15dp"
+                                android:singleLine="true"
+                                android:spinnerMode="dialog"
+                                android:textColor="@color/text_color"
+                                android:textColorHint="@color/common_app_text_theme2"
+                                android:textSize="14sp" />
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginTop="3dp"
+                        android:background="@color/line" />
+
+                </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp" />
+
+                <TextView
+                    android:id="@+id/tvAmount"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/main_color"
+                    android:text="参考可扶持金额取整为0元，实际按审核为准。"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_login2"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/login_btn_shape"
+                        android:text="马上提交"
+                        android:textColor="@color/common_app_theme_bg2"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btn_login3"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/main_tiime_shape1"
+                        android:text="存为草稿"
+                        android:textColor="@color/common_app_theme_bg2"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/mlStep3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="15dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/pl_success"/>
+                <TextView
+                    android:layout_marginTop="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/main_color"
+                    android:text="恭喜您，提交成功！"/>
+                <TextView
+                    android:id="@+id/tvcontent"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_color"
+                    android:text=""/>
+                <Button
+                    android:id="@+id/btn_login4"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/login_btn_shape"
+                    android:text="马上查看"
+                    android:textColor="@color/common_app_theme_bg2"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

@@ -25,5 +25,9 @@ public class ZjsbtxDetailModel {
                 .policyapplydetail(id, token);
     }
 
+    public Observable policyapplydetail1(String token, String id) {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .policyapplydetail1(id, token);
+    }
 
 }

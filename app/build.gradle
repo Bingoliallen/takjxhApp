@@ -23,8 +23,8 @@ android {
         applicationId commonProperties["application_id"]
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
@@ -226,6 +226,9 @@ dependencies {
     implementation 'cn.bingoogolapple:bga-banner:2.2.7@aar'
 
     compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0' // 侧滑删除
+
+    implementation 'com.alibaba:fastjson:1.1.68.android'
+
 
 }
 configurations.all {

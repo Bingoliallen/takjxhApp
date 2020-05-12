@@ -23,5 +23,9 @@ public class StartUIModel {
                 .paramlist();
     }
 
+    public Observable tradetreelistt() {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .tradetreelistt();
+    }
 
 }

@@ -30,6 +30,13 @@ public class RegisterGLModel {
                 .getCode(phone);
     }
 
+
+    public Observable tradetreelistt() {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .tradetreelistt();
+    }
+
+
     public Observable paramlist() {
         return BaseAppProfile.app_client.getApi(AppApi.class)
                 .paramlist();

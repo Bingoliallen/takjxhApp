@@ -12,11 +12,14 @@ import takjxh.android.com.commlibrary.presenter.impl.BasePresenter;
 import takjxh.android.com.commlibrary.utils.ShareUtils;
 import takjxh.android.com.taapp.activityui.bean.ApplyTypeBean;
 import takjxh.android.com.taapp.activityui.bean.PolicyApplyDetailBean;
+import takjxh.android.com.taapp.activityui.bean.PolicyapplyaddList;
 import takjxh.android.com.taapp.activityui.bean.UploadFileBean;
 import takjxh.android.com.taapp.activityui.model.ZjsbtxModel;
 import takjxh.android.com.taapp.activityui.presenter.impl.IZjsbtxPresenter;
 import takjxh.android.com.taapp.net.NetDialogSubscriber;
 import rx.functions.Func1;
+import takjxh.android.com.taapp.net.NetSubscriber;
+import takjxh.android.com.taapp.view.mulitmenuselect.Children;
 
 /**
  * 类名称：
@@ -36,6 +39,212 @@ public class ZjsbtxPresenter extends BasePresenter<IZjsbtxPresenter.IView, Zjsbt
         return new ZjsbtxModel();
     }
 
+
+    @Override
+    public void tradetreelistt() {
+        getCompositeSubscription()
+                .add(mModel.tradetreelistt()
+                        .compose(RxHelper.io_main())
+                        .map(new Response2DataFunc5())
+                        .subscribe(new NetSubscriber<List<Children>>(getView().getContext()) {
+                            @Override
+                            public void onNext(List<Children> data) {
+                                super.onNext(data);
+                                if (isAttach()) {
+                                    getView().tradetreelisttSuccess(data);
+                                }
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                super.onError(e);
+                                if (isAttach()) {
+                                    getView().tradetreelisttFailed();
+                                }
+                            }
+                        }));
+    }
+
+    @Override
+    public void getPredictAmount(String token, Map<String, Object> searchRequest) {
+        token = ShareUtils.getString(BaseAppProfile.getApplication(), "token", "");
+        getCompositeSubscription().add(mModel.getPredictAmount(token,searchRequest)
+                .compose(RxHelper.io_main())
+                .map(new Response2DataFunc1())
+                .subscribe(new NetSubscriber<CommonResponse>(getView().getContext()) {
+                    @Override
+                    public void onNext(CommonResponse data) {
+                        super.onNext(data);
+                        if (isAttach()) {
+                            getView().getPredictAmountSuccess(data.resDes);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        if (isAttach()) {
+                            getView().getPredictAmountFailed(e.getMessage());
+                        }
+                    }
+                }));
+
+    }
+
+    @Override
+    public void policyapplycheckApply(String token, String typeId) {
+        token = ShareUtils.getString(BaseAppProfile.getApplication(), "token", "");
+        getCompositeSubscription().add(mModel.policyapplycheckApply(token,typeId)
+                .compose(RxHelper.io_main())
+                .map(new Response2DataFunc1())
+                .subscribe(new NetDialogSubscriber<CommonResponse>(getView().getContext()) {
+
+                    @Override
+                    public int configuration() {
+                        return DEFAULT;
+                    }
+
+                    @Override
+                    public void onNext(CommonResponse mBean) {
+                        super.onNext(mBean);
+                        if (isAttach()) {
+                            getView().policyapplycheckApplySuccess(mBean.resDes);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        if (isAttach()) {
+                            getView().policyapplycheckApplyFailed(e.getMessage());
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void policyapplydetail1(String token, String id) {
+        token = ShareUtils.getString(BaseAppProfile.getApplication(), "token", "");
+        getCompositeSubscription().add(mModel.policyapplydetail1(token,id)
+                .compose(RxHelper.io_main())
+                .map(new Response2DataFunc4())
+                .subscribe(new NetDialogSubscriber<PolicyapplyaddList>(getView().getContext()) {
+
+                    @Override
+                    public int configuration() {
+                        return DEFAULT;
+                    }
+
+                    @Override
+                    public void onNext(PolicyapplyaddList mBean) {
+                        super.onNext(mBean);
+                        if (isAttach()) {
+                            getView().policyapplydetail1Success(mBean);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        if (isAttach()) {
+                            getView().policyapplydetail1Failed();
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void policyapplyupdate(String token, String applyId) {
+        token = ShareUtils.getString(BaseAppProfile.getApplication(), "token", "");
+        getCompositeSubscription().add(mModel.policyapplyupdate(token,applyId)
+                .compose(RxHelper.io_main())
+                .map(new Response2DataFunc4())
+                .subscribe(new NetDialogSubscriber<PolicyapplyaddList>(getView().getContext()) {
+
+                    @Override
+                    public int configuration() {
+                        return DEFAULT;
+                    }
+
+                    @Override
+                    public void onNext(PolicyapplyaddList mBean) {
+                        super.onNext(mBean);
+                        if (isAttach()) {
+                            getView().policyapplyupdateSuccess(mBean);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        if (isAttach()) {
+                            getView().policyapplyupdateFailed();
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void applyadddtempone(String token, Map<String, Object> searchRequest) {
+        token = ShareUtils.getString(BaseAppProfile.getApplication(), "token", "");
+        getCompositeSubscription().add(mModel.applyadddtempone(token,searchRequest)
+                .compose(RxHelper.io_main())
+                .map(new Response2DataFunc1())
+                .subscribe(new NetDialogSubscriber<CommonResponse>(getView().getContext()) {
+
+                    @Override
+                    public int configuration() {
+                        return DEFAULT;
+                    }
+
+                    @Override
+                    public void onNext(CommonResponse mBean) {
+                        super.onNext(mBean);
+                        if (isAttach()) {
+                            getView().applyadddtemponeSuccess(mBean.resDes);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        if (isAttach()) {
+                            getView().applyadddtemponeFailed(e.getMessage());
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void policyapplyadd(String token, String typeId) {
+        token = ShareUtils.getString(BaseAppProfile.getApplication(), "token", "");
+        getCompositeSubscription().add(mModel.policyapplyadd(token,typeId)
+                .compose(RxHelper.io_main())
+                .map(new Response2DataFunc4())
+                .subscribe(new NetDialogSubscriber<PolicyapplyaddList>(getView().getContext()) {
+
+                    @Override
+                    public int configuration() {
+                        return DEFAULT;
+                    }
+
+                    @Override
+                    public void onNext(PolicyapplyaddList mBean) {
+                        super.onNext(mBean);
+                        if (isAttach()) {
+                            getView().policyapplyaddSuccess(mBean);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        if (isAttach()) {
+                            getView().policyapplyaddFailed();
+                        }
+                    }
+                }));
+    }
 
     @Override
     public void policyapplytypelist(String token) {
@@ -69,7 +278,7 @@ public class ZjsbtxPresenter extends BasePresenter<IZjsbtxPresenter.IView, Zjsbt
     }
 
     @Override
-    public void applyadddone(String token, Map<String, String> searchRequest) {
+    public void applyadddone(String token, Map<String, Object> searchRequest) {
         token = ShareUtils.getString(BaseAppProfile.getApplication(), "token", "");
         getCompositeSubscription().add(mModel.applyadddone(token,searchRequest)
                 .compose(RxHelper.io_main())
@@ -93,14 +302,14 @@ public class ZjsbtxPresenter extends BasePresenter<IZjsbtxPresenter.IView, Zjsbt
                     public void onError(Throwable e) {
                         super.onError(e);
                         if (isAttach()) {
-                            getView().applyadddoneFailed();
+                            getView().applyadddoneFailed(e.getMessage());
                         }
                     }
                 }));
     }
 
     @Override
-    public void applyupdatedone(String token, Map<String, String> searchRequest) {
+    public void applyupdatedone(String token, Map<String, Object> searchRequest) {
         token = ShareUtils.getString(BaseAppProfile.getApplication(), "token", "");
         getCompositeSubscription().add(mModel.applyupdatedone(token,searchRequest)
                 .compose(RxHelper.io_main())
@@ -124,7 +333,7 @@ public class ZjsbtxPresenter extends BasePresenter<IZjsbtxPresenter.IView, Zjsbt
                     public void onError(Throwable e) {
                         super.onError(e);
                         if (isAttach()) {
-                            getView().applyupdatedoneFailed();
+                            getView().applyupdatedoneFailed(e.getMessage());
                         }
                     }
                 }));
@@ -266,6 +475,46 @@ public class ZjsbtxPresenter extends BasePresenter<IZjsbtxPresenter.IView, Zjsbt
         }
     }
 
+
+
+    /**
+     * 返回元素
+     */
+    public static class Response2DataFunc4<T> implements Func1<PolicyapplyaddList<T>, T> {
+
+        @Override
+        public PolicyapplyaddList call(PolicyapplyaddList response) {
+            if (response != null) {
+                RxHelper.beanToJson(response);
+            }
+            if (response == null) {
+                throw new ApiException(ResponseCode.RESPONSE_NULL, "response is null");
+            } else if (ResponseCode.SUCCESS == response.resCode) {
+                return response;
+            } else {
+                throw new ApiException(response.resCode, response.resDes);
+            }
+        }
+    }
+
+    /**
+     * 返回元素
+     */
+    public static class Response2DataFunc5 implements Func1<List<Children>, List<Children>> {
+
+        @Override
+        public List<Children> call(List<Children> response) {
+            if (response != null) {
+                RxHelper.beanToJson(response);
+            }
+            if (response == null) {
+                throw new ApiException(ResponseCode.RESPONSE_NULL, "response is null");
+            } else{
+                return response;
+            }
+
+        }
+    }
 
 }
 

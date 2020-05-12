@@ -128,6 +128,12 @@ public class DateTimeUtil {
         return sdf.format(new Date(dateL));
     }
 
+    public static Date formatDateTime1(long dateL, String formater) {
+        SimpleDateFormat sdf = new SimpleDateFormat(formater);
+        return new Date(dateL);
+    }
+
+
 
     /**
      * 将日期以yyyy-MM-dd HH:mm:ss格式化

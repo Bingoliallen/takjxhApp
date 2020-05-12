@@ -190,17 +190,17 @@
                             android:layout_height="match_parent"
                             android:spinnerMode="dialog" />
 
-                        <!--<View
+                       <View
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/bt_danxuankaung" />-->
+                            android:background="@drawable/bt_danxuankaung" />
 
                         <TextView
                             android:id="@+id/tv_zclx"
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
+                            android:layout_height="36dp"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="0dp"
+                            android:layout_marginLeft="2dp"
                             android:layout_marginRight="33dp"
                             android:background="@color/white"
                             android:gravity="center_vertical"
@@ -492,7 +492,7 @@
                             android:layout_height="40dp"
                             android:background="@color/white"
                             android:gravity="center_vertical"
-                            android:hint="格式为：xxxxxxxx—X"
+                            android:hint="格式为xxxxxxxx—X"
                             android:textSize="14sp"
                             android:maxLength="10"
                             android:imeOptions="actionNext"
@@ -627,19 +627,21 @@
                                 android:id="@+id/sp_register3"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:visibility="gone"
                                 android:spinnerMode="dialog" />
 
-                            <!--<View
+                            <View
+                                android:id="@+id/mView3"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="@drawable/bt_danxuankaung" />-->
+                                android:background="@drawable/bt_danxuankaung" />
 
                             <AutoCompleteTextView
                                 android:id="@+id/tv_sshy"
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="36dp"
                                 android:layout_centerVertical="true"
-                                android:layout_marginLeft="0dp"
+                                android:layout_marginLeft="2dp"
                                 android:layout_marginRight="33dp"
                                 android:background="@color/white"
                                 android:gravity="center_vertical"

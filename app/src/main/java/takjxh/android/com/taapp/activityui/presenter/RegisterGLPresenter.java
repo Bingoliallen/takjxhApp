@@ -1,5 +1,6 @@
 package takjxh.android.com.taapp.activityui.presenter;
 
+import java.util.List;
 import java.util.Map;
 
 import takjxh.android.com.commlibrary.BaseAppProfile;
@@ -18,6 +19,7 @@ import takjxh.android.com.taapp.activityui.presenter.impl.IRegisterGLPresenter;
 import takjxh.android.com.taapp.net.NetDialogSubscriber;
 import takjxh.android.com.taapp.net.NetSubscriber;
 import rx.functions.Func1;
+import takjxh.android.com.taapp.view.mulitmenuselect.Children;
 
 /**
  * 类名称：
@@ -150,6 +152,32 @@ public class RegisterGLPresenter extends BasePresenter<IRegisterGLPresenter.IVie
     }
 
     @Override
+    public void tradetreelistt() {
+        getCompositeSubscription()
+                .add(mModel.tradetreelistt()
+                        .compose(RxHelper.io_main())
+                        .map(new Response2DataFunc3())
+                        .subscribe(new NetSubscriber<List<Children>>(getView().getContext()) {
+                            @Override
+                            public void onNext(List<Children> data) {
+                                super.onNext(data);
+                                if (isAttach()) {
+
+                                    getView().tradetreelisttSuccess(data);
+                                }
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                super.onError(e);
+                                if (isAttach()) {
+                                    getView().tradetreelisttFailed();
+                                }
+                            }
+                        }));
+    }
+
+    @Override
     public void upload(String token, String uri) {
         token = ShareUtils.getString(BaseAppProfile.getApplication(), "token", "");
         getCompositeSubscription()
@@ -233,5 +261,25 @@ public class RegisterGLPresenter extends BasePresenter<IRegisterGLPresenter.IVie
             }
         }
     }
+
+    /**
+     * 返回元素
+     */
+    public static class Response2DataFunc3 implements Func1<List<Children>, List<Children>> {
+
+        @Override
+        public List<Children> call(List<Children> response) {
+            if (response != null) {
+                RxHelper.beanToJson(response);
+            }
+            if (response == null) {
+                throw new ApiException(ResponseCode.RESPONSE_NULL, "response is null");
+            } else{
+                return response;
+            }
+
+        }
+    }
+
 
 }

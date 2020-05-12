@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <takjxh.android.com.taapp.view.NormalTitleBar
+        android:id="@+id/ntb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/mL1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="投稿标题："
+                        android:textColor="@color/text_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/edGSMC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint=""
+                        android:paddingLeft="12dp"
+                        android:textColor="@color/common_app_text_theme4"
+                        android:textColorHint="@color/common_app_text_theme5" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/mL2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="投稿类型："
+                        android:textColor="@color/text_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/edXYDM"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint=""
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingLeft="12dp"
+                        android:singleLine="true"
+                        android:textColor="@color/common_app_text_theme4"
+                        android:textColorHint="@color/common_app_text_theme5" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+<!--
+            <LinearLayout
+                android:id="@+id/mL3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="手机号码："
+                        android:textColor="@color/text_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/edZCSJ"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint=""
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingLeft="12dp"
+                        android:singleLine="true"
+                        android:textColor="@color/common_app_text_theme4"
+                        android:textColorHint="@color/common_app_text_theme5" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+-->
+
+<!--
+            <LinearLayout
+                android:id="@+id/mL4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="价格："
+                        android:textColor="@color/text_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/edFR"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint=""
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingLeft="12dp"
+                        android:singleLine="true"
+                        android:textColor="@color/common_app_text_theme4"
+                        android:textColorHint="@color/common_app_text_theme5" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+-->
+
+            <LinearLayout
+                android:id="@+id/mL5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="投稿内容："
+                        android:textColor="@color/text_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/edLXRXM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint=""
+                        android:paddingLeft="12dp"
+                        android:paddingBottom="10dp"
+                        android:textColor="@color/common_app_text_theme4"
+                        android:textColorHint="@color/common_app_text_theme5" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mL6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="投稿时间："
+                        android:textColor="@color/text_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/edLXDH"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint=""
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:paddingLeft="12dp"
+                        android:singleLine="true"
+                        android:textColor="@color/common_app_text_theme4"
+                        android:textColorHint="@color/common_app_text_theme5" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/mL7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="投稿状态："
+                        android:textColor="@color/text_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/edSCFJ"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint=""
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingLeft="12dp"
+                        android:singleLine="true"
+                        android:textColor="@color/common_app_text_theme4"
+                        android:textColorHint="@color/common_app_text_theme5" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

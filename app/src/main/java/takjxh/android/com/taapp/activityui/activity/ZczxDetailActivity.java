@@ -123,7 +123,7 @@ public class ZczxDetailActivity extends BaseActivity<ZczxDetailPresenter> implem
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZjsbtxActivity.startAction(ZczxDetailActivity.this);
+                ZjsbtxActivity1.startAction(ZczxDetailActivity.this);
             }
         });
         btn_login1.setOnClickListener(new View.OnClickListener() {

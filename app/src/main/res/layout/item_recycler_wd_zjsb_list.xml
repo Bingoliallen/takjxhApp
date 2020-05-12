@@ -8,14 +8,16 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/mL1"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
         android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
         android:background="@color/white"
-        android:orientation="horizontal">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_sj"
@@ -28,38 +30,46 @@
             android:text="申请时间：2019-10-9"
             android:textColor="@color/common_app_text_theme1"
             android:textSize="15sp" />
+
         <RatingBar
             android:id="@+id/ratingBar1"
+            style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:numStars="5"
             android:rating="0"
-            android:visibility="gone"
             android:stepSize="0.5"
-            style="?android:attr/ratingBarStyleSmall"/>
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/tv_zt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="审核中"
-            android:textStyle="bold"
             android:textColor="@color/main_color"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            android:textStyle="bold" />
     </LinearLayout>
+
     <View
+        android:id="@+id/mView1"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:background="@color/line" />
+        android:background="@color/line"
+        android:visibility="gone" />
+
     <LinearLayout
+        android:id="@+id/mL2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="15dp">
+        android:padding="10dp"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/iv_avatar"
@@ -107,12 +117,13 @@
                 android:text="统一社会代码：12442019109"
                 android:textColor="@color/common_app_text_theme2"
                 android:textSize="14sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
                 android:layout_marginTop="0dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
 
@@ -125,22 +136,130 @@
                     android:text="申请金额：50万"
                     android:textColor="@color/common_app_text_theme2"
                     android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/tv_pj"
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:background="@drawable/in_button_bg"
+                    android:paddingBottom="5dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:background="@drawable/in_button_bg"
                     android:text="去评价"
                     android:textColor="@color/selector_litem_channel"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/mL3"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tvtitle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:maxLength="30"
+                android:maxLines="2"
+                android:text="厦门市民营企业"
+                android:textColor="@color/zc3"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_sj1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="2019-10-9"
+                android:textColor="@color/common_app_text_theme1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_des1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:text="统一社会代码：12442019109"
+                android:textColor="@color/dot_hong"
+                android:textSize="16sp"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_zt3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:text="审核中"
+                android:textColor="@color/zc3"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_qxg0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="5dp"
+                android:text="申报表下载"
+                android:textColor="@color/dot_hong"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_qxg2"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="5dp"
+                android:text="收据下载"
+                android:textColor="@color/dot_hong"
+                android:textSize="14sp"/>
+
+
+            <TextView
+                android:id="@+id/tv_qxg4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="5dp"
+                android:text="马上去修改"
+                android:visibility="gone"
+                android:textColor="@color/dot_hong"
+                android:textSize="14sp" />
+        </LinearLayout>
+
 
     </LinearLayout>
 

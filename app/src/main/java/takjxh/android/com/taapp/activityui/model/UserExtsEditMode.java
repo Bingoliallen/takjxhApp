@@ -37,6 +37,11 @@ public class UserExtsEditMode {
                 .paramlist();
     }
 
+    public Observable tradetreelistt() {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .tradetreelistt();
+    }
+
     public Observable upload(String token, String uri) {
         File file = null;
         try {

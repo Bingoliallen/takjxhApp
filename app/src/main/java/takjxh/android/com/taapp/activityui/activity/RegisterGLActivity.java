@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import butterknife.BindView;
 import takjxh.android.com.commlibrary.utils.BarUtil;
 import takjxh.android.com.commlibrary.utils.ToastUtil;
@@ -22,6 +24,7 @@ import takjxh.android.com.taapp.activityui.presenter.RegisterGLPresenter;
 import takjxh.android.com.taapp.activityui.presenter.impl.IRegisterGLPresenter;
 import takjxh.android.com.taapp.utils.CodeUtils;
 import takjxh.android.com.taapp.view.NormalTitleBar;
+import takjxh.android.com.taapp.view.mulitmenuselect.Children;
 
 /**
  * 类名称：管理员注册
@@ -181,6 +184,16 @@ public class RegisterGLActivity extends BaseActivity<RegisterGLPresenter> implem
 
     @Override
     public void paramlistFailed() {
+
+    }
+
+    @Override
+    public void tradetreelisttSuccess(List<Children> bean) {
+
+    }
+
+    @Override
+    public void tradetreelisttFailed() {
 
     }
 

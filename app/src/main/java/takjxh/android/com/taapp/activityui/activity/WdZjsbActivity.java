@@ -83,7 +83,7 @@ public class WdZjsbActivity extends BaseActivity implements  OnTabSelectListener
         ntb.setOnRightImagListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               ZjsbtxActivity.startAction(WdZjsbActivity.this);
+               ZjsbtxActivity1.startAction(WdZjsbActivity.this);
             }
         });
         ntb.setOnBackListener(new View.OnClickListener() {
@@ -96,8 +96,9 @@ public class WdZjsbActivity extends BaseActivity implements  OnTabSelectListener
 
         items.clear();
         items.add(new WdZjsbType("","所有申报"));
+        items.add(new WdZjsbType("00","待提交"));
         items.add(new WdZjsbType("01","待审核"));
-        items.add(new WdZjsbType("00","已完成"));
+        items.add(new WdZjsbType("99","已完成"));
         items.add(new WdZjsbType("02","求助"));
         for (WdZjsbType title : items) {
             if("02".equals(title.id)){

@@ -18,6 +18,7 @@ import takjxh.android.com.commlibrary.presenter.impl.BasePresenter;
 import takjxh.android.com.commlibrary.utils.ShareUtils;
 import takjxh.android.com.commlibrary.view.fragment.BaseFragment;
 import takjxh.android.com.taapp.R;
+import takjxh.android.com.taapp.activityui.activity.ContributeListActivity;
 import takjxh.android.com.taapp.activityui.activity.GrDetailActivity;
 import takjxh.android.com.taapp.activityui.activity.JyfkActivity;
 import takjxh.android.com.taapp.activityui.activity.SetingActivity;
@@ -69,6 +70,9 @@ public class WDFragment extends BaseFragment  implements View.OnClickListener{
     ImageView imgRight;
 
 
+    @BindView(R.id.hytg)
+    LinearLayout hytg;
+
     /**
      * 返回布局文件
      */
@@ -92,7 +96,7 @@ public class WDFragment extends BaseFragment  implements View.OnClickListener{
     @Override
     protected void initEvent() {
         super.initEvent();
-
+        hytg.setOnClickListener(this);
         iv_avatar.setOnClickListener(this);
         togrxx.setOnClickListener(this);
         xxjf.setOnClickListener(this);
@@ -160,7 +164,9 @@ public class WDFragment extends BaseFragment  implements View.OnClickListener{
             case R.id.xxsh:
                 XxshActivity.startAction(getActivity());
                 break;
-
+            case R.id.hytg:
+                ContributeListActivity.startAction(getActivity());
+                break;
 
 
         }

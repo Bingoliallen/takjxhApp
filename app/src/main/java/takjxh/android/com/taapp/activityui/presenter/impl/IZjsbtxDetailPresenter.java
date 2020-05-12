@@ -5,6 +5,7 @@ import java.util.List;
 import takjxh.android.com.commlibrary.presenter.IBasePresenter;
 import takjxh.android.com.taapp.activityui.bean.ApplyTypeBean;
 import takjxh.android.com.taapp.activityui.bean.PolicyApplyDetailBean;
+import takjxh.android.com.taapp.activityui.bean.PolicyapplyaddList;
 
 /**
  * 类名称：
@@ -18,6 +19,9 @@ public interface IZjsbtxDetailPresenter {
 
     void policyapplydetail(String token, String id);
 
+
+    void policyapplydetail1(String token, String id);
+
     interface IView extends IBasePresenter.IView {
 
         void policyapplytypelistSuccess(List<ApplyTypeBean.ApplyTypesBean> data);
@@ -25,6 +29,10 @@ public interface IZjsbtxDetailPresenter {
 
         void policyapplydetailSuccess(PolicyApplyDetailBean.ApplyInfoBean data);
         void policyapplydetailFailed();
+
+
+        void policyapplydetail1Success(PolicyapplyaddList data);
+        void policyapplydetail1Failed();
 
     }
 

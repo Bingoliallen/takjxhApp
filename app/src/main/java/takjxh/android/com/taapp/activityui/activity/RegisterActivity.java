@@ -70,6 +70,9 @@ import takjxh.android.com.taapp.utils.Regex_OrganizationCertificate;
 import takjxh.android.com.taapp.utils.RxRegTool;
 import takjxh.android.com.taapp.view.CustomSpinner;
 import takjxh.android.com.taapp.view.NormalTitleBar;
+import takjxh.android.com.taapp.view.mulitmenuselect.Children;
+import takjxh.android.com.taapp.view.mulitmenuselect.ChildrenUtil;
+import takjxh.android.com.taapp.view.mulitmenuselect.ThirdDialog2;
 
 /**
  * 类名称：
@@ -134,6 +137,9 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     @BindView(R.id.tv_sshy)
     AutoCompleteTextView tv_sshy;
     private String sshyID = "";
+    private List<Children> list1=new ArrayList<>();
+    private List<Children> treeItemBeanList=new ArrayList<>();
+
 
 
     @BindView(R.id.mlQY)
@@ -183,6 +189,11 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     EditText edPassword;
     @BindView(R.id.tvcode)
     TextView tvcode;
+
+    @BindView(R.id.mView3)
+    View mView3;
+
+
 
     //定义请求码常量
     private static final int REQUEST_CODE_CHOOSE = 23;
@@ -343,7 +354,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                sshyID = usertrade.get(position).getCode();
+                sshyID = list1.get(position).getId();
             }
         });
 
@@ -361,6 +372,24 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
                 img.setImageBitmap(CodeUtils.getInstance().createBitmap()); //随机生成图片验证码
             }
         });
+
+        mView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThirdDialog2 dialog=new ThirdDialog2(RegisterActivity.this,treeItemBeanList);
+                dialog.setonItemClickListener(new ThirdDialog2.DictItemClickListener() {
+                    @Override
+                    public void onDictItemClick(Children dictUnit) {
+                        if (dictUnit!=null) {
+                            tv_sshy.setText(dictUnit.getName());
+                            sshyID = dictUnit.getId();
+                        }
+                    }
+                });
+                dialog.show();
+            }
+        });
+
 
         btn_login.setOnClickListener(this);
         tvcode.setOnClickListener(this);
@@ -399,20 +428,18 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     @Override
     protected void initData() {
         super.initData();
-
+        mPresenter.tradetreelistt();
         if (QbApplication.mBaseApplication.usertrade != null && QbApplication.mBaseApplication.usertrade.size() > 0) {
             usertrade.clear();
             usertrade.addAll(QbApplication.mBaseApplication.usertrade);
             adapterResult3.notifyDataSetChanged();
 
-            String[] dictionary = new String[usertrade.size()];
+           /* String[] dictionary = new String[usertrade.size()];
             for(int i=0;i<usertrade.size();i++){
                dictionary[i]=usertrade.get(i).getValue();
-            }
-            //利用适配器
-            ArrayAdapter<String> adapter_actv = new ArrayAdapter<String>(
-                    this,android.R.layout.simple_dropdown_item_1line,dictionary);
-            tv_sshy.setAdapter(adapter_actv);
+            }*/
+
+
         } else {
             mPresenter.paramlist();
         }
@@ -739,14 +766,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             usertrade.addAll(QbApplication.mBaseApplication.usertrade);
             adapterResult3.notifyDataSetChanged();
 
-            String[] dictionary = new String[usertrade.size()];
-            for(int i=0;i<usertrade.size();i++){
-                dictionary[i]=usertrade.get(i).getValue();
-            }
-            //利用适配器
-            ArrayAdapter<String> adapter_actv = new ArrayAdapter<String>(
-                    this,android.R.layout.simple_dropdown_item_1line,dictionary);
-            tv_sshy.setAdapter(adapter_actv);
+
         }
         if (bean.getParams().getUsertype() != null) {
             QbApplication.mBaseApplication.usertype = bean.getParams().getUsertype();
@@ -835,6 +855,34 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
 
     @Override
     public void paramlistFailed() {
+
+    }
+
+    @Override
+    public void tradetreelisttSuccess(List<Children> bean) {
+        if (bean == null) {
+            return;
+        }
+        treeItemBeanList.clear();
+        treeItemBeanList.addAll(bean);
+
+        list1.clear();
+        list1=ChildrenUtil.getSelList(treeItemBeanList);
+        String[] dictionary = new String[list1.size()];
+        for(int i=0;i<list1.size();i++){
+            dictionary[i]=list1.get(i).getName();
+        }
+
+        //利用适配器
+        ArrayAdapter<String> adapter_actv = new ArrayAdapter<String>(
+                this,android.R.layout.simple_dropdown_item_1line,dictionary);
+        tv_sshy.setAdapter(adapter_actv);
+
+
+    }
+
+    @Override
+    public void tradetreelisttFailed() {
 
     }
 

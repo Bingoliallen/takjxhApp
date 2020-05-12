@@ -31,6 +31,7 @@ import takjxh.android.com.taapp.activityui.presenter.impl.IRegisterGLPresenter;
 import takjxh.android.com.taapp.utils.CodeUtils;
 import takjxh.android.com.taapp.view.CustomSpinner;
 import takjxh.android.com.taapp.view.NormalTitleBar;
+import takjxh.android.com.taapp.view.mulitmenuselect.Children;
 
 /**
  * 类名称：企业注册
@@ -253,6 +254,16 @@ public class RegisterQYActivity extends BaseActivity<RegisterGLPresenter> implem
 
     @Override
     public void paramlistFailed() {
+
+    }
+
+    @Override
+    public void tradetreelisttSuccess(List<Children> bean) {
+
+    }
+
+    @Override
+    public void tradetreelisttFailed() {
 
     }
 

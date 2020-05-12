@@ -53,6 +53,7 @@ import takjxh.android.com.taapp.activityui.adapter.ZjsbtxAdapter;
 import takjxh.android.com.taapp.activityui.base.BaseDialog;
 import takjxh.android.com.taapp.activityui.bean.ApplyTypeBean;
 import takjxh.android.com.taapp.activityui.bean.PolicyApplyDetailBean;
+import takjxh.android.com.taapp.activityui.bean.PolicyapplyaddList;
 import takjxh.android.com.taapp.activityui.bean.UploadFileBean;
 import takjxh.android.com.taapp.activityui.bean.ZjsbtxBean;
 import takjxh.android.com.taapp.activityui.dialog.DateAndTimeDialog;
@@ -66,6 +67,7 @@ import takjxh.android.com.taapp.utils.RxRegTool;
 import takjxh.android.com.taapp.view.CustomGridView;
 import takjxh.android.com.taapp.view.CustomSpinner;
 import takjxh.android.com.taapp.view.NormalTitleBar;
+import takjxh.android.com.taapp.view.mulitmenuselect.Children;
 
 /**
  * Created by Administrator on 2020/3/11.
@@ -411,6 +413,56 @@ public class ZjsbtxUpdateActivity extends BaseActivity<ZjsbtxPresenter> implemen
     }
 
     @Override
+    public void tradetreelisttSuccess(List<Children> bean) {
+
+    }
+
+    @Override
+    public void tradetreelisttFailed() {
+
+    }
+
+    @Override
+    public void policyapplycheckApplySuccess(String data) {
+
+    }
+
+    @Override
+    public void policyapplycheckApplyFailed(String data) {
+
+    }
+
+    @Override
+    public void policyapplydetail1Success(PolicyapplyaddList data) {
+
+    }
+
+    @Override
+    public void policyapplydetail1Failed() {
+
+    }
+
+    @Override
+    public void policyapplyupdateSuccess(PolicyapplyaddList data) {
+
+    }
+
+    @Override
+    public void policyapplyupdateFailed() {
+
+    }
+
+    @Override
+    public void policyapplyaddSuccess(PolicyapplyaddList data) {
+
+    }
+
+    @Override
+    public void policyapplyaddFailed() {
+
+    }
+
+    @Override
     public void policyapplydetailSuccess(PolicyApplyDetailBean.ApplyInfoBean data) {
         if (data == null) {
             return;
@@ -504,12 +556,32 @@ public class ZjsbtxUpdateActivity extends BaseActivity<ZjsbtxPresenter> implemen
     }
 
     @Override
+    public void applyadddtemponeSuccess(String data) {
+
+    }
+
+    @Override
+    public void applyadddtemponeFailed(String data) {
+
+    }
+
+    @Override
+    public void getPredictAmountSuccess(String data) {
+
+    }
+
+    @Override
+    public void getPredictAmountFailed(String data) {
+
+    }
+
+    @Override
     public void applyadddoneSuccess(String data) {
 
     }
 
     @Override
-    public void applyadddoneFailed() {
+    public void applyadddoneFailed(String data) {
 
     }
 
@@ -521,7 +593,7 @@ public class ZjsbtxUpdateActivity extends BaseActivity<ZjsbtxPresenter> implemen
     }
 
     @Override
-    public void applyupdatedoneFailed() {
+    public void applyupdatedoneFailed(String data) {
 
     }
 
@@ -838,7 +910,7 @@ public class ZjsbtxUpdateActivity extends BaseActivity<ZjsbtxPresenter> implemen
             }
 
         }
-        Map<String, String> queryMap = new HashMap<>();
+        Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("id", id);
 
         queryMap.put("entName", medGSMC);

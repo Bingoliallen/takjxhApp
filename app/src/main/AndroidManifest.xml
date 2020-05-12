@@ -414,6 +414,31 @@
             android:name="takjxh.android.com.taapp.activityui.activity.ZjsbtxUpdateActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZjsbtxActivity1"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZjsbtxDetailActivity1"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ZjsbtxUpdateActivity1"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ContributeActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ContributeDetialActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.ContributeListActivity"
+            android:screenOrientation="portrait" />
 
 
 

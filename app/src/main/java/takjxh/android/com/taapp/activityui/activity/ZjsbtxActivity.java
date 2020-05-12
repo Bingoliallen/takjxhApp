@@ -52,6 +52,7 @@ import takjxh.android.com.taapp.activityui.adapter.ZjsbtxAdapter;
 import takjxh.android.com.taapp.activityui.base.BaseDialog;
 import takjxh.android.com.taapp.activityui.bean.ApplyTypeBean;
 import takjxh.android.com.taapp.activityui.bean.PolicyApplyDetailBean;
+import takjxh.android.com.taapp.activityui.bean.PolicyapplyaddList;
 import takjxh.android.com.taapp.activityui.bean.UploadFileBean;
 import takjxh.android.com.taapp.activityui.bean.ZjsbtxBean;
 import takjxh.android.com.taapp.activityui.dialog.DateAndTimeDialog;
@@ -67,6 +68,7 @@ import takjxh.android.com.taapp.utils.RxRegTool;
 import takjxh.android.com.taapp.view.CustomGridView;
 import takjxh.android.com.taapp.view.CustomSpinner;
 import takjxh.android.com.taapp.view.NormalTitleBar;
+import takjxh.android.com.taapp.view.mulitmenuselect.Children;
 
 /**
  * 类名称：政策申报填写
@@ -449,6 +451,56 @@ public class ZjsbtxActivity extends BaseActivity<ZjsbtxPresenter> implements IZj
     }
 
     @Override
+    public void tradetreelisttSuccess(List<Children> bean) {
+
+    }
+
+    @Override
+    public void tradetreelisttFailed() {
+
+    }
+
+    @Override
+    public void policyapplycheckApplySuccess(String data) {
+
+    }
+
+    @Override
+    public void policyapplycheckApplyFailed(String data) {
+
+    }
+
+    @Override
+    public void policyapplydetail1Success(PolicyapplyaddList data) {
+
+    }
+
+    @Override
+    public void policyapplydetail1Failed() {
+
+    }
+
+    @Override
+    public void policyapplyupdateSuccess(PolicyapplyaddList data) {
+
+    }
+
+    @Override
+    public void policyapplyupdateFailed() {
+
+    }
+
+    @Override
+    public void policyapplyaddSuccess(PolicyapplyaddList data) {
+
+    }
+
+    @Override
+    public void policyapplyaddFailed() {
+
+    }
+
+    @Override
     public void policyapplydetailSuccess(PolicyApplyDetailBean.ApplyInfoBean data) {
 
     }
@@ -479,6 +531,26 @@ public class ZjsbtxActivity extends BaseActivity<ZjsbtxPresenter> implements IZj
     }
 
     @Override
+    public void applyadddtemponeSuccess(String data) {
+
+    }
+
+    @Override
+    public void applyadddtemponeFailed(String data) {
+
+    }
+
+    @Override
+    public void getPredictAmountSuccess(String data) {
+
+    }
+
+    @Override
+    public void getPredictAmountFailed(String data) {
+
+    }
+
+    @Override
     public void applyadddoneSuccess(String data) {
         ToastUtil.showToast(this, data);
         //  ZjsbtxDetailActivity.startAction(this, "");
@@ -486,7 +558,7 @@ public class ZjsbtxActivity extends BaseActivity<ZjsbtxPresenter> implements IZj
     }
 
     @Override
-    public void applyadddoneFailed() {
+    public void applyadddoneFailed(String data) {
 
     }
 
@@ -496,7 +568,7 @@ public class ZjsbtxActivity extends BaseActivity<ZjsbtxPresenter> implements IZj
     }
 
     @Override
-    public void applyupdatedoneFailed() {
+    public void applyupdatedoneFailed(String data) {
 
     }
 
@@ -822,7 +894,7 @@ public class ZjsbtxActivity extends BaseActivity<ZjsbtxPresenter> implements IZj
             }
 
         }
-        Map<String, String> queryMap = new HashMap<>();
+        Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("entName", medGSMC);
         queryMap.put("orgCode", medXYDM);
         queryMap.put("regTime", mZCSJ);

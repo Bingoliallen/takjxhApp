@@ -18,6 +18,11 @@ import takjxh.android.com.taapp.activityui.bean.CommQuestionBean;
 import takjxh.android.com.taapp.activityui.bean.CommTypeListBean;
 import takjxh.android.com.taapp.activityui.bean.CompanyTypesBean;
 import takjxh.android.com.taapp.activityui.bean.CompanysBean;
+import takjxh.android.com.taapp.activityui.bean.ContributeBean;
+import takjxh.android.com.taapp.activityui.bean.ContributeDetial;
+import takjxh.android.com.taapp.activityui.bean.ContributeDetialBean;
+import takjxh.android.com.taapp.activityui.bean.ContributeListBean;
+import takjxh.android.com.taapp.activityui.bean.DownFileByApplyId;
 import takjxh.android.com.taapp.activityui.bean.ExamAddBean;
 import takjxh.android.com.taapp.activityui.bean.ExamIndexBean;
 import takjxh.android.com.taapp.activityui.bean.FeedbackListBean;
@@ -46,6 +51,7 @@ import takjxh.android.com.taapp.activityui.bean.PolicyApplyHelpDetailBean;
 import takjxh.android.com.taapp.activityui.bean.PolicyApplyOrgansBean;
 import takjxh.android.com.taapp.activityui.bean.PolicyDetailBean;
 import takjxh.android.com.taapp.activityui.bean.PolicyIndexBean;
+import takjxh.android.com.taapp.activityui.bean.PolicyapplyaddList;
 import takjxh.android.com.taapp.activityui.bean.PolicysBean;
 import takjxh.android.com.taapp.activityui.bean.QaAnswerListBean;
 import takjxh.android.com.taapp.activityui.bean.QaDetailBean;
@@ -95,6 +101,8 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Streaming;
 import rx.Observable;
+import takjxh.android.com.taapp.view.mulitmenuselect.Children;
+import takjxh.android.com.taapp.view.mulitmenuselect.Contribute;
 
 /**
  * api接口
@@ -333,6 +341,16 @@ public interface AppApi {
     Observable<SysParamBean> paramlist(
     );
 
+    /**
+     * 获取所有行业的树信息
+     */
+    @GET("app/policy/apply/trade/tree/list.do")
+    Observable<List<Children>> tradetreelistt(
+    );
+
+
+
+
 
     /**
      * 获取我的在线报名列表信息
@@ -479,6 +497,45 @@ public interface AppApi {
             @Query("token") String token
     );
 
+    /**
+     * 进入投稿页面获取投稿类型列表信息（列表树只有两级）
+     */
+    @GET("app/index/contribute.do")
+    Observable<ContributeBean<List<Contribute>>> appindexcontribute(
+            @Query("token") String token
+    );
+
+    /**
+     *  提交投稿信息
+     */
+    @POST("app/index/contribute/done.do")
+    Observable<CommonResponse> contributedone(
+            @Query("token") String token,
+            @Body Map<String, Object> searchRequest);
+
+
+
+
+
+    /**
+     * 加载指定政策申报项信息接口
+     */
+    @GET("app/policy/apply/add.do")
+    Observable<PolicyapplyaddList> policyapplyadd(
+            @Query("typeId") String typeId,
+            @Query("token") String token
+    );
+
+
+    /**
+     *  提交政策申报并存为草稿
+     */
+    @POST("app/policy/apply/add/temp/done.do")
+    Observable<CommonResponse> applyadddtempone(
+            @Query("token") String token,
+            @Body Map<String, Object> searchRequest);
+
+
 
     /**
      * 政策申报提交
@@ -486,7 +543,56 @@ public interface AppApi {
     @POST("app/policy/apply/add/done.do")
     Observable<CommonResponse> applyadddone(
             @Query("token") String token,
-            @Body Map<String, String> searchRequest);
+            @Body Map<String, Object> searchRequest);
+
+    /**
+     * 计算扶持的金额（每次填写选择信息项的时候调用一次，并且将结果显示在提交按钮上面，效果如下图）
+     */
+    @POST("app/policy/apply/getPredictAmount.do")
+    Observable<CommonResponse> getPredictAmount(
+            @Query("token") String token,
+            @Body Map<String, Object> searchRequest);
+
+
+
+
+    /**
+     * 获取指定正常申报信息填报详情信息（和update接口类似，不过value有填写的话都有值）看详情
+     */
+    @GET("app/policy/apply/detail/{id}.do")
+    Observable<PolicyapplyaddList> policyapplydetail1(
+            @Path("id") String id,
+            @Query("token") String token);
+
+    /**
+     * 进入指定正常申报信息填报更新页面数据加载（和add接口类似，不过value有填写的话都有值）  进入修改时，获取的详情
+     */
+    @GET("app/policy/apply/update.do")
+    Observable<PolicyapplyaddList> policyapplyupdate(
+            @Query("applyId") String applyId,
+            @Query("token") String token
+    );
+
+    /**
+     * 更新指定的政策申报信息
+     */
+    @POST("app/policy/apply/update/done.do")
+    Observable<CommonResponse> applyupdatedone(
+            @Query("token") String token,
+            @Body Map<String, Object> searchRequest);
+
+    /**
+     * 检查当前用户是否有申报过指定的政策（当调用接口3之前需要先调用下这个接口，当resCode为1可进行接口3调用，反之提示）
+     */
+    @GET("app/policy/apply/checkApply.do")
+    Observable<CommonResponse> policyapplycheckApply(
+            @Query("typeId") String typeId,
+            @Query("token") String token
+    );
+
+
+
+
 
     /**
      * 提交政策申报求助信息
@@ -590,6 +696,29 @@ public interface AppApi {
             @Query("page") String page,
             @Query("pageSize") String pageSize
     );
+
+    /**
+     * 获取我的投稿列表信息
+     */
+    @GET("app/index/contribute/list.do")
+    Observable<ContributeListBean<List<ContributeDetial>>> contributeList(
+            @Query("token") String token,
+            @Query("page") String page,
+            @Query("pageSize") String pageSize
+    );
+
+    /**
+     * 获取指定的投稿详情信息
+     */
+    @GET("app/index/contribute/detail/{id}.do")
+    Observable<ContributeDetialBean<ContributeDetial>> contributedetail(
+            @Path("id") String id,
+            @Query("token") String token);
+
+
+
+
+
 
 
     /**
@@ -1017,15 +1146,22 @@ public interface AppApi {
 
 
     /**
-     * 政策申报更新
+     *   下载政策申请表模板接口
      */
-    @POST("app/policy/apply/update/done.do")
-    Observable<CommonResponse> applyupdatedone(
-            @Query("token") String token,
-            @Body Map<String, String> searchRequest);
+    @GET("app/policy/apply/downFileByApplyId.do")
+    Observable<DownFileByApplyId> downFileByApplyId(
+            @Query("applyId") String applyId,
+            @Query("token") String token
+    );
 
-
-
+    /**
+     *   下载政策申报收据接口
+     */
+    @GET("app/policy/apply/downSJByApplyId.do")
+    Observable<DownFileByApplyId> downSJByApplyId(
+            @Query("applyId") String applyId,
+            @Query("token") String token
+    );
 
 
 

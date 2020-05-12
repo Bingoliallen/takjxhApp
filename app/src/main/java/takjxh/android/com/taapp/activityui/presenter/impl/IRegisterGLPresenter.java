@@ -1,10 +1,12 @@
 package takjxh.android.com.taapp.activityui.presenter.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import takjxh.android.com.commlibrary.presenter.IBasePresenter;
 import takjxh.android.com.taapp.activityui.bean.SysParamBean;
 import takjxh.android.com.taapp.activityui.bean.UploadFileBean;
+import takjxh.android.com.taapp.view.mulitmenuselect.Children;
 
 /**
  * 类名称：
@@ -19,7 +21,7 @@ public interface IRegisterGLPresenter {
 
     void getCode(String phone);
     void paramlist();
-
+    void tradetreelistt();
     void upload(String token, String uri);
 
 
@@ -33,6 +35,10 @@ public interface IRegisterGLPresenter {
 
         void paramlistSuccess(SysParamBean bean);
         void paramlistFailed();
+
+        void tradetreelisttSuccess(List<Children> bean);
+        void tradetreelisttFailed();
+
 
         void uploadSuccess(UploadFileBean data);
     }

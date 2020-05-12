@@ -17,4 +17,18 @@ public class WdZjsbModel {
         return BaseAppProfile.app_client.getApi(AppApi.class)
                 .policyapplylist(token, status, page, pageSize);
     }
+
+    public Observable downFileByApplyId(String token, String applyId) {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .downFileByApplyId(applyId, token);
+    }
+
+
+    public Observable downSJByApplyId(String token, String applyId) {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .downSJByApplyId(applyId, token);
+    }
+
+
+
 }

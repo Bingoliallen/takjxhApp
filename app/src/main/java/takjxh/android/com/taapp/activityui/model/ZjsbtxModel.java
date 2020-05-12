@@ -19,6 +19,27 @@ import rx.Observable;
  **/
 public class ZjsbtxModel {
 
+    public Observable policyapplycheckApply(String token, String typeId) {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .policyapplycheckApply(typeId, token);
+    }
+
+    public Observable policyapplydetail1(String token, String id) {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .policyapplydetail1(id, token);
+    }
+
+    public Observable policyapplyupdate(String token, String applyId) {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .policyapplyupdate(applyId, token);
+    }
+
+    public Observable policyapplyadd(String token, String typeId) {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .policyapplyadd(typeId, token);
+    }
+
+
     public Observable policyapplydetail(String token, String id) {
         return BaseAppProfile.app_client.getApi(AppApi.class)
                 .policyapplydetail(id, token);
@@ -30,17 +51,34 @@ public class ZjsbtxModel {
                 .policyapplytypelist(token);
     }
 
-    public Observable applyadddone(String token, Map<String, String> searchRequest) {
+
+    public Observable applyadddtempone(String token, Map<String, Object> searchRequest) {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .applyadddtempone(token, searchRequest);
+    }
+
+
+    public Observable applyadddone(String token, Map<String, Object> searchRequest) {
         return BaseAppProfile.app_client.getApi(AppApi.class)
                 .applyadddone(token, searchRequest);
     }
 
-    public Observable applyupdatedone(String token, Map<String, String> searchRequest) {
+    public Observable getPredictAmount(String token, Map<String, Object> searchRequest) {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .getPredictAmount(token, searchRequest);
+    }
+
+
+
+    public Observable applyupdatedone(String token, Map<String, Object> searchRequest) {
         return BaseAppProfile.app_client.getApi(AppApi.class)
                 .applyupdatedone(token, searchRequest);
     }
 
-
+    public Observable tradetreelistt() {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .tradetreelistt();
+    }
 
     public Observable upload(String token, String uri) {
         File file = null;

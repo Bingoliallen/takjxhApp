@@ -32,6 +32,7 @@ import takjxh.android.com.taapp.activity.ImageBrowseActivity;
 import takjxh.android.com.taapp.activityui.adapter.ZjsbtxDetailAdapter;
 import takjxh.android.com.taapp.activityui.bean.ApplyTypeBean;
 import takjxh.android.com.taapp.activityui.bean.PolicyApplyDetailBean;
+import takjxh.android.com.taapp.activityui.bean.PolicyapplyaddList;
 import takjxh.android.com.taapp.activityui.bean.UploadFileBean;
 import takjxh.android.com.taapp.activityui.presenter.ZjsbtxDetailPresenter;
 import takjxh.android.com.taapp.activityui.presenter.impl.IZjsbtxDetailPresenter;
@@ -161,6 +162,7 @@ public class ZjsbtxDetailActivity extends BaseActivity<ZjsbtxDetailPresenter> im
     @Override
     protected void initEvent() {
         super.initEvent();
+        btn_login.setVisibility(View.GONE);
         btn_login.setOnClickListener(this);
     }
 
@@ -177,7 +179,7 @@ public class ZjsbtxDetailActivity extends BaseActivity<ZjsbtxDetailPresenter> im
         switch (v.getId()) {
 
             case R.id.btn_login:
-                ZjsbtxUpdateActivity.startAction(this,id);
+                ZjsbtxUpdateActivity1.startAction(this,id);
                 break;
 
             case R.id.btn_dialogDelete_cancel:
@@ -339,6 +341,16 @@ public class ZjsbtxDetailActivity extends BaseActivity<ZjsbtxDetailPresenter> im
         mList.clear();
         mList.add(new PolicyApplyDetailBean.ApplyInfoBean());
         mZjsbtxDetailAdapter.set(mList);
+    }
+
+    @Override
+    public void policyapplydetail1Success(PolicyapplyaddList data) {
+
+    }
+
+    @Override
+    public void policyapplydetail1Failed() {
+
     }
 
     @Override
