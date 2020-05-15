@@ -13,14 +13,19 @@ import rx.Observable;
  **/
 public class DtzsModel {
 
+    public Observable tradetreelistt() {
+        return BaseAppProfile.app_client.getApi(AppApi.class)
+                .tradetreelistt();
+    }
+
     public Observable companytypelist(String token) {
         return BaseAppProfile.app_client.getApi(AppApi.class)
                 .companytypelist(token);
     }
 
-    public Observable companyslist(String token, String type, String page, String pageSize) {
+    public Observable companyslist(String token, String unitNameLike,String trade, String page, String pageSize) {
         return BaseAppProfile.app_client.getApi(AppApi.class)
-                .companyslist(token, type, page, pageSize);
+                .companyslist(token, unitNameLike,trade, page, pageSize);
     }
 
 

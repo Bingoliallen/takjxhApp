@@ -14,6 +14,8 @@ import takjxh.android.com.taapp.activityui.model.DtzsModel;
 import takjxh.android.com.taapp.activityui.presenter.impl.IDtzsPresenter;
 import takjxh.android.com.taapp.net.NetDialogSubscriber;
 import rx.functions.Func1;
+import takjxh.android.com.taapp.net.NetSubscriber;
+import takjxh.android.com.taapp.view.mulitmenuselect.Children;
 
 /**
  * 类名称：
@@ -33,6 +35,31 @@ public class DtzsPresenter extends BasePresenter<IDtzsPresenter.IView, DtzsModel
         return new DtzsModel();
     }
 
+
+    @Override
+    public void tradetreelistt() {
+        getCompositeSubscription()
+                .add(mModel.tradetreelistt()
+                        .compose(RxHelper.io_main())
+                        .map(new Response2DataFunc5())
+                        .subscribe(new NetSubscriber<List<Children>>(getView().getContext()) {
+                            @Override
+                            public void onNext(List<Children> data) {
+                                super.onNext(data);
+                                if (isAttach()) {
+                                    getView().tradetreelisttSuccess(data);
+                                }
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                super.onError(e);
+                                if (isAttach()) {
+                                    getView().tradetreelisttFailed();
+                                }
+                            }
+                        }));
+    }
 
     @Override
     public void companytypelist(String token) {
@@ -67,9 +94,9 @@ public class DtzsPresenter extends BasePresenter<IDtzsPresenter.IView, DtzsModel
 
 
     @Override
-    public void companyslist(String token, String type, String page, String pageSize) {
+    public void companyslist(String token,String unitNameLike,String trade, String page, String pageSize) {
         token = ShareUtils.getString(BaseAppProfile.getApplication(), "token", "");
-        getCompositeSubscription().add(mModel.companyslist(token, type, page, pageSize)
+        getCompositeSubscription().add(mModel.companyslist(token,  unitNameLike, trade, page, pageSize)
                 .compose(RxHelper.io_main())
                 .map(new Response2DataFunc1())
                 .subscribe(new NetDialogSubscriber<List<CompanysBean.CompanyBean>>(getView().getContext()) {
@@ -138,5 +165,26 @@ public class DtzsPresenter extends BasePresenter<IDtzsPresenter.IView, DtzsModel
             }
         }
     }
+
+
+    /**
+     * 返回元素
+     */
+    public static class Response2DataFunc5 implements Func1<List<Children>, List<Children>> {
+
+        @Override
+        public List<Children> call(List<Children> response) {
+            if (response != null) {
+                RxHelper.beanToJson(response);
+            }
+            if (response == null) {
+                throw new ApiException(ResponseCode.RESPONSE_NULL, "response is null");
+            } else{
+                return response;
+            }
+
+        }
+    }
+
 
 }

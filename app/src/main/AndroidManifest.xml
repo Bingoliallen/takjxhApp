@@ -441,7 +441,9 @@
             android:screenOrientation="portrait" />
 
 
-
+        <activity
+            android:name="takjxh.android.com.taapp.activityui.activity.PdfActivity"
+            android:screenOrientation="portrait" />
 
 
 

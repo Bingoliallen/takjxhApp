@@ -810,3 +810,8 @@
 -dontwarn cn.jiguang.**
 -keep class cn.jiguang.** { *; }
 
+# 该包下所有的类和类成员不混淆
+-keep class com.ycbjie.webviewlib.** {
+    *;
+}
+-dontwarn com.ycbjie.webviewlib.**

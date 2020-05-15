@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.leon.lfilepickerlibrary.widget.EmptyRecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -46,8 +47,10 @@ public class WdZjsbFragment extends BaseFragment<WdZjsbPresenter> implements IWd
 
     @BindView(R.id.normal_view1)
     SmartRefreshLayout mRefreshLayout;
+    @BindView(R.id.empty_view)
+    View mEmptyView;
     @BindView(R.id.recycler_view)
-    RecyclerView recycler_view;
+    EmptyRecyclerView recycler_view;
 
     private List<PolicyApplyBean.ApplyInfosBean> mList = new ArrayList<>();
     private WdZjsbAdapter mWdZjsbAdapter;
@@ -93,7 +96,9 @@ public class WdZjsbFragment extends BaseFragment<WdZjsbPresenter> implements IWd
         mWdZjsbAdapter = new WdZjsbAdapter(mContext,channelid);
         mWdZjsbAdapter.setmClickListener(this);
         recycler_view.setAdapter(mWdZjsbAdapter);
+        recycler_view.setmEmptyView(mEmptyView);
         mWdZjsbAdapter.set(mList);
+        mEmptyView.setVisibility(View.GONE);
 
         setRefresh();
 

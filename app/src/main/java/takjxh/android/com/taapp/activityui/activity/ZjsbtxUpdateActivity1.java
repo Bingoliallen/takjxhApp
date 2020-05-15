@@ -50,6 +50,7 @@ import takjxh.android.com.commlibrary.utils.ToastUtil;
 import takjxh.android.com.commlibrary.utils.ViewUtil;
 import takjxh.android.com.commlibrary.view.activity.BaseActivity;
 import takjxh.android.com.taapp.R;
+import takjxh.android.com.taapp.activityui.adapter.AddAttachmentAdapter1;
 import takjxh.android.com.taapp.activityui.adapter.ZjsblxMultiItemQuickAdapter;
 import takjxh.android.com.taapp.activityui.adapter.ZjsblxNewAdapter;
 import takjxh.android.com.taapp.activityui.base.BaseDialog;
@@ -65,7 +66,6 @@ import takjxh.android.com.taapp.activityui.dialog.MessageDialog;
 import takjxh.android.com.taapp.activityui.lfilepickerlibrary.LFilePickerT;
 import takjxh.android.com.taapp.activityui.presenter.ZjsbtxPresenter;
 import takjxh.android.com.taapp.activityui.presenter.impl.IZjsbtxPresenter;
-import takjxh.android.com.taapp.adapter.AddAttachmentAdapter;
 import takjxh.android.com.taapp.dialog.CustomDialog;
 import takjxh.android.com.taapp.utils.DisplayUtil;
 import takjxh.android.com.taapp.view.BootStepView;
@@ -152,7 +152,7 @@ public class ZjsbtxUpdateActivity1  extends BaseActivity<ZjsbtxPresenter> implem
      */
     private int positionSelected = 0;
 
-    private AddAttachmentAdapter mAdapter;
+    private AddAttachmentAdapter1 mAdapter;
     private ArrayList<UploadFileBean> urls;
 
 
@@ -697,7 +697,7 @@ public class ZjsbtxUpdateActivity1  extends BaseActivity<ZjsbtxPresenter> implem
     private int position = -1;
 
     @Override
-    public void onClick(AddAttachmentAdapter mAdapter, int positionNum, int position, ArrayList<UploadFileBean> urls) {
+    public void onClick(AddAttachmentAdapter1 mAdapter, int positionNum, int position, ArrayList<UploadFileBean> urls) {
         positionSelected = 0;
         this.mAdapter = null;
         this.urls = null;

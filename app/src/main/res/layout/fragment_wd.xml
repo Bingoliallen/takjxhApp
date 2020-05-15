@@ -253,7 +253,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingLeft="15dp"
-                        android:text="会员投稿"
+                        android:text="我的投稿"
                         android:textColor="@color/text_color"
                         android:textSize="17sp" />
 

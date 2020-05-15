@@ -17,6 +17,7 @@ import com.mob.pushsdk.MobPushCustomMessage;
 import com.mob.pushsdk.MobPushNotifyMessage;
 import com.mob.pushsdk.MobPushReceiver;*/
 import com.wanjian.cockroach.Cockroach;
+import com.ycbjie.webviewlib.X5WebUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -105,7 +106,7 @@ public class QbApplication extends CommonApplication {
     public void onCreate() {
         super.onCreate();
         mBaseApplication = this;
-
+        X5WebUtils.init(this);
         StorageUtil.init(this, null);
         locationService = new LocationService(getApplicationContext());
 

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
@@ -24,13 +25,14 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+import takjxh.android.com.commlibrary.image.ImageWrapper;
+import takjxh.android.com.commlibrary.net.HttpConfig;
 import takjxh.android.com.taapp.R;
 import takjxh.android.com.taapp.activityui.base.BaseDialog;
 import takjxh.android.com.taapp.activityui.bean.PolicyapplyaddBean;
 import takjxh.android.com.taapp.activityui.bean.UploadFileBean;
 import takjxh.android.com.taapp.activityui.dialog.DateDialog;
 import takjxh.android.com.taapp.activityui.dialog.DateDialogSet;
-import takjxh.android.com.taapp.adapter.AddAttachmentAdapter;
 import takjxh.android.com.taapp.view.CustomGridView;
 import takjxh.android.com.taapp.view.CustomSpinner;
 
@@ -74,7 +76,7 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 } else {
                     helper.getView(R.id.imgbt).setVisibility(View.GONE);
                 }
-                helper.setText(R.id.tvName, item.getName());
+                helper.setText(R.id.tvName, item.getName()+":");
 
 
                 EditText tv_GSMC = (EditText) helper.getView(R.id.tv_GSMC);
@@ -119,7 +121,7 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 } else {
                     helper.getView(R.id.imgbt).setVisibility(View.GONE);
                 }
-                helper.setText(R.id.tvName, item.getName());
+                helper.setText(R.id.tvName, item.getName()+":");
                 EditText tv_GSMC2 = (EditText) helper.getView(R.id.tv_GSMC);
                 tv_GSMC2.setInputType(InputType.TYPE_CLASS_NUMBER);
                 int min = 0;
@@ -187,7 +189,7 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 } else {
                     helper.getView(R.id.imgbt).setVisibility(View.GONE);
                 }
-                helper.setText(R.id.tvName, item.getName());
+                helper.setText(R.id.tvName, item.getName()+":");
                 EditText tv_GSMC3 = (EditText) helper.getView(R.id.tv_GSMC);
                 tv_GSMC3.setInputType(InputType.TYPE_CLASS_DATETIME);
                 if (item.getRuleNumb() != null && !TextUtils.isEmpty(item.getRuleNumb().toString())) {
@@ -266,7 +268,7 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 } else {
                     helper.getView(R.id.imgbt).setVisibility(View.GONE);
                 }
-                helper.setText(R.id.tvName, item.getName());
+                helper.setText(R.id.tvName, item.getName()+":");
 
                 TextView tv_czjg = (TextView) helper.getView(R.id.tv_czjg);
                 CustomSpinner sp_register2 = (CustomSpinner) helper.getView(R.id.sp_register1);
@@ -309,11 +311,20 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 } else {
                     helper.getView(R.id.imgbt).setVisibility(View.GONE);
                 }
-                helper.setText(R.id.tvName, item.getName());
+                helper.setText(R.id.tvName, item.getName()+":");
+
+
+
+                ImageView iv_sc = (ImageView) helper.getView(R.id.iv_sc);
+                iv_sc.setVisibility(View.VISIBLE);
+
 
                 TextView edSCFJ = (TextView) helper.getView(R.id.edSCFJ);
+                edSCFJ.setVisibility(View.GONE);
                 TextView edSCFJ1 = (TextView) helper.getView(R.id.edSCFJ1);
+                edSCFJ1.setVisibility(View.GONE);
                 TextView tv_Mark = (TextView) helper.getView(R.id.tv_Mark);
+                tv_Mark.setVisibility(View.GONE);
                 if (item.getTemplate() != null && !TextUtils.isEmpty(item.getTemplate().toString())) {
                     edSCFJ1.setVisibility(View.GONE);//?
                 } else {
@@ -327,7 +338,7 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 }
                 CustomGridView mGridView = (CustomGridView) helper.getView(R.id.noScrollgridview);
                 ArrayList<UploadFileBean> urls = new ArrayList<>();
-                AddAttachmentAdapter mAdapter = new AddAttachmentAdapter(activity, urls);
+                AddAttachmentAdapter1 mAdapter = new AddAttachmentAdapter1(activity, urls,mGridView);
                 mGridView.setAdapter(mAdapter);
                 mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -340,7 +351,7 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
 
                     }
                 });
-                edSCFJ.setOnClickListener(new View.OnClickListener() {
+                iv_sc.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if(mOnWJSCClickListener!=null){
@@ -349,6 +360,7 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                     }
                 });
 
+
                 break;
             case 6:
                 if (item.isRuleReqest()) {
@@ -356,7 +368,7 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 } else {
                     helper.getView(R.id.imgbt).setVisibility(View.GONE);
                 }
-                helper.setText(R.id.tvName, item.getName());
+                helper.setText(R.id.tvName, item.getName()+":");
                 TextView edZCSJ = (TextView) helper.getView(R.id.edZCSJ);
                 edZCSJ.setText(item.getValue());
                 edZCSJ.setOnClickListener(new View.OnClickListener() {
@@ -364,11 +376,13 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                     public void onClick(View v) {
                         long mStart = 0;
                         long mEnd = 0;
-                        if (item.getStartTime() != null && !TextUtils.isEmpty(item.getStartTime().toString())) {
-                            mStart = Long.valueOf(item.getStartTime().toString());
+                        if (item.getStartTime() != null && !TextUtils.isEmpty(item.getStartTime().toString()) && !item.getStartTime().toString().contains(".")) {
+                           // mStart = Long.valueOf(item.getStartTime().toString());
+                            mStart = (int) Math.floor(Double.valueOf(item.getStartTime().toString()));
                         }
-                        if (item.getEndTime() != null && !TextUtils.isEmpty(item.getEndTime().toString())) {
-                            mEnd = Long.valueOf(item.getEndTime().toString());
+                        if (item.getEndTime() != null && !TextUtils.isEmpty(item.getEndTime().toString()) && !item.getEndTime().toString().contains(".")) {
+                           // mEnd = Long.valueOf(item.getEndTime().toString());
+                            mEnd = (int) Math.floor(Double.valueOf(item.getEndTime().toString()));
                         }
                         // 日期选择对话框
                         new DateDialogSet.Builder(activity, mStart, mEnd)
@@ -460,7 +474,7 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 } else {
                     helper.getView(R.id.imgbt).setVisibility(View.GONE);
                 }
-                helper.setText(R.id.tvName, item.getName());
+                helper.setText(R.id.tvName, item.getName()+":");
                 TextView tv_GSMC1 = (TextView) helper.getView(R.id.tv_GSMC);
                 tv_GSMC1.setText(item.getValue());
                 break;
@@ -522,7 +536,7 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
 
 
     public interface OnWJSCClickListener {
-        void onClick(AddAttachmentAdapter mAdapter,int positionNum, int position, ArrayList<UploadFileBean> urls);
+        void onClick(AddAttachmentAdapter1 mAdapter,int positionNum, int position, ArrayList<UploadFileBean> urls);
     }
     private OnWJSCClickListener mOnWJSCClickListener;
     public void setOnWJSCClickListener(OnWJSCClickListener mClickListener) {

@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="96dp"
             android:layout_height="64dp"
-            android:src="@mipmap/zwsj1" />
+            android:src="@mipmap/zwsj" />
 
         <TextView
             android:layout_width="wrap_content"

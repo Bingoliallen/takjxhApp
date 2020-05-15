@@ -60,14 +60,27 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_RecyclerView"
-                android:layout_width="match_parent"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:background="@color/white"
                 android:nestedScrollingEnabled="false"
-                android:overScrollMode="never"
-                android:visibility="gone" />
+                android:overScrollMode="never" />
 
+            <TextView
+                android:id="@+id/tvYL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:imeOptions="actionNext"
+                android:minHeight="40dp"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:text="在线预览"
+                android:textColor="@color/main_color"
+                android:textColorHint="@color/main_color"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <View

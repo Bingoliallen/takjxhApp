@@ -109,6 +109,9 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     @BindView(R.id.tv_zclx)
     TextView tv_zclx;
     private String zclxID = "";
+    @BindView(R.id.mView1x)
+    View mView1x;
+
 
 
     @BindView(R.id.mlZF)
@@ -340,6 +343,68 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     @Override
     protected void initEvent() {
         super.initEvent();
+
+        mView1x.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                List<String> data2 = new ArrayList<>();
+                for (int i = 0; i < usertype.size(); i++) {
+                    data2.add(usertype.get(i).getValue());
+                }
+                new MenuIosDialog.Builder(RegisterActivity.this)
+                        .setTitle("选择注册类型")
+                        // 确定按钮文本
+                        .setConfirm("确定")
+                        // 设置 null 表示不显示取消按钮
+                        .setCancel(null)
+                        .setData(data2)
+                        .setYear(0)
+                        .setListener(new MenuIosDialog.OnListener() {
+                            @Override
+                            public void onSelected(BaseDialog dialog, int pos, String msg) {
+                                tv_zclx.setText(msg);
+                                zclxID=usertype.get(pos).getCode();
+                                if ("01".equals(zclxID)) {
+                                    mlZF.setVisibility(View.VISIBLE);
+                                    mlQYandDSF1.setVisibility(View.GONE);
+                                    mlQY.setVisibility(View.GONE);
+                                    mlQYandDSF2.setVisibility(View.GONE);
+                                    mlDSF_JGYZM.setVisibility(View.GONE);
+                                } else if ("02".equals(zclxID)) {
+                                    mlZF.setVisibility(View.GONE);
+                                    mlQYandDSF1.setVisibility(View.VISIBLE);
+                                    mlQY.setVisibility(View.VISIBLE);
+                                    mlQYandDSF2.setVisibility(View.VISIBLE);
+                                    mlDSF_JGYZM.setVisibility(View.GONE);
+                                } else if ("03".equals(zclxID)) {
+                                    mlZF.setVisibility(View.GONE);
+                                    mlQYandDSF1.setVisibility(View.VISIBLE);
+                                    mlQY.setVisibility(View.GONE);
+                                    mlQYandDSF2.setVisibility(View.VISIBLE);
+                                    mlDSF_JGYZM.setVisibility(View.VISIBLE);
+                                } else {
+                                    mlZF.setVisibility(View.GONE);
+                                    mlQYandDSF1.setVisibility(View.GONE);
+                                    mlQY.setVisibility(View.GONE);
+                                    mlQYandDSF2.setVisibility(View.GONE);
+                                    mlDSF_JGYZM.setVisibility(View.GONE);
+
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onCancel(BaseDialog dialog) {
+                                // toast("取消了");
+                            }
+                        })
+                        .show();
+            }
+        });
+
+
 
         tv_sshy.setThreshold(1);
         tv_sshy.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -1124,7 +1189,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             }
 
 
-            String medZCDZ = edZCDZ.getText().toString().trim();
+            String medZCDZ = edZCXXDZ.getText().toString().trim();
             if (TextUtils.isEmpty(medZCDZ)) {
                 ToastUtil.showToast(this, "请输入注册地址");
                 return;
@@ -1207,11 +1272,11 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
         }
 
 
-        String medTP = edTP.getText().toString().trim();
+        /*String medTP = edTP.getText().toString().trim();
         if (TextUtils.isEmpty(medTP)) {
             ToastUtil.showToast(this, "请输入图片验证码");
             return;
-        }
+        }*/
         String medSJ = edSJ.getText().toString().trim();
         if (TextUtils.isEmpty(medSJ)) {
             //2020-03-06 暂时去隐藏
@@ -1223,11 +1288,11 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             ToastUtil.showToast(this, "请输入6-16位的密码");
             return;
         }
-        String code = CodeUtils.getInstance().getCode();//获取图片验证码上的内容
+        /*String code = CodeUtils.getInstance().getCode();//获取图片验证码上的内容
         if (!code.equals(medTP)) {
             ToastUtil.showToast(this, "图片验证码不正确");
             return;
-        }
+        }*/
 
 
         Map<String, String> queryMap = new HashMap<>();
@@ -1260,7 +1325,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
                 return;
             }*/
 
-            String medZCDZ = edZCDZ.getText().toString().trim();
+           // String medZCDZ = edZCDZ.getText().toString().trim();
             String medZCXXDZ = edZCXXDZ.getText().toString().trim();
 
             String medFR = edFR.getText().toString().trim();
@@ -1271,7 +1336,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             queryMap.put("orgCode", medDM);
             queryMap.put("trade", sshyID);
             queryMap.put("regTime", mZCSJ);
-            queryMap.put("regAddr", medZCDZ+" "+medZCXXDZ);
+            queryMap.put("regAddr", medZCXXDZ);
             queryMap.put("lagalPerson", medFR);
             queryMap.put("unitLinkman", medLXR);
             queryMap.put("linkmanPhone", medLXDH);

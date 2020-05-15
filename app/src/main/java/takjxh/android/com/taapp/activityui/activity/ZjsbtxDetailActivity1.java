@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Set;
 
 import butterknife.BindView;
+import takjxh.android.com.commlibrary.net.HttpConfig;
 import takjxh.android.com.commlibrary.utils.BarUtil;
 import takjxh.android.com.commlibrary.utils.ToastUtil;
 import takjxh.android.com.commlibrary.utils.ViewUtil;
@@ -387,7 +388,70 @@ public class ZjsbtxDetailActivity1  extends BaseActivity<ZjsbtxDetailPresenter> 
                 } else {
                     btn_download.setText("下载");
                 }
-                dialogDelete.show();
+              //  dialogDelete.show();
+
+
+                if (updata == null) {
+                    return;
+                }
+                if (ContextCompat.checkSelfPermission(ZjsbtxDetailActivity1.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+                    //申请WRITE_EXTERNAL_STORAGE权限
+                    ActivityCompat.requestPermissions(ZjsbtxDetailActivity1.this, new String[]{
+                                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            requestPermissionsCode);
+                } else {
+                    if (updata.getFileName().contains(".png")
+                            || updata.getFileName().contains(".jpg")
+                            || updata.getFileName().contains(".jpeg")) {
+                        String url = updata.getFilePath();
+                        ArrayList<String> imageList = new ArrayList<>();
+                        int index = 0;
+                        for (UploadFileBean mPath : upurls) {
+                            if (mPath.getFileName().contains(".png") || mPath.getFileName().contains(".jpg") || mPath.getFileName().contains(".jpeg")) {
+                                int pos = upurls.indexOf(mPath);
+                                imageList.add(upurls.get(pos).getFilePath());
+                            }
+
+                        }
+                        for (String mUrl : imageList) {
+                            int pos = imageList.indexOf(mUrl);
+                            if (url.equals(mUrl)) {
+                                index = pos;
+                            }
+                        }
+                        Intent intents = new Intent(ZjsbtxDetailActivity1.this, ImageBrowseActivity.class);
+                        intents.putStringArrayListExtra("imageList", imageList);
+                        intents.putExtra("index", index);
+                        startActivity(intents);
+                    } else {
+                        PdfActivity.startAction(ZjsbtxDetailActivity1.this, updata.getFilePath());
+
+                        /*DownloadManager downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(updata.getFilePath()));
+                        //下载时，下载完成后显示通知
+                        //创建目录
+                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).mkdir();
+                        request
+                                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                        //下载的路径，第一个参数是文件夹名称，第二个参数是下载的文件名
+                        request.setDestinationInExternalPublicDir(getString(R.string.qbapp_name),
+                                String.format("%s-%s-%s", "政策申报附件", "-", updata.getFileName()));
+                        request.setVisibleInDownloadsUi(true);
+                        downloadManager.enqueue(request);
+*/
+
+                    }
+
+                    dialogDelete.dismiss();
+
+                }
+
+
+
 
             }
 
@@ -430,8 +494,9 @@ public class ZjsbtxDetailActivity1  extends BaseActivity<ZjsbtxDetailPresenter> 
                     intents.putExtra("index", index);
                     startActivity(intents);
                 } else {
+                    PdfActivity.startAction(ZjsbtxDetailActivity1.this,updata.getFilePath());
 
-                    DownloadManager downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                   /* DownloadManager downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
                     DownloadManager.Request request = new DownloadManager.Request(Uri.parse(updata.getFilePath()));
                     //下载时，下载完成后显示通知
                     //创建目录
@@ -442,7 +507,7 @@ public class ZjsbtxDetailActivity1  extends BaseActivity<ZjsbtxDetailPresenter> 
                     request.setDestinationInExternalPublicDir(getString(R.string.qbapp_name),
                             String.format("%s-%s-%s", "政策申报附件", "-", updata.getFileName()));
                     request.setVisibleInDownloadsUi(true);
-                    downloadManager.enqueue(request);
+                    downloadManager.enqueue(request);*/
                 }
 
 

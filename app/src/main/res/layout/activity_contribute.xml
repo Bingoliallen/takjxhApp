@@ -15,24 +15,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginBottom="0dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.5"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|right"
                     android:orientation="horizontal">
@@ -40,14 +44,14 @@
                     <ImageView
                         android:layout_width="6dp"
                         android:layout_height="6dp"
-                        android:layout_marginLeft="0dp"
+                        android:layout_marginLeft="5dp"
                         android:src="@drawable/icon_bitian" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="标      题："
+                        android:text="文章标题："
                         android:textColor="@color/common_app_text_theme1"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -56,13 +60,13 @@
                 <EditText
                     android:id="@+id/clue_content"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="40dp"
                     android:layout_marginLeft="0dp"
                     android:layout_marginRight="15dp"
-                    android:background="@drawable/selector_common_ed"
+                    android:layout_weight="1"
+                    android:background="@color/white"
                     android:gravity="center_vertical"
-                    android:hint="请输入"
+                    android:hint="请输入文章标题"
                     android:maxLength="20"
                     android:paddingLeft="15dp"
                     android:singleLine="true"
@@ -72,170 +76,182 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:background="@color/line" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ml4"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/ml4"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="25dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.5"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical|right"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="6dp"
-                        android:layout_height="6dp"
-                        android:layout_marginLeft="0dp"
-                        android:src="@drawable/icon_bitian" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="投稿类型："
-                        android:textColor="@color/common_app_text_theme1"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="15dp">
-
-                    <takjxh.android.com.taapp.view.CustomSpinner
-                        android:id="@+id/sp_register1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:spinnerMode="dialog" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/bt_danxuankaung" />
-
-                    <TextView
-                        android:id="@+id/tv_czjg"
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginRight="30dp"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:hint="请选择"
-                        android:paddingLeft="15dp"
-                        android:singleLine="true"
-                        android:spinnerMode="dialog"
-                        android:textColor="@color/text_color"
-                        android:textColorHint="@color/common_app_text_theme2"
-                        android:textSize="14sp" />
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:id="@+id/ml2"
-                android:visibility="visible"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:gravity="center_vertical|right"
+                android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/icon_bitian" />
 
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginTop="25dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="0.5"
-                        android:layout_height="40dp"
-                        android:gravity="center_vertical|right"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="6dp"
-                            android:layout_height="6dp"
-                            android:layout_marginLeft="0dp"
-                            android:src="@drawable/icon_bitian" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="内      容："
-                            android:textColor="@color/common_app_text_theme1"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-
-                    <EditText
-                        android:id="@+id/clue_gsmc"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="140dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginRight="15dp"
-                        android:background="@drawable/selector_common_ed"
-                        android:gravity="top|center_vertical"
-                        android:hint="请输入"
-                        android:text=""
-                        android:maxLength="500"
-                        android:padding="10dp"
-                        android:textColor="@color/common_app_text_theme1"
-                        android:textColorHint="@color/common_app_text_theme2"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="35dp"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_marginTop="55dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btn_clue_commit2"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/selector_login_btn"
-                        android:text="马上提交"
-                        android:textColor="@color/white"
-                        android:textSize="17sp" />
-
-
-                </LinearLayout>
-
+                    android:layout_marginLeft="5dp"
+                    android:text="投稿类型："
+                    android:textColor="@color/common_app_text_theme1"
+                    android:textSize="16sp" />
             </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1">
+
+                <takjxh.android.com.taapp.view.CustomSpinner
+                    android:id="@+id/sp_register1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:spinnerMode="dialog"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bt_danxuankaung"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_czjg"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="0dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:hint="请选择投稿类型"
+                    android:paddingLeft="15dp"
+                    android:singleLine="true"
+                    android:spinnerMode="dialog"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/common_app_text_theme2"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
 
 
         </LinearLayout>
 
-    </ScrollView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:background="@color/line" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ml2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/icon_bitian" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="文章内容："
+                    android:textColor="@color/common_app_text_theme1"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/clue_gsmc"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_common_ed"
+                android:gravity="top|center_vertical"
+                android:hint="请输入文章内容"
+                android:maxLength="800"
+                android:padding="10dp"
+                android:text=""
+                android:textColor="@color/common_app_text_theme1"
+                android:textColorHint="@color/common_app_text_theme2"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="35dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_clue_commit2"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_login_btn"
+                android:text="马上提交"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>
+
+    </ScrollView>
+
+    </LinearLayout>

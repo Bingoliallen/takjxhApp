@@ -17,15 +17,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <android.support.v7.widget.RecyclerView
+       <!-- <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
             android:paddingLeft="0dp"
             android:paddingRight="0dp"
-            android:visibility="visible" />
+            android:visibility="visible" />-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <com.leon.lfilepickerlibrary.widget.EmptyRecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp" />
+
+            <!--todo 自定义的空布局-->
+            <include
+                android:id="@+id/empty_view"
+                layout="@layout/layout_empty_view" />
+        </RelativeLayout>
 
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter
             android:layout_width="match_parent"

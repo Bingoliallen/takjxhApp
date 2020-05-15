@@ -186,7 +186,7 @@ dependencies {
     })
 
     implementation 'cn.yc:YCStatusBarLib:1.4.0'                              //状态栏
-
+    implementation 'cn.yc:WebViewLib:1.2.4'
   /*  "YCCountDownViewLib"          : "cn.yc:YCCountDownViewLib:1.0",
     "YCMultiInputViewLib"         : "cn.yc:YCMultiInputViewLib:1.0",
     "YCCardViewLib"               : "cn.yc:YCCardViewLib:1.2",

@@ -11,9 +11,171 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <LinearLayout
+        android:id="@+id/mlStep1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#d9d9d9"
+            android:paddingBottom="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="15dp"
+            android:text="申请填写过程中，如有不清楚可以点击右上角进行求助！"
+            android:textColor="@color/text_color"
+            android:textSize="14sp" />
+
+
+        <takjxh.android.com.taapp.view.BootStepView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="20dp"
+            app:circular_color="@color/colorAccent"
+            app:circular_size="15dp"
+            app:default_color="@color/actionsheet_gray"
+            app:text_color="@color/colorAccent"
+            app:three_color="false"
+            app:two_color="false"
+            app:circular_text_size="12sp"
+            app:text_size="12sp"
+            app:circular_num="3"
+            app:one_text="申请类型选择"
+            app:two_text="申请填写"
+            app:three_text="申请完成"/>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp">
+
+            <LinearLayout
+                android:id="@+id/ml4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|right"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginLeft="0dp"
+                        android:src="@drawable/icon_bitian" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="申报类型："
+                        android:textColor="@color/common_app_text_theme1"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1">
+
+                    <takjxh.android.com.taapp.view.CustomSpinner
+                        android:id="@+id/sp_register1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:spinnerMode="dialog" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bt_danxuankaung" />
+
+                    <TextView
+                        android:id="@+id/tv_czjg"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="30dp"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint="请选择申报类型"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:spinnerMode="dialog"
+                        android:textColor="@color/text_color"
+                        android:textColorHint="@color/common_app_text_theme2"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <WebView
+                android:id="@+id/view_main"
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:isScrollContainer="false"
+                android:overScrollMode="never"
+                android:scrollbars="vertical"/>
+            <TextView
+                android:id="@+id/tv_ms"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="0dp"
+                android:spinnerMode="dialog"
+                android:text=""
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/common_app_text_theme2"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_login1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/selector_login_btn"
+                android:text="马上填写"
+                android:textColor="@color/common_app_theme_bg2"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/scrollView"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never">
@@ -51,7 +213,7 @@
                 app:default_color="@color/actionsheet_gray"
                 app:text_color="@color/colorAccent"
                 app:three_color="false"
-                app:two_color="false"
+                app:two_color="true"
                 app:circular_text_size="12sp"
                 app:text_size="12sp"
                 app:circular_num="3"
@@ -60,113 +222,6 @@
                 app:three_text="申请完成"/>
 
 
-            <LinearLayout
-                android:id="@+id/mlStep1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="15dp">
-
-                <LinearLayout
-                    android:id="@+id/ml4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|right"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="6dp"
-                            android:layout_height="6dp"
-                            android:layout_marginLeft="0dp"
-                            android:src="@drawable/icon_bitian" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="申报类型："
-                            android:textColor="@color/common_app_text_theme1"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="1">
-
-                        <takjxh.android.com.taapp.view.CustomSpinner
-                            android:id="@+id/sp_register1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:spinnerMode="dialog" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/bt_danxuankaung" />
-
-                        <TextView
-                            android:id="@+id/tv_czjg"
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="3dp"
-                            android:layout_marginRight="30dp"
-                            android:background="@color/white"
-                            android:gravity="center_vertical"
-                            android:hint="请选择申报类型"
-                            android:paddingLeft="15dp"
-                            android:singleLine="true"
-                            android:spinnerMode="dialog"
-                            android:textColor="@color/text_color"
-                            android:textColorHint="@color/common_app_text_theme2"
-                            android:textSize="14sp" />
-
-                    </RelativeLayout>
-
-
-                </LinearLayout>
-
-
-                <TextView
-                    android:id="@+id/tv_ms"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="23dp"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="0dp"
-                    android:spinnerMode="dialog"
-                    android:text=""
-                    android:textColor="@color/text_color"
-                    android:textColorHint="@color/common_app_text_theme2"
-                    android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/btn_login1"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="25dp"
-                    android:layout_marginLeft="45dp"
-                    android:layout_marginRight="45dp"
-                    android:layout_marginTop="25dp"
-                    android:background="@drawable/selector_login_btn"
-                    android:text="马上填写"
-                    android:textColor="@color/common_app_theme_bg2"
-                    android:textSize="17sp" />
-            </LinearLayout>
 
 
             <LinearLayout
@@ -333,6 +388,7 @@
 
             <LinearLayout
                 android:id="@+id/mlStep3"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

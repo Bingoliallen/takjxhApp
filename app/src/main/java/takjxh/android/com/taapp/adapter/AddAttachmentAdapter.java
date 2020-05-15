@@ -14,7 +14,7 @@ import takjxh.android.com.taapp.R;
 import takjxh.android.com.taapp.activityui.bean.UploadFileBean;
 
 /**
- * 线索采集-附件-适配器
+ * 附件-适配器
  *
  * @Author: libaibing
  * @Date: 2019-01-18 12:54

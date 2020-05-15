@@ -441,7 +441,8 @@ public interface AppApi {
     @GET("app/company/list.do.do")
     Observable<CompanysBean<List<CompanysBean.CompanyBean>>> companyslist(
             @Query("token") String token,
-            @Query("type") String type,
+            @Query("unitNameLike") String unitNameLike,
+            @Query("trade") String trade,
             @Query("page") String page,
             @Query("pageSize") String pageSize
     );

@@ -12,6 +12,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -22,6 +23,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -37,6 +42,11 @@ import com.zhihu.matisse.internal.entity.CaptureStrategy;
 import com.zhihu.matisse.listener.OnCheckedListener;
 import com.zhihu.matisse.listener.OnSelectedListener;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,11 +56,13 @@ import java.util.Map;
 import java.util.Set;
 
 import butterknife.BindView;
+import takjxh.android.com.commlibrary.net.HttpConfig;
 import takjxh.android.com.commlibrary.utils.BarUtil;
 import takjxh.android.com.commlibrary.utils.ToastUtil;
 import takjxh.android.com.commlibrary.utils.ViewUtil;
 import takjxh.android.com.commlibrary.view.activity.BaseActivity;
 import takjxh.android.com.taapp.R;
+import takjxh.android.com.taapp.activityui.adapter.AddAttachmentAdapter1;
 import takjxh.android.com.taapp.activityui.adapter.ZjsblxMultiItemQuickAdapter;
 import takjxh.android.com.taapp.activityui.adapter.ZjsblxNewAdapter;
 import takjxh.android.com.taapp.activityui.base.BaseDialog;
@@ -66,7 +78,6 @@ import takjxh.android.com.taapp.activityui.dialog.MessageDialog;
 import takjxh.android.com.taapp.activityui.lfilepickerlibrary.LFilePickerT;
 import takjxh.android.com.taapp.activityui.presenter.ZjsbtxPresenter;
 import takjxh.android.com.taapp.activityui.presenter.impl.IZjsbtxPresenter;
-import takjxh.android.com.taapp.adapter.AddAttachmentAdapter;
 import takjxh.android.com.taapp.dialog.CustomDialog;
 import takjxh.android.com.taapp.utils.DisplayUtil;
 import takjxh.android.com.taapp.view.BootStepView;
@@ -96,6 +107,9 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
     @BindView(R.id.ntb)
     NormalTitleBar ntb;
 
+    @BindView(R.id.scrollView)
+    NestedScrollView scrollView;
+
 
     @BindView(R.id.mlStep1)
     LinearLayout mlStep1;
@@ -110,6 +124,8 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
     private List<ApplyTypeBean.ApplyTypesBean> mList = new ArrayList<>();
     @BindView(R.id.tv_ms)
     TextView tv_ms;
+    @BindView(R.id.view_main)
+    WebView webView;
     @BindView(R.id.btn_login1)
     Button btn_login1;
 
@@ -158,7 +174,7 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
      */
     private int positionSelected = 0;
 
-    private AddAttachmentAdapter mAdapter;
+    private AddAttachmentAdapter1 mAdapter;
     private ArrayList<UploadFileBean> urls;
 
 
@@ -213,7 +229,7 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
                 finish();
             }
         });
-
+        scrollView.setVisibility(View.GONE);
         mlStep2.setVisibility(View.GONE);
         mlStep1.setVisibility(View.VISIBLE);
         mlStep3.setVisibility(View.GONE);
@@ -236,7 +252,7 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
                 } else {
                     tv_ms.setText(Html.fromHtml(des));
                 }
-
+                setWebView(webView,des);
             }
 
             @Override
@@ -246,7 +262,22 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
 
 
         });
-        sp_register1.setSelection(-1, true);
+        sp_register1.setSelection(0, true);
+        if(mList.size()>0){
+            int arg2=0;
+            String mBean = mList.get(arg2).getName();
+            tv_czjg.setText(mBean);
+            applyType = mList.get(arg2).getId();
+
+            String des = mList.get(arg2).getDes();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tv_ms.setText(Html.fromHtml(des, Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                tv_ms.setText(Html.fromHtml(des));
+            }
+            setWebView(webView,des);
+        }
+
 
 
         recycler_view1.setLayoutManager(new LinearLayoutManager(ZjsbtxActivity1.this, LinearLayoutManager.VERTICAL, false));
@@ -428,6 +459,7 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
 
     @Override
     public void policyapplycheckApplySuccess(String data) {
+        scrollView.setVisibility(View.VISIBLE);
         mlStep1.setVisibility(View.GONE);
         mlStep2.setVisibility(View.VISIBLE);
         mlStep3.setVisibility(View.GONE);
@@ -534,6 +566,20 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
         mList.clear();
         mList.addAll(data);
         adapterResult1.notifyDataSetChanged();
+        if(mList.size()>0){
+            int arg2=0;
+            String mBean = mList.get(arg2).getName();
+            tv_czjg.setText(mBean);
+            applyType = mList.get(arg2).getId();
+
+            String des = mList.get(arg2).getDes();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tv_ms.setText(Html.fromHtml(des, Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                tv_ms.setText(Html.fromHtml(des));
+            }
+            setWebView(webView,des);
+        }
     }
 
     @Override
@@ -546,6 +592,7 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
         // ToastUtil.showToast(this, data);
         tvcontent.setText(data);
         stepView.setThreeColor(true);
+        scrollView.setVisibility(View.VISIBLE);
         mlStep1.setVisibility(View.GONE);
         mlStep3.setVisibility(View.VISIBLE);
         mlStep2.setVisibility(View.GONE);
@@ -599,6 +646,7 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
         //ToastUtil.showToast(this, data);
         tvcontent.setText(data);
         stepView.setThreeColor(true);
+        scrollView.setVisibility(View.VISIBLE);
         mlStep1.setVisibility(View.GONE);
         mlStep3.setVisibility(View.VISIBLE);
         mlStep2.setVisibility(View.GONE);
@@ -657,9 +705,9 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
             String files = "";
             for (int i = 0; i < urls.size(); i++) {
                 if (i == urls.size() - 1) {
-                    files = files + urls.get(i).getFilePath() + "";
+                    files = files + HttpConfig.HOST1+ urls.get(i).getFilePath() + "";
                 } else {
-                    files = files + urls.get(i).getFilePath() + ",";
+                    files = files +HttpConfig.HOST1+ urls.get(i).getFilePath() + ",";
                 }
 
             }
@@ -671,6 +719,7 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
 
         if (mAdapter != null) {
             mAdapter.notifyDataSetChanged();
+
         }
 
     }
@@ -681,7 +730,7 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
     private int position = -1;
 
     @Override
-    public void onClick(AddAttachmentAdapter mAdapter, int positionNum, int position, ArrayList<UploadFileBean> urls) {
+    public void onClick(AddAttachmentAdapter1 mAdapter, int positionNum, int position, ArrayList<UploadFileBean> urls) {
         positionSelected = 0;
         this.mAdapter = null;
         this.urls = null;
@@ -1120,5 +1169,106 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
 
     }
 
+
+    /**
+     * 设置img标签下的width为手机屏幕宽度，height自适应
+     *
+     * @param data html字符串
+     * @return 更新宽高属性后的html字符串
+     */
+    private String getNewData(String data) {
+        Document document = Jsoup.parse(data);
+
+        Elements pElements = document.select("p:has(img)");
+        for (Element pElement : pElements) {
+            pElement.attr("style", "text-align:center");
+            pElement.attr("max-width", String.valueOf(DisplayUtil.getScreenWidth(ZjsbtxActivity1.this) + "px"))
+                    .attr("height", "auto");
+        }
+        Elements imgElements = document.select("img");
+        for (Element imgElement : imgElements) {
+            //重新设置宽高
+            imgElement.attr("max-width", "100%")
+                    .attr("height", "auto");
+            imgElement.attr("style", "max-width:100%;height:auto");
+        }
+        Log.i("newData:", document.toString());
+        return document.toString();
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        if (webView != null) {
+            webView.clearHistory();
+            ViewGroup parent = (ViewGroup) webView.getParent();
+            if (parent != null) {
+                parent.removeView(webView);
+            }
+            webView.destroy();
+            webView = null;
+        }
+        super.onDestroy();
+    }
+
+    private void setWebView(WebView webview_showpage, String content) {
+        webview_showpage.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);//把html中的内容放大webview等宽的一列中
+        webview_showpage.getSettings().setJavaScriptEnabled(true);//支持js
+        webview_showpage.getSettings().setBuiltInZoomControls(true);// 显示放大缩小
+        webview_showpage.getSettings().setSupportZoom(false); //支持缩放，默认为true。是下面那个的前提。
+
+        webview_showpage.getSettings().setDisplayZoomControls(false);
+        webview_showpage.setWebChromeClient(new WebChromeClient());
+        webview_showpage.setWebViewClient(new WebViewClient());
+        webview_showpage.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY); //取消滚动条白边效果
+        webview_showpage.getSettings().setDefaultTextEncodingName("UTF-8");
+        webview_showpage.getSettings().setBlockNetworkImage(false);
+
+        webview_showpage.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+                //这个是一定要加上那个的,配合scrollView和WebView的height=wrap_content属性使用
+                int w = View.MeasureSpec.makeMeasureSpec(0,
+                        View.MeasureSpec.UNSPECIFIED);
+                int h = View.MeasureSpec.makeMeasureSpec(0,
+                        View.MeasureSpec.UNSPECIFIED);
+                //重新测量
+                webview_showpage.measure(w, h);
+
+
+            }
+        });
+
+        /*WebSettings webSettings = webview_showpage.getSettings();
+        //如果访问的页面中要与Javascript交互，则webview必须设置支持Javascript
+        webSettings.setJavaScriptEnabled(true);
+        // 若加载的 html 里有JS 在执行动画等操作，会造成资源浪费（CPU、电量）
+        // 在 onStop 和 onResume 里分别把 setJavaScriptEnabled() 给设置成 false 和 true 即可
+        //支持插件
+        //  webSettings.setPluginsEnabled(true);
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+
+        //设置自适应屏幕，两者合用
+        webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
+        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
+
+        //缩放操作
+        webSettings.setSupportZoom(false); //支持缩放，默认为true。是下面那个的前提。
+        webSettings.setBuiltInZoomControls(true); //设置内置的缩放控件。若为false，则该WebView不可缩放
+        webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
+
+        //其他细节操作
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //关闭webview中缓存
+        webSettings.setAllowFileAccess(true); //设置可以访问文件
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口*/
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            webview_showpage.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);  //注意安卓5.0以上的权限
+        }
+        webview_showpage.loadDataWithBaseURL(null, getNewData(content), "text/html", "UTF-8", null);
+    }
 
 }

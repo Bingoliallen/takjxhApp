@@ -34,8 +34,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
-
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/icon_bitian" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
@@ -80,8 +86,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
-
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/icon_bitian" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
@@ -126,8 +138,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
-
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/icon_bitian" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
@@ -171,8 +189,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
-
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/icon_bitian" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
@@ -188,9 +212,11 @@
                             android:id="@+id/sp_register0"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:visibility="gone"
                             android:spinnerMode="dialog" />
 
                        <View
+                           android:id="@+id/mView1x"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/bt_danxuankaung" />
@@ -198,7 +224,7 @@
                         <TextView
                             android:id="@+id/tv_zclx"
                             android:layout_width="match_parent"
-                            android:layout_height="36dp"
+                            android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="2dp"
                             android:layout_marginRight="33dp"
@@ -242,8 +268,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
-
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/icon_bitian" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
@@ -286,7 +318,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/icon_bitian" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -330,7 +369,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/icon_bitian" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -375,7 +421,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/icon_bitian" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -432,7 +485,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginRight="3dp"
+                            android:src="@drawable/icon_bitian" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -477,7 +537,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginRight="3dp"
+                            android:src="@drawable/icon_bitian" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -523,7 +590,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginRight="3dp"
+                            android:src="@drawable/icon_bitian" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -610,7 +684,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginRight="3dp"
+                            android:src="@drawable/icon_bitian" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -685,7 +766,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginRight="3dp"
+                            android:src="@drawable/icon_bitian" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -729,7 +817,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginRight="3dp"
+                            android:src="@drawable/icon_bitian" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -774,7 +869,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginRight="3dp"
+                            android:src="@drawable/icon_bitian" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -876,6 +978,7 @@
                 -->
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="45dp"
@@ -886,7 +989,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginRight="3dp"
+                            android:src="@drawable/icon_bitian" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -930,14 +1040,21 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginRight="3dp"
+                            android:src="@drawable/icon_bitian" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:gravity="center_vertical"
-                            android:text="注册详址："
-                            android:visibility="invisible"
+                            android:text="注册地址："
+                            android:visibility="visible"
                             android:textColor="@color/common_app_text_theme4" />
 
                         <EditText
@@ -984,7 +1101,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginRight="3dp"
+                            android:src="@drawable/icon_bitian" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1028,7 +1152,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginRight="3dp"
+                            android:src="@drawable/icon_bitian" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1073,7 +1204,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginRight="3dp"
+                            android:src="@drawable/icon_bitian" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1189,7 +1327,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/icon_bitian" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1226,6 +1371,7 @@
 
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="45dp"
@@ -1236,7 +1382,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/icon_bitian" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1294,7 +1447,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/icon_bitian" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1347,7 +1507,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/icon_bitian" />
 
                     <TextView
                         android:layout_width="wrap_content"

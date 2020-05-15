@@ -9,6 +9,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,10 +43,14 @@ import takjxh.android.com.taapp.activityui.adapter.DtdsAdapter;
 import takjxh.android.com.taapp.activityui.base.BaseDialog;
 import takjxh.android.com.taapp.activityui.bean.CompanyTypesBean;
 import takjxh.android.com.taapp.activityui.bean.CompanysBean;
+import takjxh.android.com.taapp.activityui.dialog.InputIosDialog;
 import takjxh.android.com.taapp.activityui.dialog.MenuIosDialog;
 import takjxh.android.com.taapp.activityui.popupwindow.utils.FitPopupUtil;
 import takjxh.android.com.taapp.activityui.presenter.DtzsPresenter;
 import takjxh.android.com.taapp.activityui.presenter.impl.IDtzsPresenter;
+import takjxh.android.com.taapp.view.mulitmenuselect.Children;
+import takjxh.android.com.taapp.view.mulitmenuselect.ChildrenUtil;
+import takjxh.android.com.taapp.view.mulitmenuselect.ThirdDialog2;
 
 /**
  * 类名称：地图展示
@@ -85,8 +92,10 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
      */
     BitmapDescriptor bdA = BitmapDescriptorFactory.fromResource(R.drawable.arrow1);
 
+    private String key = "";
+    private String typeId = "";
+    private String typeName = "";
 
-    private String type = "";
 
     private int pageIndex = 1;
     private int pageSize = 20;
@@ -96,6 +105,11 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
     private InfoWindow mInfoWindow;
 
     private int checkItemPosition = 0;
+
+
+    private List<Children> list1 = new ArrayList<>();
+    private List<Children> treeItemBeanList = new ArrayList<>();
+
 
     /**
      * 返回布局文件
@@ -133,12 +147,12 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
                 if (pos != position) {
                     pos = position;
                     clearOverlay();
-                    resetOverlay(data.getName(),new LatLng(Double.valueOf(data.getLat()), Double.valueOf(data.getLng())));
-                    for(CompanysBean.CompanyBean bean :mList){
-                        bean.isSelect=false;
+                    resetOverlay(data.getName(), new LatLng(Double.valueOf(data.getLat()), Double.valueOf(data.getLng())));
+                    for (CompanysBean.CompanyBean bean : mList) {
+                        bean.isSelect = false;
                     }
-                    mList.get(position).isSelect=true;
-                    for(CompanysBean.CompanyBean bean :mList){
+                    mList.get(position).isSelect = true;
+                    for (CompanysBean.CompanyBean bean : mList) {
                         mDtdsAdapter.update(bean);
                     }
                 }
@@ -159,7 +173,7 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
 
     Marker mMarkerA;
 
-    public void initOverlay(String address,LatLng llA) {
+    public void initOverlay(String address, LatLng llA) {
 
         MapStatus.Builder builder = new MapStatus.Builder();
         float zoom = 14f; // 地图缩放级别
@@ -241,9 +255,9 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
     /**
      * 重新添加Overlay
      */
-    public void resetOverlay(String address,LatLng llA) {
+    public void resetOverlay(String address, LatLng llA) {
         clearOverlay();
-        initOverlay(address,llA);
+        initOverlay(address, llA);
     }
 
     /**
@@ -267,8 +281,9 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
     @Override
     protected void initData() {
         super.initData();
-        mPresenter.companytypelist("");
-        mPresenter.companyslist("", type, "" + pageIndex, "" + pageSize);
+        mPresenter.tradetreelistt();
+        // mPresenter.companytypelist("");
+        mPresenter.companyslist("", "", typeId, "" + pageIndex, "" + pageSize);
     }
 
     @Override
@@ -276,44 +291,81 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
         switch (v.getId()) {
             case R.id.tv_definition:
 
-                new MenuIosDialog.Builder(DtzsActivity.this)
+                InputIosDialog.Builder mInputIosDialog = new InputIosDialog.Builder(DtzsActivity.this);
+
+                mInputIosDialog
+                        .setTitleBt(key)
+                        .setSshyID(typeName, typeId)
                         .setTitle("筛选条件")
                         // 确定按钮文本
                         .setConfirm("确定")
                         // 设置 null 表示不显示取消按钮
                         .setCancel(null)
-                        .setData(list)
-                        .setYear(0)
-                        .setListener(new MenuIosDialog.OnListener() {
+                        .setListener(new InputIosDialog.OnListener() {
                             @Override
-                            public void onSelected(BaseDialog dialog, int position, String msg) {
+                            public void onSelected(BaseDialog dialog, String msg, String sshyID, String sshyName) {
+                                typeName = sshyName;
+                                typeId = sshyID;
+                                key = msg;
 
-                                checkItemPosition=position;
-
-                                if("不限".equals(msg)){
-                                    tv_definition.setText("");
-                                }else{
-                                    tv_definition.setText(msg);
-                                }
-                                if(type.equals(mData.get(position).getCode())){
-                                    return;
-                                }
-
-                                type = mData.get(position).getCode();
                                 isLoadMore = false;
                                 pageIndex = 1;
-                                mPresenter.companyslist("", type, "" + pageIndex, "" + pageSize);
-
+                                mPresenter.companyslist("", key, typeId, "" + pageIndex, "" + pageSize);
+                                dialog.dismiss();
                             }
 
                             @Override
                             public void onCancel(BaseDialog dialog) {
                                 // toast("取消了");
                             }
+
+                            @Override
+                            public void onSel(AutoCompleteTextView tv_sshy) {
+                                String[] dictionary = new String[list1.size()];
+                                for (int i = 0; i < list1.size(); i++) {
+                                    dictionary[i] = list1.get(i).getName();
+                                }
+                                //利用适配器
+                                ArrayAdapter<String> adapter_actv = new ArrayAdapter<String>(
+                                        DtzsActivity.this, android.R.layout.simple_dropdown_item_1line, dictionary);
+                                tv_sshy.setAdapter(adapter_actv);
+
+                                tv_sshy.setThreshold(1);
+                                tv_sshy.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                                    @Override
+                                    public void onFocusChange(View v, boolean hasFocus) {
+                                        if (hasFocus) {//获取焦点时
+                                            tv_sshy.showDropDown();
+                                        }
+                                    }
+                                });
+                                tv_sshy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        // sshyID = list1.get(position).getId();
+                                        mInputIosDialog.setSshyID(list1.get(position).getId());
+                                    }
+                                });
+
+
+                                ThirdDialog2 dialog = new ThirdDialog2(DtzsActivity.this, treeItemBeanList);
+                                dialog.setonItemClickListener(new ThirdDialog2.DictItemClickListener() {
+                                    @Override
+                                    public void onDictItemClick(Children dictUnit) {
+                                        if (dictUnit != null) {
+                                            tv_sshy.setText(dictUnit.getName());
+                                            //sshyID = dictUnit.getId();
+                                            mInputIosDialog.setSshyID(dictUnit.getId());
+                                        }
+                                    }
+                                });
+                                dialog.show();
+                            }
                         })
                         .show();
 
-                //initPopup(tv_definition);
+
                 break;
         }
     }
@@ -347,6 +399,7 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
     }
 
 
+/*
     private void initPopup(View anchorView) {
         FitPopupUtil  fitPopupUtil = new FitPopupUtil(this,list,checkItemPosition);
         fitPopupUtil.setOnClickListener(new FitPopupUtil.OnCommitClickListener() {
@@ -363,6 +416,7 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
         });
         fitPopupUtil.showPopup(anchorView);
     }
+*/
 
 
     @Override
@@ -373,8 +427,27 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
     private List<String> list = new ArrayList<>();
 
     @Override
+    public void tradetreelisttSuccess(List<Children> bean) {
+        if (bean == null) {
+            return;
+        }
+        treeItemBeanList.clear();
+        treeItemBeanList.addAll(bean);
+
+        list1.clear();
+        list1 = ChildrenUtil.getSelList(treeItemBeanList);
+
+
+    }
+
+    @Override
+    public void tradetreelisttFailed() {
+
+    }
+
+    @Override
     public void companytypelistSuccess(List<CompanyTypesBean.CompanyTypeBean> data) {
-        if (data == null) {
+       /* if (data == null) {
             return;
         }
         mData.clear();
@@ -386,18 +459,18 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
 
         for (CompanyTypesBean.CompanyTypeBean bean : mData) {
             list.add(bean.getValue());
-        }
+        }*/
 
     }
 
     @Override
     public void companytypelistFailed() {
-        mData.clear();
+        /*mData.clear();
         list.clear();
         mData.add(new CompanyTypesBean.CompanyTypeBean("", "不限"));
         for (CompanyTypesBean.CompanyTypeBean bean : mData) {
             list.add(bean.getValue());
-        }
+        }*/
     }
 
     @Override
@@ -409,9 +482,9 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
             mList.clear();
             mList.addAll(data);
             if (mList.size() > 0) {
-                mList.get(0).isSelect=true;
+                mList.get(0).isSelect = true;
                 pos = 0;
-                initOverlay(mList.get(0).getName(),new LatLng(Double.valueOf(mList.get(0).getLat()), Double.valueOf(mList.get(0).getLng())));
+                initOverlay(mList.get(0).getName(), new LatLng(Double.valueOf(mList.get(0).getLat()), Double.valueOf(mList.get(0).getLng())));
             }
         } else {
             mList.addAll(data);
@@ -442,7 +515,7 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
                         isLoadMore = false;
                         pageIndex = 1;
 
-                        mPresenter.companyslist("", type, "" + pageIndex, "" + pageSize);
+                        mPresenter.companyslist("", key, typeId, "" + pageIndex, "" + pageSize);
                         refreshLayout.finishRefresh();
                     }
                 }, 1000);
@@ -472,7 +545,7 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
     private void loadMore() {
         isLoadMore = true;
         pageIndex++;
-        mPresenter.companyslist("", type, "" + pageIndex, "" + pageSize);
+        mPresenter.companyslist("", key, typeId, "" + pageIndex, "" + pageSize);
     }
 
 

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 
 import android.view.View;
+import android.widget.TextView;
 
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
@@ -65,7 +66,7 @@ public class ZjsbtxDetailMultiItemQuickAdapter  extends BaseMultiItemQuickAdapte
                 } else {
                     helper.getView(R.id.imgbt).setVisibility(View.GONE);
                 }
-                helper.setText(R.id.tvName, item.getName());
+                helper.setText(R.id.tvName, item.getName()+":");
                 helper.setText(R.id.edGSMC, item.getValue());
                 break;
 
@@ -75,7 +76,10 @@ public class ZjsbtxDetailMultiItemQuickAdapter  extends BaseMultiItemQuickAdapte
                 } else {
                     helper.getView(R.id.imgbt).setVisibility(View.GONE);
                 }
-                helper.setText(R.id.tvName, item.getName());
+
+                helper.setText(R.id.tvName, item.getName()+":");
+
+                TextView tvYL = (TextView) helper.getView(R.id.tvYL);
 
                 RecyclerView rv_RecyclerView = (RecyclerView) helper.getView(R.id.rv_RecyclerView);
                 if (!TextUtils.isEmpty(item.getValue())) {
@@ -91,33 +95,41 @@ public class ZjsbtxDetailMultiItemQuickAdapter  extends BaseMultiItemQuickAdapte
                                 urls.add(new UploadFileBean(list.get(a),list.get(a)));
                             }
                         }
-                        helper.getView(R.id.edSCFJ).setVisibility(View.GONE);
-                        rv_RecyclerView.setVisibility(View.VISIBLE);
+
+                        /*helper.getView(R.id.edSCFJ).setVisibility(View.GONE);
+                        rv_RecyclerView.setVisibility(View.VISIBLE);*/
 
                         rv_RecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
                         rv_RecyclerView.addItemDecoration(new LinearLayoutColorDivider(mContext.getResources(), R.color.white, R.dimen.dp_4, RecyclerView.VERTICAL));
                         rv_RecyclerView.setHasFixedSize(true);
-                        QuickAdapter  mAdapter = new QuickAdapter();
+                        QuickAdapter1  mAdapter = new QuickAdapter1();
                         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                if(mClickListener!=null){
+                                /*if(mClickListener!=null){
                                     mClickListener.onClick(urls.get(position),urls);
-                                }
+                                }*/
                             }
                         });
                         mAdapter.replaceData(urls);
                         rv_RecyclerView.setAdapter(mAdapter);
+                        tvYL.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if(mClickListener!=null && urls.size()>0){
+                                    mClickListener.onClick(urls.get(0),urls);
+                                }
+                            }
+                        });
 
-
-                    }else{
+                    }/*else{
                         helper.getView(R.id.edSCFJ).setVisibility(View.VISIBLE);
                         rv_RecyclerView.setVisibility(View.GONE);
-                    }
-                }else{
+                    }*/
+                }/*else{
                     helper.getView(R.id.edSCFJ).setVisibility(View.VISIBLE);
                     rv_RecyclerView.setVisibility(View.GONE);
-                }
+                }*/
 
                 break;
 
