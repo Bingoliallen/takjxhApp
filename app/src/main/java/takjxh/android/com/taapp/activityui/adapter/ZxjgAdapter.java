@@ -109,7 +109,7 @@ public class ZxjgAdapter extends BaseRecyclerAdapter<OrgansBean.OrganListBean> {
                         }
                     });
                 }else {
-                    ToastUtil.showToast(mContext, "极光IM即时通讯未登录成功");
+                    ToastUtil.showToast(mContext, "用户无菜单操作权限，请联系后台管理员");
                 }
 
 

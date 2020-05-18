@@ -58,7 +58,7 @@ public class RegisterGLPresenter extends BasePresenter<IRegisterGLPresenter.IVie
                             public void onNext(RegisterBean userInfoBean) {
                                 super.onNext(userInfoBean);
                                 if (isAttach()) {
-                                    ShareUtils.putString(BaseAppProfile.getApplication(), "token", userInfoBean.getToken());
+                                    /*ShareUtils.putString(BaseAppProfile.getApplication(), "token", userInfoBean.getToken());
                                     if(userInfoBean.getUserInfo()!=null){
                                         ShareUtils.putString(BaseAppProfile.getApplication(), "jchat_userPassword", userInfoBean.getUserInfo().getPassword());
 
@@ -78,7 +78,7 @@ public class RegisterGLPresenter extends BasePresenter<IRegisterGLPresenter.IVie
                                     }
                                     if(userInfoBean.getUserExts()!=null){
                                         QbApplication.mBaseApplication.userExts=userInfoBean.getUserExts();
-                                    }
+                                    }*/
                                     getView().registerSuccess(userInfoBean.resDes);
                                 }
                             }

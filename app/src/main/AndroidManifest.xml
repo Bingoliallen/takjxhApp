@@ -445,7 +445,9 @@
             android:name="takjxh.android.com.taapp.activityui.activity.PdfActivity"
             android:screenOrientation="portrait" />
 
-
+        <activity
+            android:name="takjxh.android.com.taapp.view.mulitmenuselect.MultiDialogActivity"
+            android:screenOrientation="portrait" />
 
 
 

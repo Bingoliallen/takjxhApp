@@ -184,7 +184,7 @@ public class LoginActivity extends BaseActivity<LoginUIPresenter> implements ILo
                     MainActivity.startAction(LoginActivity.this);
                     finish();
                 } else {
-                    ToastUtil.showToast(LoginActivity.this, "极光IM:" + responseMessage);
+                   // ToastUtil.showToast(LoginActivity.this, "极光IM:" + responseMessage);
                     EventBus.getDefault().post(new LoginIn());
                     MainActivity.startAction(LoginActivity.this);
                     finish();

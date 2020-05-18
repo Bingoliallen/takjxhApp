@@ -85,7 +85,7 @@ import takjxh.android.com.taapp.view.CustomSpinner;
 import takjxh.android.com.taapp.view.NormalTitleBar;
 import takjxh.android.com.taapp.view.mulitmenuselect.Children;
 import takjxh.android.com.taapp.view.mulitmenuselect.ChildrenUtil;
-import takjxh.android.com.taapp.view.mulitmenuselect.ThirdDialog2;
+import takjxh.android.com.taapp.view.mulitmenuselect.MultiDialogActivity;
 
 /**
  * 类名称：政策申报填写-步骤模式
@@ -141,10 +141,10 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
     @BindView(R.id.btn_login3)
     Button btn_login3;
     @BindView(R.id.tv_sshy)
-    AutoCompleteTextView tv_sshy;
+    TextView tv_sshy;
     private String sshyID = "";
-    private List<Children> list1 = new ArrayList<>();
-    private List<Children> treeItemBeanList = new ArrayList<>();
+   // private List<Children> list1 = new ArrayList<>();
+    private ArrayList<Children> treeItemBeanList = new ArrayList<>();
     @BindView(R.id.mView3)
     View mView3;
     @BindView(R.id.tvAmount)
@@ -180,6 +180,8 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
 
     private String applyType;
 
+    //定义请求码常量
+    private static final int REQUEST_CODE_Company = 25;
 
     /**
      * 返回布局文件
@@ -297,7 +299,7 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
         mZjsblxNewAdapter.set(mData);
 
 
-        tv_sshy.setThreshold(1);
+       /* tv_sshy.setThreshold(1);
         tv_sshy.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -312,11 +314,13 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 sshyID = list1.get(position).getId();
             }
-        });
+        });*/
         mView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ThirdDialog2 dialog = new ThirdDialog2(ZjsbtxActivity1.this, treeItemBeanList);
+                MultiDialogActivity.startAction(ZjsbtxActivity1.this, "选择所属行业", treeItemBeanList, REQUEST_CODE_Company);
+
+                /*ThirdDialog2 dialog = new ThirdDialog2(ZjsbtxActivity1.this, treeItemBeanList);
                 dialog.setonItemClickListener(new ThirdDialog2.DictItemClickListener() {
                     @Override
                     public void onDictItemClick(Children dictUnit) {
@@ -326,7 +330,7 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
                         }
                     }
                 });
-                dialog.show();
+                dialog.show();*/
             }
         });
 
@@ -438,7 +442,7 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
         treeItemBeanList.clear();
         treeItemBeanList.addAll(bean);
 
-        list1.clear();
+        /*list1.clear();
         list1 = ChildrenUtil.getSelList(treeItemBeanList);
         String[] dictionary = new String[list1.size()];
         for (int i = 0; i < list1.size(); i++) {
@@ -448,7 +452,7 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
         //利用适配器
         ArrayAdapter<String> adapter_actv = new ArrayAdapter<String>(
                 this, android.R.layout.simple_dropdown_item_1line, dictionary);
-        tv_sshy.setAdapter(adapter_actv);
+        tv_sshy.setAdapter(adapter_actv);*/
 
     }
 
@@ -705,9 +709,9 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
             String files = "";
             for (int i = 0; i < urls.size(); i++) {
                 if (i == urls.size() - 1) {
-                    files = files + HttpConfig.HOST1+ urls.get(i).getFilePath() + "";
+                    files = files + urls.get(i).getFilePath() + "";
                 } else {
-                    files = files +HttpConfig.HOST1+ urls.get(i).getFilePath() + ",";
+                    files = files + urls.get(i).getFilePath() + ",";
                 }
 
             }
@@ -892,6 +896,14 @@ public class ZjsbtxActivity1 extends BaseActivity<ZjsbtxPresenter> implements IZ
                 ToastUtil.showToast(this, "文件选择失败");
             }
 
+        }else  if (requestCode == REQUEST_CODE_Company && resultCode == RESULT_OK) {
+            if (data != null) {
+                Children dictUnit = data.getParcelableExtra("dictUnit");
+                if (dictUnit != null) {
+                    tv_sshy.setText(dictUnit.getName());
+                    sshyID = dictUnit.getId();
+                }
+            }
         }
     }
 

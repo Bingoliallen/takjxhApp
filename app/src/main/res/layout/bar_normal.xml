@@ -49,6 +49,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_marginLeft="100dp"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:singleLine="true"
             android:layout_centerInParent="true"
             android:gravity="center_vertical"

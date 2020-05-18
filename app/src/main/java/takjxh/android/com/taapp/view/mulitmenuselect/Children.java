@@ -1,5 +1,8 @@
 package takjxh.android.com.taapp.view.mulitmenuselect;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -9,7 +12,7 @@ import java.util.List;
  * @Date: 2020-05-06 15:24
  * @Description:
  **/
-public class Children {
+public class Children implements Parcelable {
 
 
     /**
@@ -25,6 +28,26 @@ public class Children {
     private boolean open;
     private String parentId;
     private List<Children> children;
+
+    protected Children(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        open = in.readByte() != 0;
+        parentId = in.readString();
+        children = in.createTypedArrayList(Children.CREATOR);
+    }
+
+    public static final Creator<Children> CREATOR = new Creator<Children>() {
+        @Override
+        public Children createFromParcel(Parcel in) {
+            return new Children(in);
+        }
+
+        @Override
+        public Children[] newArray(int size) {
+            return new Children[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -64,5 +87,21 @@ public class Children {
 
     public void setChildren(List<Children> children) {
         this.children = children;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeByte((byte) (open ? 1 : 0));
+        dest.writeString(parentId);
+        dest.writeTypedList(children);
     }
 }

@@ -52,9 +52,11 @@
                 android:id="@+id/sp_register1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:visibility="gone"
                 android:spinnerMode="dialog" />
 
             <View
+                android:id="@+id/mlView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bt_danxuankaung" />
@@ -80,6 +82,22 @@
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_Mark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:hint="每个附件只能上传单个文件，重新上传后，会覆盖原文件"
+        android:paddingLeft="20dp"
+        android:textColor="@color/common_app_text_theme4"
+        android:textColorHint="@color/common_app_text_theme5"
+        android:textSize="10sp"
+        android:visibility="visible" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"

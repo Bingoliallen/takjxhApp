@@ -33,7 +33,7 @@ public class InputIosDialog {
 
         private EditText tv_GSMC;
         private View mView3;
-        private AutoCompleteTextView tv_sshy;
+        private TextView tv_sshy;
 
 
         private OnListener mListener;
@@ -64,6 +64,7 @@ public class InputIosDialog {
 
 
         }
+
 
         public Builder setTitleBt(CharSequence text) {
             tv_GSMC.setText(text);
@@ -142,6 +143,7 @@ public class InputIosDialog {
                     mListener.onCancel(getDialog());
                 } else if (v == mView3) {
                     mListener.onSel(tv_sshy);
+
                 }
             }
         }
@@ -161,7 +163,7 @@ public class InputIosDialog {
          */
         void onCancel(BaseDialog dialog);
 
-        void onSel(AutoCompleteTextView tv_sshy);
+        void onSel(TextView tv_sshy);
     }
 
 

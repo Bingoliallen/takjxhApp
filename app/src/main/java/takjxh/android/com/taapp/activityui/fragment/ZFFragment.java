@@ -17,6 +17,7 @@ import java.util.List;
 import butterknife.BindView;
 import takjxh.android.com.commlibrary.BaseAppProfile;
 import takjxh.android.com.commlibrary.utils.ShareUtils;
+import takjxh.android.com.commlibrary.utils.ToastUtil;
 import takjxh.android.com.commlibrary.view.fragment.BaseFragment;
 import takjxh.android.com.taapp.R;
 import takjxh.android.com.taapp.activityui.activity.HealthDailyActivity;
@@ -174,7 +175,12 @@ public class ZFFragment extends BaseFragment<ZFPresenter> implements IZFPresente
                // ToBbActivity.startAction(getActivity());
                 break;
             case R.id.ml4:
-                HealthDailyActivity.startAction(getActivity());
+                String type = ShareUtils.getString(BaseAppProfile.getApplication(), "type", "");
+                if ("01".equals(type)||type.contains("政府")){
+                    HealthDailyActivity.startAction(getActivity());
+                }else{
+                    ToastUtil.showToast(mContext,"用户无菜单操作权限");
+                }
                 break;
             case R.id.ml5:
                 KtrwListActivity.startAction(getActivity());

@@ -46,6 +46,17 @@ public class CompanysBean<T> extends BaseComResponse {
         private String des;
         private String lng;
         private String lat;
+        /**
+         * regTime : 2010-12-21
+         * regAddr : 厦门市同安区同福路333号1#-1厂房1-5层
+         * income : 1001-9999万
+         * scale : 100-999人
+         */
+
+        private String regTime;
+        private String regAddr;
+        private String income;
+        private String scale;
 
         public String getId() {
             return id;
@@ -117,6 +128,38 @@ public class CompanysBean<T> extends BaseComResponse {
 
         public void setLat(String lat) {
             this.lat = lat;
+        }
+
+        public String getRegTime() {
+            return regTime;
+        }
+
+        public void setRegTime(String regTime) {
+            this.regTime = regTime;
+        }
+
+        public String getRegAddr() {
+            return regAddr;
+        }
+
+        public void setRegAddr(String regAddr) {
+            this.regAddr = regAddr;
+        }
+
+        public String getIncome() {
+            return income;
+        }
+
+        public void setIncome(String income) {
+            this.income = income;
+        }
+
+        public String getScale() {
+            return scale;
+        }
+
+        public void setScale(String scale) {
+            this.scale = scale;
         }
     }
 }

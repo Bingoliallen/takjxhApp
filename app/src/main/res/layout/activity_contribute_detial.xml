@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -10,338 +12,77 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/scrollView"
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/normal_view1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="false">
+        app:srlAccentColor="@color/colorPrimary"
+        app:srlPrimaryColor="@color/white">
 
-        <LinearLayout
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="15dp"
-            android:orientation="vertical">
+            android:fadeScrollbars="false"
+            android:overScrollMode="never"
+            android:scrollbars="vertical">
+
             <LinearLayout
-                android:id="@+id/mL1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
+                android:descendantFocusability="blocksDescendants"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center_vertical"
-                        android:text="投稿标题："
-                        android:textColor="@color/text_color"
-                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/edGSMC"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:hint=""
-                        android:paddingLeft="12dp"
+                        android:padding="15dp"
                         android:textColor="@color/common_app_text_theme4"
-                        android:textColorHint="@color/common_app_text_theme5" />
-
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_marginTop="0dp"
-                    android:background="@color/line" />
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:id="@+id/mL2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center_vertical"
-                        android:text="投稿类型："
-                        android:textColor="@color/text_color"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/edXYDM"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:hint=""
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:paddingLeft="12dp"
-                        android:singleLine="true"
-                        android:textColor="@color/common_app_text_theme4"
-                        android:textColorHint="@color/common_app_text_theme5" />
-
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_marginTop="0dp"
-                    android:background="@color/line" />
-            </LinearLayout>
-
-<!--
-            <LinearLayout
-                android:id="@+id/mL3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center_vertical"
-                        android:text="手机号码："
-                        android:textColor="@color/text_color"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/edZCSJ"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:hint=""
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:paddingLeft="12dp"
-                        android:singleLine="true"
-                        android:textColor="@color/common_app_text_theme4"
-                        android:textColorHint="@color/common_app_text_theme5" />
-
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_marginTop="0dp"
-                    android:background="@color/line" />
-            </LinearLayout>
--->
-
-<!--
-            <LinearLayout
-                android:id="@+id/mL4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center_vertical"
-                        android:text="价格："
-                        android:textColor="@color/text_color"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/edFR"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:hint=""
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:paddingLeft="12dp"
-                        android:singleLine="true"
-                        android:textColor="@color/common_app_text_theme4"
-                        android:textColorHint="@color/common_app_text_theme5" />
-
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_marginTop="0dp"
-                    android:background="@color/line" />
-            </LinearLayout>
--->
-
-            <LinearLayout
-                android:id="@+id/mL5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center_vertical"
-                        android:text="投稿内容："
-                        android:textColor="@color/text_color"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/edLXRXM"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:hint=""
-                        android:paddingLeft="12dp"
-                        android:paddingBottom="10dp"
-                        android:textColor="@color/common_app_text_theme4"
-                        android:textColorHint="@color/common_app_text_theme5" />
-
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_marginTop="0dp"
-                    android:background="@color/line" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/mL6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center_vertical"
-                        android:text="投稿时间："
-                        android:textColor="@color/text_color"
-                        android:textStyle="bold" />
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        tools:text="XXXXXXXXXXXXXXXXXXX" />
 
                     <TextView
                         android:id="@+id/edLXDH"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:hint=""
-                        android:imeOptions="actionNext"
-                        android:inputType="phone"
-                        android:maxLength="11"
-                        android:paddingLeft="12dp"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
                         android:singleLine="true"
-                        android:textColor="@color/common_app_text_theme4"
-                        android:textColorHint="@color/common_app_text_theme5" />
-
-
+                        android:textColor="@color/text_color"
+                        android:textSize="12sp"
+                        tools:text="作者：北京日报报业集团  发布时间：10-1508:53" />
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_marginTop="0dp"
-                    android:background="@color/line" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/mL7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical">
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/edLXRXM"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center_vertical"
-                        android:text="投稿状态："
-                        android:textColor="@color/text_color"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/edSCFJ"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:hint=""
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:paddingLeft="12dp"
-                        android:singleLine="true"
-                        android:textColor="@color/common_app_text_theme4"
-                        android:textColorHint="@color/common_app_text_theme5" />
+                    android:padding="10dp"
+                    android:textColor="@color/text_color"
+                    android:textSize="20sp"
+                    tools:text="         中新网10月18日电 据中央气象台网站消息，中央气象台10月18日6时发布大雾黄色预警：预计，10月18日早晨至上午，北京南部、河北中南部、山东西北部、河南大部、陕西北部、甘肃东部、四川盆地南部、重庆西部等地有大雾，其中北京南部、河北中南部、河南中部、山东西北部等地的部分地区有能见度不足500米的浓雾，局地有能见度不足200米的强浓雾。" />
 
 
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_marginTop="0dp"
-                    android:background="@color/line" />
             </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
 
-
-        </LinearLayout>
-
-
-    </android.support.v4.widget.NestedScrollView>
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>
+

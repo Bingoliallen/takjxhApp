@@ -33,6 +33,7 @@ import takjxh.android.com.taapp.activityui.bean.PolicyapplyaddBean;
 import takjxh.android.com.taapp.activityui.bean.UploadFileBean;
 import takjxh.android.com.taapp.activityui.dialog.DateDialog;
 import takjxh.android.com.taapp.activityui.dialog.DateDialogSet;
+import takjxh.android.com.taapp.activityui.dialog.MenuIosDialog;
 import takjxh.android.com.taapp.view.CustomGridView;
 import takjxh.android.com.taapp.view.CustomSpinner;
 
@@ -70,6 +71,15 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
 
         switch (helper.getItemViewType()) {
             case 1:
+                TextView tv_Mark = (TextView) helper.getView(R.id.tv_Mark);
+                tv_Mark.setVisibility(View.GONE);
+                if (!TextUtils.isEmpty(item.getMark())) {
+                    tv_Mark.setVisibility(View.VISIBLE);
+                    tv_Mark.setText(item.getMark());
+                } else {
+                    tv_Mark.setVisibility(View.GONE);
+                }
+
 
                 if (item.isRuleReqest()) {
                     helper.getView(R.id.imgbt).setVisibility(View.VISIBLE);
@@ -83,7 +93,8 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 tv_GSMC.setInputType(InputType.TYPE_CLASS_TEXT);
                 if (item.getRuleText() != null && !TextUtils.isEmpty(item.getRuleText().toString())) {
                     double num = Double.valueOf(item.getRuleText().toString());
-                    tv_GSMC.setMaxLines((int) Math.floor(num));
+                    //tv_GSMC.setma((int) Math.floor(num));
+                    tv_GSMC.setFilters(new InputFilter[]{new InputFilter.LengthFilter((int) Math.floor(num))});
                 }
 
 
@@ -116,6 +127,15 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
 
                 break;
             case 2:
+                TextView tv_Mark1 = (TextView) helper.getView(R.id.tv_Mark);
+                tv_Mark1.setVisibility(View.GONE);
+                if (!TextUtils.isEmpty(item.getMark())) {
+                    tv_Mark1.setVisibility(View.VISIBLE);
+                    tv_Mark1.setText(item.getMark());
+                } else {
+                    tv_Mark1.setVisibility(View.GONE);
+                }
+
                 if (item.isRuleReqest()) {
                     helper.getView(R.id.imgbt).setVisibility(View.VISIBLE);
                 } else {
@@ -124,6 +144,11 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 helper.setText(R.id.tvName, item.getName()+":");
                 EditText tv_GSMC2 = (EditText) helper.getView(R.id.tv_GSMC);
                 tv_GSMC2.setInputType(InputType.TYPE_CLASS_NUMBER);
+               /* if (item.getRuleText() != null && !TextUtils.isEmpty(item.getRuleText().toString())) {
+                    double num = Double.valueOf(item.getRuleText().toString());
+                    tv_GSMC2.setMaxLines((int) Math.floor(num));
+                }*/
+
                 int min = 0;
                 int max = 999999999;
                 if (item.getMinNum() != null && !TextUtils.isEmpty(item.getMinNum().toString())) {
@@ -184,6 +209,16 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
 
                 break;
             case 3:
+                TextView tv_Mark2 = (TextView) helper.getView(R.id.tv_Mark);
+                tv_Mark2.setVisibility(View.GONE);
+                if (!TextUtils.isEmpty(item.getMark())) {
+                    tv_Mark2.setVisibility(View.VISIBLE);
+                    tv_Mark2.setText(item.getMark());
+                } else {
+                    tv_Mark2.setVisibility(View.GONE);
+                }
+
+
                 if (item.isRuleReqest()) {
                     helper.getView(R.id.imgbt).setVisibility(View.VISIBLE);
                 } else {
@@ -192,6 +227,11 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 helper.setText(R.id.tvName, item.getName()+":");
                 EditText tv_GSMC3 = (EditText) helper.getView(R.id.tv_GSMC);
                 tv_GSMC3.setInputType(InputType.TYPE_CLASS_DATETIME);
+                /*if (item.getRuleText() != null && !TextUtils.isEmpty(item.getRuleText().toString())) {
+                    double num = Double.valueOf(item.getRuleText().toString());
+                    tv_GSMC3.setMaxLines((int) Math.floor(num));
+                }*/
+
                 if (item.getRuleNumb() != null && !TextUtils.isEmpty(item.getRuleNumb().toString())) {
 
                     /**
@@ -263,6 +303,16 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
 
                 break;
             case 4:
+                TextView tv_Mark3 = (TextView) helper.getView(R.id.tv_Mark);
+                tv_Mark3.setVisibility(View.GONE);
+                if (!TextUtils.isEmpty(item.getMark())) {
+                    tv_Mark3.setVisibility(View.VISIBLE);
+                    tv_Mark3.setText(item.getMark());
+                } else {
+                    tv_Mark3.setVisibility(View.GONE);
+                }
+
+
                 if (item.isRuleReqest()) {
                     helper.getView(R.id.imgbt).setVisibility(View.VISIBLE);
                 } else {
@@ -271,6 +321,9 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 helper.setText(R.id.tvName, item.getName()+":");
 
                 TextView tv_czjg = (TextView) helper.getView(R.id.tv_czjg);
+                View mlView = (View) helper.getView(R.id.mlView);
+
+
                 CustomSpinner sp_register2 = (CustomSpinner) helper.getView(R.id.sp_register1);
                 List<String> mList2 = new ArrayList<>();
                 mList2.clear();
@@ -282,7 +335,44 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 }
 
                 tv_czjg.setText(item.getValue());
-                MyArrayAdapter2 adapterResult2 = new MyArrayAdapter2(mContext, mList2);
+
+
+                mlView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        new MenuIosDialog.Builder(activity)
+                                .setTitle("选择"+item.getName())
+                                // 确定按钮文本
+                                .setConfirm("确定")
+                                // 设置 null 表示不显示取消按钮
+                                .setCancel(null)
+                                .setData(mList2)
+                                .setYear(0)
+                                .setListener(new MenuIosDialog.OnListener() {
+                                    @Override
+                                    public void onSelected(BaseDialog dialog, int pos, String msg) {
+                                        tv_czjg.setText(msg);
+                                        String mBean = mList2.get(pos);
+                                        if(mOnDataChangeListener!=null){
+                                            mOnDataChangeListener.onClick(positionNum,getData().indexOf(item),mBean);
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancel(BaseDialog dialog) {
+                                        // toast("取消了");
+                                    }
+                                })
+                                .show();
+                    }
+                });
+
+
+
+
+               /* MyArrayAdapter2 adapterResult2 = new MyArrayAdapter2(mContext, mList2);
                 adapterResult2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp_register2.setAdapter(adapterResult2);
                 sp_register2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -303,7 +393,7 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
 
 
                 });
-                sp_register2.setSelection(-1, true);
+                sp_register2.setSelection(-1, true);*/
                 break;
             case 5:
                 if (item.isRuleReqest()) {
@@ -323,21 +413,26 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                 edSCFJ.setVisibility(View.GONE);
                 TextView edSCFJ1 = (TextView) helper.getView(R.id.edSCFJ1);
                 edSCFJ1.setVisibility(View.GONE);
-                TextView tv_Mark = (TextView) helper.getView(R.id.tv_Mark);
-                tv_Mark.setVisibility(View.GONE);
+                TextView tv_Mark4 = (TextView) helper.getView(R.id.tv_Mark);
+                tv_Mark4.setVisibility(View.GONE);
                 if (item.getTemplate() != null && !TextUtils.isEmpty(item.getTemplate().toString())) {
                     edSCFJ1.setVisibility(View.GONE);//?
                 } else {
                     edSCFJ1.setVisibility(View.GONE);
                 }
                 if (!TextUtils.isEmpty(item.getMark())) {
-                    tv_Mark.setVisibility(View.VISIBLE);
-                    tv_Mark.setText(item.getMark());
+                    tv_Mark4.setVisibility(View.VISIBLE);
+                    tv_Mark4.setText(item.getMark());
                 } else {
-                    tv_Mark.setVisibility(View.GONE);
+                    tv_Mark4.setVisibility(View.GONE);
                 }
                 CustomGridView mGridView = (CustomGridView) helper.getView(R.id.noScrollgridview);
                 ArrayList<UploadFileBean> urls = new ArrayList<>();
+                if(!TextUtils.isEmpty(item.getValue())){
+                    urls.clear();
+                    urls.add(new UploadFileBean(item.getValue(),item.getValue()));
+                    mGridView.setVisibility(View.VISIBLE);
+                }
                 AddAttachmentAdapter1 mAdapter = new AddAttachmentAdapter1(activity, urls,mGridView);
                 mGridView.setAdapter(mAdapter);
                 mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -363,6 +458,17 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
 
                 break;
             case 6:
+                TextView tv_Mark5 = (TextView) helper.getView(R.id.tv_Mark);
+                tv_Mark5.setVisibility(View.GONE);
+                if (!TextUtils.isEmpty(item.getMark())) {
+                    tv_Mark5.setVisibility(View.VISIBLE);
+                    tv_Mark5.setText(item.getMark());
+                } else {
+                    tv_Mark5.setVisibility(View.GONE);
+                }
+
+
+
                 if (item.isRuleReqest()) {
                     helper.getView(R.id.imgbt).setVisibility(View.VISIBLE);
                 } else {
@@ -440,8 +546,7 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
                                 }else{
                                     msecond=""+second;
                                 }*/
-                                        edZCSJ.setText(year + activity.getString(R.string.common_year) + mmonth + activity.getString(R.string.common_month) + mday + activity.getString(R.string.common_day)
-                                        );//+" "+mhour+":"+mminute+":"+msecond
+                                        edZCSJ.setText(year + "-" + mmonth + "-" + mday );//+ "-"+" "+mhour+":"+mminute+":"+msecond
                                         String mZCSJ = year + "-" + mmonth + "-" + mday;//+ "" +""+mhour+""+mminute+""+msecond
                                         //getData().get(getData().indexOf(item)).putKey=mZCSJ;
                                         if(mOnDataChangeListener!=null){
@@ -469,6 +574,16 @@ public class ZjsblxMultiItemQuickAdapter extends BaseMultiItemQuickAdapter<Polic
 
                 break;
             case 7:
+                TextView tv_Mark6 = (TextView) helper.getView(R.id.tv_Mark);
+                tv_Mark6.setVisibility(View.GONE);
+                if (!TextUtils.isEmpty(item.getMark())) {
+                    tv_Mark6.setVisibility(View.VISIBLE);
+                    tv_Mark6.setText(item.getMark());
+                } else {
+                    tv_Mark6.setVisibility(View.GONE);
+                }
+
+
                 if (item.isRuleReqest()) {
                     helper.getView(R.id.imgbt).setVisibility(View.VISIBLE);
                 } else {

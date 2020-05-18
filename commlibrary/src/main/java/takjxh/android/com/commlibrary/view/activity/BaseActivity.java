@@ -104,7 +104,10 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
   @Override
   protected void onDestroy() {
    // LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
-    unregisterReceiver(mMessageReceiver);
+    if(mMessageReceiver!=null){
+      unregisterReceiver(mMessageReceiver);
+    }
+
     if (getApplication() instanceof BaseApplication) {
       BaseApplication application = (BaseApplication) getApplication();
       application.removeActivity(this);

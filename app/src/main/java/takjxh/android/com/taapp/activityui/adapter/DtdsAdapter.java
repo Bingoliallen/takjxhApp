@@ -28,25 +28,31 @@ public class DtdsAdapter extends BaseRecyclerAdapter<CompanysBean.CompanyBean> {
 
     @Override
     public void onBind(ViewHolder holder, final CompanysBean.CompanyBean item, final int position) {
-        if(item.isSelect){
+        if (item.isSelect) {
             ((TextView) holder.getView(R.id.tvtitle)).setTextColor(mContext.getResources().getColor(R.color.dtzs));
             ((TextView) holder.getView(R.id.tv_extra)).setTextColor(mContext.getResources().getColor(R.color.dtzs));
             ((TextView) holder.getView(R.id.tvtime)).setTextColor(mContext.getResources().getColor(R.color.dtzs));
-        }else{
+            ((TextView) holder.getView(R.id.tvtime1)).setTextColor(mContext.getResources().getColor(R.color.dtzs));
+            ((TextView) holder.getView(R.id.tvtime2)).setTextColor(mContext.getResources().getColor(R.color.dtzs));
+        } else {
             ((TextView) holder.getView(R.id.tvtitle)).setTextColor(mContext.getResources().getColor(R.color.text_color));
             ((TextView) holder.getView(R.id.tv_extra)).setTextColor(mContext.getResources().getColor(R.color.text_color));
             ((TextView) holder.getView(R.id.tvtime)).setTextColor(mContext.getResources().getColor(R.color.text_color));
-
+            ((TextView) holder.getView(R.id.tvtime1)).setTextColor(mContext.getResources().getColor(R.color.text_color));
+            ((TextView) holder.getView(R.id.tvtime2)).setTextColor(mContext.getResources().getColor(R.color.text_color));
         }
-        holder.setText(R.id.tvtitle,"厦门 "+item.getArea());
-        holder.setText(R.id.tv_extra,item.getName());
-        holder.setText(R.id.tvtime,item.getAddress());
+        holder.setText(R.id.tvtitle, item.getName());
+        holder.setText(R.id.tv_extra, item.getRegAddr());
+        holder.setText(R.id.tvtime, "注册时间：" + item.getRegTime());
+        holder.setText(R.id.tvtime1, "营业收入：" + item.getIncome());
+        holder.setText(R.id.tvtime2, "从业人数：" + item.getScale());
+
 
         ImageView iv_icon = (ImageView) holder.getView(R.id.icon);
         if (TextUtils.isEmpty(item.getCover())) {
             iv_icon.setImageResource(R.drawable.pic_defalt);
         } else {
-            ImageWrapper.setImage(iv_icon,  item.getCover(), R.drawable.pic_defalt, ImageWrapper.CENTER_CROP);
+            ImageWrapper.setImage(iv_icon, item.getCover(), R.drawable.pic_defalt, ImageWrapper.CENTER_CROP);
         }
 
        /* holder.getView(R.id.mLM).setOnClickListener(new View.OnClickListener() {

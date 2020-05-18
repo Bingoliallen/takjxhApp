@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
@@ -45,6 +46,8 @@ import butterknife.BindView;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.api.BasicCallback;
 import takjxh.android.com.commlibrary.BaseAppProfile;
+import takjxh.android.com.commlibrary.image.ImageWrapper;
+import takjxh.android.com.commlibrary.net.HttpConfig;
 import takjxh.android.com.commlibrary.utils.BarUtil;
 import takjxh.android.com.commlibrary.utils.ShareUtils;
 import takjxh.android.com.commlibrary.utils.ToastUtil;
@@ -57,6 +60,7 @@ import takjxh.android.com.taapp.activityui.bean.RegisterSuc;
 import takjxh.android.com.taapp.activityui.bean.RegisterSuccess;
 import takjxh.android.com.taapp.activityui.bean.SysParamBean;
 import takjxh.android.com.taapp.activityui.bean.UploadFileBean;
+import takjxh.android.com.taapp.activityui.chat.takevideo.utils.LogUtils;
 import takjxh.android.com.taapp.activityui.dialog.AddressDialog;
 import takjxh.android.com.taapp.activityui.dialog.DateAndTimeDialog;
 import takjxh.android.com.taapp.activityui.dialog.DateDialog;
@@ -72,7 +76,7 @@ import takjxh.android.com.taapp.view.CustomSpinner;
 import takjxh.android.com.taapp.view.NormalTitleBar;
 import takjxh.android.com.taapp.view.mulitmenuselect.Children;
 import takjxh.android.com.taapp.view.mulitmenuselect.ChildrenUtil;
-import takjxh.android.com.taapp.view.mulitmenuselect.ThirdDialog2;
+import takjxh.android.com.taapp.view.mulitmenuselect.MultiDialogActivity;
 
 /**
  * 类名称：
@@ -138,10 +142,10 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     @BindView(R.id.sp_register3)
     CustomSpinner sp_register3;
     @BindView(R.id.tv_sshy)
-    AutoCompleteTextView tv_sshy;
+    TextView tv_sshy;
     private String sshyID = "";
-    private List<Children> list1=new ArrayList<>();
-    private List<Children> treeItemBeanList=new ArrayList<>();
+   /* private List<Children> list1=new ArrayList<>();*/
+    private ArrayList<Children> treeItemBeanList=new ArrayList<>();
 
 
 
@@ -157,7 +161,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     String medQYYS;
 
     @BindView(R.id.tv_name)
-    TextView tv_name;
+    ImageView tv_name;
     private String filePath;
     @BindView(R.id.delSCFJ)
     TextView delSCFJ;
@@ -190,12 +194,26 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     EditText edSJ;
     @BindView(R.id.edPassword)
     EditText edPassword;
+    @BindView(R.id.edPassword1)
+    EditText edPassword1;
+
+
+
     @BindView(R.id.tvcode)
     TextView tvcode;
 
     @BindView(R.id.mView3)
     View mView3;
 
+
+
+    @BindView(R.id.btn_login4)
+    Button btn_login4;
+
+    @BindView(R.id.mlStep1)
+    LinearLayout mlStep1;
+    @BindView(R.id.mlStep2)
+    LinearLayout mlStep2;
 
 
     //定义请求码常量
@@ -212,6 +230,9 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     private List<SysParamBean.ParamsBean.UserscaleBean> userscale=new ArrayList<>();
 
     private String medQYGM;
+
+    //定义请求码常量
+    private static final int REQUEST_CODE_Company = 25;
 
     /**
      * 返回布局文件
@@ -253,6 +274,10 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
         });
 
         img.setImageBitmap(CodeUtils.getInstance().createBitmap()); //我们在控件初始化时设置随机生成图片验证码
+
+        mlStep1.setVisibility(View.VISIBLE);
+        mlStep2.setVisibility(View.GONE);
+
 
         mlZF.setVisibility(View.GONE);
         mlQYandDSF1.setVisibility(View.GONE);
@@ -320,7 +345,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
                 tv_sshy.setText(mBean);
                 sshyID = usertrade.get(arg2).getCode();
 
-                tv_sshy.setSelection(tv_sshy.getText().length());
+              //  tv_sshy.setSelection(tv_sshy.getText().length());
             }
 
             @Override
@@ -343,7 +368,14 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
     @Override
     protected void initEvent() {
         super.initEvent();
+        btn_login4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                MainActivity.startAction(RegisterActivity.this);
+                finish();
+            }
+        });
         mView1x.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -406,7 +438,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
 
 
 
-        tv_sshy.setThreshold(1);
+      /*  tv_sshy.setThreshold(1);
         tv_sshy.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -421,7 +453,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 sshyID = list1.get(position).getId();
             }
-        });
+        });*/
 
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -441,7 +473,9 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
         mView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ThirdDialog2 dialog=new ThirdDialog2(RegisterActivity.this,treeItemBeanList);
+                MultiDialogActivity.startAction(RegisterActivity.this, "选择所属行业", treeItemBeanList, REQUEST_CODE_Company);
+
+                /*ThirdDialog2 dialog=new ThirdDialog2(RegisterActivity.this,treeItemBeanList);
                 dialog.setonItemClickListener(new ThirdDialog2.DictItemClickListener() {
                     @Override
                     public void onDictItemClick(Children dictUnit) {
@@ -451,7 +485,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
                         }
                     }
                 });
-                dialog.show();
+                dialog.show();*/
             }
         });
 
@@ -540,7 +574,9 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
         switch (v.getId()) {
             case R.id.delSCFJ:
                 filePath="";
-                tv_name.setText("");
+               // tv_name.setText("");
+                ImageWrapper.setImage(tv_name, "", R.drawable.pic_defalt, ImageWrapper.CENTER_CROP);
+
                 tv_name.setVisibility(View.GONE);
                 delSCFJ.setVisibility(View.GONE);
                 edSCFJ.setVisibility(View.VISIBLE);
@@ -706,7 +742,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
                                     msecond = "" + second;
                                 }*/
                                 tvZCSJ.setText(year + getString(R.string.common_year) + mmonth + getString(R.string.common_month) + mday + getString(R.string.common_day));// + " " + mhour + ":" + mminute + ":" + msecond
-                                mZCSJ = year + "" + mmonth + "" + mday ;//+ "" + "" + mhour + "" + mminute + "" + msecond
+                                mZCSJ = year + "-" + mmonth + "-" + mday ;//+ "" + "" + mhour + "" + mminute + "" + msecond
                                 // 如果不指定时分秒则默认为现在的时间
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(Calendar.YEAR, year);
@@ -769,15 +805,19 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
 
     @Override
     public void registerSuccess(String msg) {
-        String medPassword = ShareUtils.getString(BaseAppProfile.getApplication(), "jchat_userPassword", "");
+        /*String medPassword = ShareUtils.getString(BaseAppProfile.getApplication(), "jchat_userPassword", "");
         String mAccount = edAccount.getText().toString().trim();
-        ShareUtils.putString(BaseAppProfile.getApplication(), "jchat_userId", mAccount);
+        ShareUtils.putString(BaseAppProfile.getApplication(), "jchat_userId", mAccount);*/
 
 
         EventBus.getDefault().post(new RegisterSuc());
         ToastUtil.showToast(RegisterActivity.this, msg);
-        MainActivity.startAction(RegisterActivity.this);
-        finish();
+
+
+        mlStep1.setVisibility(View.GONE);
+        mlStep2.setVisibility(View.VISIBLE);
+
+
 
 
         /*JMessageClient.register(userId, medPassword, new BasicCallback() {
@@ -804,7 +844,8 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
 
     @Override
     public void registerFailed() {
-
+        mlStep1.setVisibility(View.VISIBLE);
+        mlStep2.setVisibility(View.GONE);
     }
 
     @Override
@@ -931,7 +972,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
         treeItemBeanList.clear();
         treeItemBeanList.addAll(bean);
 
-        list1.clear();
+       /* list1.clear();
         list1=ChildrenUtil.getSelList(treeItemBeanList);
         String[] dictionary = new String[list1.size()];
         for(int i=0;i<list1.size();i++){
@@ -941,7 +982,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
         //利用适配器
         ArrayAdapter<String> adapter_actv = new ArrayAdapter<String>(
                 this,android.R.layout.simple_dropdown_item_1line,dictionary);
-        tv_sshy.setAdapter(adapter_actv);
+        tv_sshy.setAdapter(adapter_actv);*/
 
 
     }
@@ -957,7 +998,11 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             return;
         }
         filePath=data.getFilePath();
-        tv_name.setText(data.getFileName());
+       //tv_name.setText(data.getFileName());
+
+        ImageWrapper.setImage(tv_name, HttpConfig.HOST1+filePath, R.drawable.pic_defalt, ImageWrapper.CENTER_CROP);
+
+
         tv_name.setVisibility(View.VISIBLE);
         delSCFJ.setVisibility(View.VISIBLE);
         edSCFJ.setVisibility(View.GONE);
@@ -1073,6 +1118,14 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             } else {
                 ToastUtil.showToast(this, getString(R.string.select_msg_f));
             }
+        }else if (requestCode == REQUEST_CODE_Company && resultCode == RESULT_OK) {
+            if (data != null) {
+                Children dictUnit = data.getParcelableExtra("dictUnit");
+                if (dictUnit != null) {
+                    tv_sshy.setText(dictUnit.getName());
+                    sshyID = dictUnit.getId();
+                }
+            }
         }
     }
 
@@ -1160,10 +1213,10 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
                 ToastUtil.showToast(this, "请输入企业组织机构代码");
                 return;
             }
-            if(!Regex_OrganizationCertificate.isOrganizationCertificate(medDM)){
+            /*if(!Regex_OrganizationCertificate.isOrganizationCertificate(medDM)){
                 ToastUtil.showToast(this, "输入的机构代码错误，请核对后再输！");
                 return;
-            }
+            }*/
             if (TextUtils.isEmpty(sshyID)) {
                 ToastUtil.showToast(this, "请选择所属行业");
                 return;
@@ -1280,14 +1333,26 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
         String medSJ = edSJ.getText().toString().trim();
         if (TextUtils.isEmpty(medSJ)) {
             //2020-03-06 暂时去隐藏
-            //ToastUtil.showToast(this, "请输入手机验证码");
-           // return;
+            ToastUtil.showToast(this, "请输入手机验证码");
+            return;
         }
         String medPassword = edPassword.getText().toString().trim();
         if (TextUtils.isEmpty(medPassword)) {
             ToastUtil.showToast(this, "请输入6-16位的密码");
             return;
         }
+
+
+        String edPassword10 = edPassword1.getText().toString().trim();
+        if (TextUtils.isEmpty(edPassword10)) {
+            ToastUtil.showToast(this, "请再一次输入6-16位的密码");
+            return;
+        }
+        if(!medPassword.equals(edPassword10)){
+            ToastUtil.showToast(this, "两次输入密码不一致");
+            return;
+        }
+
         /*String code = CodeUtils.getInstance().getCode();//获取图片验证码上的内容
         if (!code.equals(medTP)) {
             ToastUtil.showToast(this, "图片验证码不正确");
@@ -1333,7 +1398,7 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
             String medLXDH = edLXDH.getText().toString().trim();
 
             queryMap.put("companyName", medQYMC);
-            queryMap.put("orgCode", medDM);
+            queryMap.put("unitCode", medDM);
             queryMap.put("trade", sshyID);
             queryMap.put("regTime", mZCSJ);
             queryMap.put("regAddr", medZCXXDZ);
@@ -1369,6 +1434,9 @@ public class RegisterActivity extends BaseActivity<RegisterGLPresenter> implemen
         } else {
 
         }
+
+        String jsonString = new Gson().toJson(queryMap);
+        LogUtils.e("----register----jsonString-------------:" + jsonString);
 
         mPresenter.register(queryMap);
 

@@ -88,17 +88,35 @@ public class AddAttachmentAdapter1  extends BaseAdapter {
         }
 
         String name = list.get(position).getFileName();
-        viewHolder.pdfName.setText(name);
+
         viewHolder.pdfName.setVisibility(View.GONE);
 
         if(!TextUtils.isEmpty(name) && name.contains(".pdf")){
+            if(!TextUtils.isEmpty(name) && name.contains("http")){
+                viewHolder.pdfName.setText(getFileName(name)+".pdf");
+            }else{
+                viewHolder.pdfName.setText(name);
+            }
             viewHolder.pdfName.setVisibility(View.VISIBLE);
             viewHolder.im_pdf.setVisibility(View.VISIBLE);
             viewHolder.im_tp.setVisibility(View.GONE);
         }else{
             viewHolder.im_pdf.setVisibility(View.GONE);
             viewHolder.im_tp.setVisibility(View.VISIBLE);
-            ImageWrapper.setImage(viewHolder.im_tp, HttpConfig.HOST1+list.get(position).getFilePath(), R.drawable.pic_defalt, ImageWrapper.CENTER_CROP);
+            if(!TextUtils.isEmpty(list.get(position).getFilePath()) && list.get(position).getFilePath().contains("http")){
+                ImageWrapper.setImage(viewHolder.im_tp, list.get(position).getFilePath(), R.drawable.pic_defalt, ImageWrapper.CENTER_CROP);
+
+            }else{
+                if(!TextUtils.isEmpty(list.get(position).getFilePath()) && list.get(position).getFilePath().contains("//")){
+                    String replaceStr =  list.get(position).getFilePath().replace("//","/");
+                    ImageWrapper.setImage(viewHolder.im_tp, HttpConfig.HOST1+replaceStr, R.drawable.pic_defalt, ImageWrapper.CENTER_CROP);
+
+                }else{
+                    ImageWrapper.setImage(viewHolder.im_tp, HttpConfig.HOST1+list.get(position).getFilePath(), R.drawable.pic_defalt, ImageWrapper.CENTER_CROP);
+
+                }
+
+            }
 
         }
 
@@ -127,4 +145,16 @@ public class AddAttachmentAdapter1  extends BaseAdapter {
         private ImageView im_pdf;
         private TextView pdfName;
     }
+
+    public String getFileName(String pathandname){
+        int start=pathandname.lastIndexOf("/");
+        int end=pathandname.lastIndexOf(".");
+        if (start!=-1 && end!=-1) {
+            return pathandname.substring(start+1, end);
+        }
+        else {
+            return null;
+        }
+    }
+
 }

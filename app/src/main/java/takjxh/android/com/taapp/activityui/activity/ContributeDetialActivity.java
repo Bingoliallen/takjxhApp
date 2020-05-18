@@ -39,15 +39,14 @@ public class ContributeDetialActivity  extends BaseActivity<ContributeDetialPres
 
     @BindView(R.id.edGSMC)
     TextView edGSMC;
-    @BindView(R.id.edXYDM)
-    TextView edXYDM;
+/*    @BindView(R.id.edXYDM)
+    TextView edXYDM;*/
 
     @BindView(R.id.edLXRXM)
     TextView edLXRXM;
     @BindView(R.id.edLXDH)
     TextView edLXDH;
-    @BindView(R.id.edSCFJ)
-    TextView edSCFJ;
+
 
 
 
@@ -138,7 +137,7 @@ public class ContributeDetialActivity  extends BaseActivity<ContributeDetialPres
         }
 
         edGSMC.setText(data.getTitle());
-        edXYDM.setText(data.getType());
+       /* edXYDM.setText(data.getType());*/
 
         edLXRXM.setText(data.getContent());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -147,8 +146,8 @@ public class ContributeDetialActivity  extends BaseActivity<ContributeDetialPres
             edLXRXM.setText(Html.fromHtml(data.getContent()));
         }
 
-        edLXDH.setText(data.getTime());
-        edSCFJ.setText(data.getStatus());
+        edLXDH.setText("作者："+data.getCreateUser()+"  发布时间："+data.getTime());
+
 
     }
 

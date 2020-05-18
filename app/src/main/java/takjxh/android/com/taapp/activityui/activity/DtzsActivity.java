@@ -4,15 +4,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +48,7 @@ import takjxh.android.com.taapp.activityui.adapter.DtdsAdapter;
 import takjxh.android.com.taapp.activityui.base.BaseDialog;
 import takjxh.android.com.taapp.activityui.bean.CompanyTypesBean;
 import takjxh.android.com.taapp.activityui.bean.CompanysBean;
+import takjxh.android.com.taapp.activityui.chat.takevideo.utils.LogUtils;
 import takjxh.android.com.taapp.activityui.dialog.InputIosDialog;
 import takjxh.android.com.taapp.activityui.dialog.MenuIosDialog;
 import takjxh.android.com.taapp.activityui.popupwindow.utils.FitPopupUtil;
@@ -50,7 +56,7 @@ import takjxh.android.com.taapp.activityui.presenter.DtzsPresenter;
 import takjxh.android.com.taapp.activityui.presenter.impl.IDtzsPresenter;
 import takjxh.android.com.taapp.view.mulitmenuselect.Children;
 import takjxh.android.com.taapp.view.mulitmenuselect.ChildrenUtil;
-import takjxh.android.com.taapp.view.mulitmenuselect.ThirdDialog2;
+import takjxh.android.com.taapp.view.mulitmenuselect.MultiDialogActivity;
 
 /**
  * 类名称：地图展示
@@ -108,8 +114,10 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
 
 
     private List<Children> list1 = new ArrayList<>();
-    private List<Children> treeItemBeanList = new ArrayList<>();
+    private ArrayList<Children> treeItemBeanList = new ArrayList<>();
 
+    //定义请求码常量
+    private static final int REQUEST_CODE_Company = 25;
 
     /**
      * 返回布局文件
@@ -147,7 +155,7 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
                 if (pos != position) {
                     pos = position;
                     clearOverlay();
-                    resetOverlay(data.getName(), new LatLng(Double.valueOf(data.getLat()), Double.valueOf(data.getLng())));
+                    resetOverlay(data, new LatLng(Double.valueOf(data.getLat()), Double.valueOf(data.getLng())));
                     for (CompanysBean.CompanyBean bean : mList) {
                         bean.isSelect = false;
                     }
@@ -173,7 +181,7 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
 
     Marker mMarkerA;
 
-    public void initOverlay(String address, LatLng llA) {
+    public void initOverlay(CompanysBean.CompanyBean item, LatLng llA) {
 
         MapStatus.Builder builder = new MapStatus.Builder();
         float zoom = 14f; // 地图缩放级别
@@ -207,14 +215,59 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
             public void onMarkerDragStart(Marker marker) {
             }
         });
+        LinearLayout ml = new LinearLayout(getApplicationContext());
+        ml.setOrientation(LinearLayout.VERTICAL);
+        /*LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.gravity = Gravity.CENTER_VERTICAL| Gravity.LEFT;*/
+        ml.setGravity(Gravity.CENTER | Gravity.LEFT);
 
         TextView button = new TextView(getApplicationContext());
         button.setBackgroundResource(R.color.dtzs);
-        InfoWindow.OnInfoWindowClickListener listener = null;
-        button.setText(address);
+        //button.setText(item.getName() +"\n"+"注册时间："+item.getRegTime()+"\n"+item.getRegAddr() +"\n"+"营业收入："+item.getIncome()+"\n"+"从业人数："+item.getScale()   );
+        button.setText(item.getName());
+        button.setTextSize(17);
+        button.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         button.setTextColor(Color.WHITE);
-        button.setGravity(Gravity.CENTER);
-        button.setPadding(25, 35, 25, 35);
+        button.setPadding(15, 15, 15, 0);
+        ml.addView(button);
+
+        button = new TextView(getApplicationContext());
+        button.setBackgroundResource(R.color.dtzs);
+        button.setText("注册地址：" + item.getRegAddr());
+        button.setTextSize(12);
+        button.setTextColor(Color.WHITE);
+        button.setPadding(15, 15, 15, 0);
+        ml.addView(button);
+
+
+        button = new TextView(getApplicationContext());
+        button.setBackgroundResource(R.color.dtzs);
+        button.setText("注册时间：" + item.getRegTime());
+        button.setTextSize(12);
+        button.setTextColor(Color.WHITE);
+        button.setPadding(15, 15, 15, 0);
+        ml.addView(button);
+
+
+        button = new TextView(getApplicationContext());
+        button.setBackgroundResource(R.color.dtzs);
+        button.setText("营业收入：" + item.getIncome());
+        button.setTextSize(12);
+        button.setTextColor(Color.WHITE);
+        button.setPadding(15, 15, 15, 0);
+        ml.addView(button);
+
+
+        button = new TextView(getApplicationContext());
+        button.setBackgroundResource(R.color.dtzs);
+        button.setText("从业人数：" + item.getScale());
+        button.setTextSize(12);
+        button.setTextColor(Color.WHITE);
+        button.setPadding(15, 15, 15, 15);
+        ml.addView(button);
+
+
+        InfoWindow.OnInfoWindowClickListener listener = null;
         listener = new InfoWindow.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick() {
@@ -223,7 +276,7 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
             }
         };
         LatLng lll = mMarkerA.getPosition();
-        mInfoWindow = new InfoWindow(BitmapDescriptorFactory.fromView(button), lll, -47, listener);
+        mInfoWindow = new InfoWindow(BitmapDescriptorFactory.fromView(ml), lll, -47, listener);
         mBaiduMap.showInfoWindow(mInfoWindow);
 
         mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
@@ -255,7 +308,7 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
     /**
      * 重新添加Overlay
      */
-    public void resetOverlay(String address, LatLng llA) {
+    public void resetOverlay(CompanysBean.CompanyBean address, LatLng llA) {
         clearOverlay();
         initOverlay(address, llA);
     }
@@ -286,13 +339,14 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
         mPresenter.companyslist("", "", typeId, "" + pageIndex, "" + pageSize);
     }
 
+    InputIosDialog.Builder mInputIosDialog;
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_definition:
 
-                InputIosDialog.Builder mInputIosDialog = new InputIosDialog.Builder(DtzsActivity.this);
-
+                mInputIosDialog = new InputIosDialog.Builder(DtzsActivity.this);
                 mInputIosDialog
                         .setTitleBt(key)
                         .setSshyID(typeName, typeId)
@@ -320,8 +374,8 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
                             }
 
                             @Override
-                            public void onSel(AutoCompleteTextView tv_sshy) {
-                                String[] dictionary = new String[list1.size()];
+                            public void onSel(TextView tv_sshy) {
+                                /*String[] dictionary = new String[list1.size()];
                                 for (int i = 0; i < list1.size(); i++) {
                                     dictionary[i] = list1.get(i).getName();
                                 }
@@ -346,10 +400,10 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
                                         // sshyID = list1.get(position).getId();
                                         mInputIosDialog.setSshyID(list1.get(position).getId());
                                     }
-                                });
+                                });*/
 
-
-                                ThirdDialog2 dialog = new ThirdDialog2(DtzsActivity.this, treeItemBeanList);
+                                MultiDialogActivity.startAction(DtzsActivity.this, "选择所属行业", treeItemBeanList, REQUEST_CODE_Company);
+                               /* ThirdDialog2 dialog = new ThirdDialog2(DtzsActivity.this, treeItemBeanList);
                                 dialog.setonItemClickListener(new ThirdDialog2.DictItemClickListener() {
                                     @Override
                                     public void onDictItemClick(Children dictUnit) {
@@ -360,13 +414,142 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
                                         }
                                     }
                                 });
-                                dialog.show();
+                                dialog.show();*/
                             }
                         })
                         .show();
 
 
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_Company && resultCode == RESULT_OK) {
+            if (data != null) {
+                Children dictUnit = data.getParcelableExtra("dictUnit");
+                if (dictUnit != null) {
+                    // tv_sshy.setText(dictUnit.getName());
+                    if (mInputIosDialog != null) {
+                        // mInputIosDialog.setSshyID(dictUnit.getName(),dictUnit.getId());
+
+                    }
+
+                    mInputIosDialog = new InputIosDialog.Builder(DtzsActivity.this);
+                    mInputIosDialog
+                            .setTitleBt(key)
+                            .setSshyID(dictUnit.getName(), dictUnit.getId())
+                            .setTitle("筛选条件")
+                            // 确定按钮文本
+                            .setConfirm("确定")
+                            // 设置 null 表示不显示取消按钮
+                            .setCancel(null)
+                            .setListener(new InputIosDialog.OnListener() {
+                                @Override
+                                public void onSelected(BaseDialog dialog, String msg, String sshyID, String sshyName) {
+                                    typeName = sshyName;
+                                    typeId = sshyID;
+                                    key = msg;
+
+                                    isLoadMore = false;
+                                    pageIndex = 1;
+                                    mPresenter.companyslist("", key, typeId, "" + pageIndex, "" + pageSize);
+                                    dialog.dismiss();
+                                }
+
+                                @Override
+                                public void onCancel(BaseDialog dialog) {
+                                    // toast("取消了");
+                                }
+
+                                @Override
+                                public void onSel(TextView tv_sshy) {
+                                    /*list1.clear();
+                                    list1 = ChildrenUtil.getSelList(treeItemBeanList);
+                                    LogUtils.e("----onSel----size-------------:" + list1.size());
+                                    String[] dictionary = new String[list1.size()];
+                                    for (int i = 0; i < list1.size(); i++) {
+                                        dictionary[i] = list1.get(i).getName();
+                                    }
+                                    //利用适配器
+                                    ArrayAdapter<String> adapter_actv = new ArrayAdapter<String>(
+                                            DtzsActivity.this, android.R.layout.simple_dropdown_item_1line, dictionary);
+                                    tv_sshy.setAdapter(adapter_actv);
+
+                                    tv_sshy.setThreshold(1);
+                                    tv_sshy.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                                        @Override
+                                        public void onFocusChange(View v, boolean hasFocus) {
+                                            if (hasFocus) {//获取焦点时
+                                                tv_sshy.showDropDown();
+                                            }
+                                        }
+                                    });
+                                    tv_sshy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                            // sshyID = list1.get(position).getId();
+                                            mInputIosDialog.setSshyID(list1.get(position).getId());
+                                        }
+                                    });
+
+                                    tv_sshy.setOnKeyListener(new View.OnKeyListener()
+                                    {
+                                        // 添加软键盘事件（让软键盘有一个搜索的图标）
+                                        @Override
+                                        public boolean onKey(View v, int keyCode, KeyEvent event)
+                                        {
+                                            // TODO Auto-generated method stub
+                                            if (keyCode == KeyEvent.KEYCODE_ENTER)
+                                            {
+                                                if (event.getAction() == KeyEvent.ACTION_UP)
+                                                {
+                                                    InputMethodManager imm = (InputMethodManager) v
+                                                            .getContext().getSystemService(
+                                                                    Context.INPUT_METHOD_SERVICE);
+                                                    if (imm.isActive())
+                                                    {
+                                                        imm.hideSoftInputFromWindow(v
+                                                                .getApplicationWindowToken(), 0);
+                                                    }
+                                                    return true;
+                                                }
+
+                                            }
+                                            return false;
+                                        }
+                                    });
+                                    tv_sshy.setOnClickListener(new View.OnClickListener() {
+
+                                        @Override
+                                        public void onClick(View v)
+                                        {
+                                            tv_sshy.showDropDown();
+                                        }
+                                    });*/
+
+
+                                    MultiDialogActivity.startAction(DtzsActivity.this, "选择所属行业", treeItemBeanList, REQUEST_CODE_Company);
+                                /*ThirdDialog2 dialog = new ThirdDialog2(DtzsActivity.this, treeItemBeanList);
+                                dialog.setonItemClickListener(new ThirdDialog2.DictItemClickListener() {
+                                    @Override
+                                    public void onDictItemClick(Children dictUnit) {
+                                        if (dictUnit != null) {
+                                            tv_sshy.setText(dictUnit.getName());
+                                            //sshyID = dictUnit.getId();
+                                            mInputIosDialog.setSshyID(dictUnit.getId());
+                                        }
+                                    }
+                                });
+                                dialog.show();*/
+                                }
+                            })
+                            .show();
+                }
+            }
         }
     }
 
@@ -484,7 +667,7 @@ public class DtzsActivity extends BaseActivity<DtzsPresenter> implements IDtzsPr
             if (mList.size() > 0) {
                 mList.get(0).isSelect = true;
                 pos = 0;
-                initOverlay(mList.get(0).getName(), new LatLng(Double.valueOf(mList.get(0).getLat()), Double.valueOf(mList.get(0).getLng())));
+                initOverlay(mList.get(0), new LatLng(Double.valueOf(mList.get(0).getLat()), Double.valueOf(mList.get(0).getLng())));
             }
         } else {
             mList.addAll(data);
