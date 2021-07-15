@@ -119,7 +119,7 @@ public class HorizontalProgressBarWithNumber extends ProgressBar {
     mTextOffset = (int) attributes.getDimension(
         R.styleable.HorizontalProgressBarWithNumber_progress_text_offset, mTextOffset);
     int textVisible =
-        attributes.getInt(R.styleable.HorizontalProgressBarWithNumber_progress_text_visibility,
+        attributes.getInt(R.styleable.HorizontalProgressBarWithNumber_progress_text_visibility_s,
             VISIBLE);
     if (textVisible != VISIBLE) {
       mIfDrawText = false;

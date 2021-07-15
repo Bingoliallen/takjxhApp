@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'com.mob.sdk'
+apply plugin: 'com.jakewharton.butterknife'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -11,18 +12,18 @@ commonProperties.load(new FileInputStream(commonPropertiesFile))
 
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     lintOptions {
         abortOnError false
     }
 
     publishNonDefault true  // library 默认不支持 debug 模式
-    buildToolsVersion "27.0.3"
+    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId commonProperties["application_id"]
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 3
         versionName "1.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -130,18 +131,17 @@ def releaseTime() {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.+'
+    implementation 'com.android.support:appcompat-v7:28.+'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':commlibrary')
-   // implementation project(':cklklibrary')
-    compile 'com.android.support:design:27.+'
-    implementation 'com.android.support:cardview-v7:27.+'
+    compile 'com.android.support:design:28.+'
+    implementation 'com.android.support:cardview-v7:28.+'
 
-    api 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    api 'com.jakewharton:butterknife:9.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0'
 
     api 'org.greenrobot:eventbus:3.1.1'
     annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.1.1'
@@ -162,8 +162,11 @@ dependencies {
     /* RecyclerView Adapter */
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
     //下载文件
-    implementation 'com.arialyy.aria:aria-core:3.4.6'
-    annotationProcessor 'com.arialyy.aria:aria-compiler:3.4.6'
+//    implementation 'com.arialyy.aria:aria-core:3.4.6'
+//    annotationProcessor 'com.arialyy.aria:aria-compiler:3.4.6'
+    implementation 'com.arialyy.aria:core:3.8.5'
+    annotationProcessor 'com.arialyy.aria:compiler:3.8.5'
+
     implementation 'com.arialyy.frame:MVVM2:2.2.0'
 
     compile 'com.android.support:multidex:1.0.2'
@@ -223,6 +226,8 @@ dependencies {
     /*compile 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。*/
 
     implementation 'com.github.mtotschnig:StickyListHeaders:2.7.1'
+
+
     implementation 'cn.bingoogolapple:bga-banner:2.2.7@aar'
 
     compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0' // 侧滑删除
@@ -233,11 +238,11 @@ dependencies {
 }
 configurations.all {
     resolutionStrategy {
-        force "com.android.support:appcompat-v7:27.1.1"
-        force "com.android.support:support-v4:27.1.1"
+        force "com.android.support:appcompat-v7:28.+"
+        force "com.android.support:support-v4:28.+"
 
-        force 'com.android.support:design:27.1.1'
-        force 'com.android.support:cardview-v7:27.1.1'
+        force 'com.android.support:design:28.+'
+        force 'com.android.support:cardview-v7:28.+'
 
 
 

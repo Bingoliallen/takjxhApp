@@ -87,6 +87,7 @@
         android:label="@string/qbapp_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:targetApi="n"
         tools:replace="android:icon,android:theme,android:allowBackup,android:label">
         <activity

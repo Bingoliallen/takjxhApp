@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.arialyy.annotations.Download;
 import com.arialyy.aria.core.Aria;
 import com.arialyy.aria.core.download.DownloadEntity;
-import com.arialyy.aria.core.download.DownloadTask;
+import com.arialyy.aria.core.task.DownloadTask;
 import com.arialyy.aria.orm.DbEntity;
 import com.arialyy.aria.util.ALog;
 import com.arialyy.aria.util.CommonUtil;
@@ -48,6 +48,7 @@ public class DownloadDialog1 extends AbsDialog1 implements View.OnClickListener{
     private String url;
     private String filename;
     private String mFilePath;
+    private long mTaskId = -1;
 
   /* private static final String DOWNLOAD_URL =
             "http://192.168.150.144:8080/mmall/upload/20180709122909.apk";*/
@@ -154,8 +155,9 @@ public class DownloadDialog1 extends AbsDialog1 implements View.OnClickListener{
             rtv_1.setVisibility(View.GONE);
             mStart.setVisibility(View.VISIBLE);
 
-            DownloadEntity entity = Aria.download(this).getDownloadEntity(url);
+            DownloadEntity entity = Aria.download(this).getFirstDownloadEntity(url);
             if (entity != null) {
+                mTaskId = entity.getId();
                 mSize.setText(CommonUtil.formatFileSize(entity.getFileSize()));
                 int p = (int) (entity.getCurrentProgress() * 100 / entity.getFileSize());
                 mPb.setProgress(p);
@@ -189,7 +191,7 @@ public class DownloadDialog1 extends AbsDialog1 implements View.OnClickListener{
 
     public void setCancel() {
 
-        Aria.download(this).load(url).cancel();
+        Aria.download(this).load(mTaskId).cancel();
         dismiss();
 
     }
@@ -352,15 +354,18 @@ public class DownloadDialog1 extends AbsDialog1 implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.start:
-                Aria.download(this)
-                        .load(url)
-                        .setFilePath(mFilePath)
-                        .start();
+                if (mTaskId == -1) {
+                    mTaskId = Aria.download(this)
+                            .load(url)
+                            .setFilePath(mFilePath)
+                            .create();
+                }
+
                 rtv_1.setVisibility(View.VISIBLE);
                 mStart.setVisibility(View.GONE);
                 break;
             case R.id.stop:
-                Aria.download(this).load(url).stop();
+                Aria.download(this).load(mTaskId).stop();
                 break;
             case R.id.cancel12:
                 setCancel();
